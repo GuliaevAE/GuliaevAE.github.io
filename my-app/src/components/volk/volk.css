@@ -1,0 +1,72 @@
+.volk1{
+    display: flex;
+    position: absolute;
+    left: 290px;
+    top: 290px;
+    height: 150px;
+    width: 100px;
+    background: url("../img/wolf-p-0.png") no-repeat;
+    opacity: 0.4;
+}
+
+.volk2{
+    display: flex;
+    position: absolute;
+    right: 280px;
+    top: 290px;
+    height: 150px;
+    width: 100px;
+    background: url("../img/wolf-p-1.png") no-repeat;
+    opacity: 0.4;
+}
+
+.volk-hand1{
+    display: flex;
+    position: absolute;
+    left: 220px;
+    top: 360px;
+    height: 150px;
+    width: 100px;
+    background: url("../img/basket-p-0-0.png") no-repeat;
+    opacity: 0.4;
+}
+
+
+.volk-hand2{
+    display: flex;
+    position: absolute;
+    left: 220px;
+    top: 250px;
+    height: 150px;
+    width: 100px;
+    background: url("../img/basket-p-0-1.png") no-repeat;
+    opacity: 0.4;
+}
+
+.volk-hand3{
+    display: flex;
+    position: absolute;
+    right: 210px;
+    top: 360px;
+    height: 150px;
+    width: 100px;
+    background: url("../img/basket-p-1-0.png") no-repeat;
+    opacity: 0.4;
+}
+
+
+.volk-hand4{
+    display: flex;
+    position: absolute;
+    right: 210px;
+    top: 250px;
+    height: 150px;
+    width: 100px;
+    background: url("../img/basket-p-1-1.png") no-repeat;
+    opacity: 0.4;
+}
+
+
+.active{
+    opacity: 1;
+}

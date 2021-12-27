@@ -1,0 +1,136 @@
+.egg{
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    opacity: 0.4;
+    background-image: url(../img/egg.png);
+}
+
+/* .egg img{
+    height: 100%;
+    width: 100%;
+} */
+
+
+.LU1{
+    top: 167px;
+    left: 75px;
+
+}
+.LU2{
+    top: 190px;
+    left: 112px;
+
+}
+.LU3{
+    top: 213px;
+    left: 149px;
+
+}
+
+.LU4{
+    top: 236px;
+    left: 186px;
+
+}
+
+.LU5{
+    top: 259px;
+    left: 213px;
+
+}
+
+.RU1{
+    top: 167px;
+    right: 75px;
+
+}
+.RU2{
+    top: 190px;
+    right: 112px;
+
+}
+.RU3{
+    top: 213px;
+    right: 149px;
+
+}
+
+.RU4{
+    top: 236px;
+    right: 186px;
+
+}
+
+.RU5{
+    top: 259px;
+    right: 213px;
+
+}
+
+
+.LD1{
+    bottom: 152px;
+    left: 75px;
+
+}
+.LD2{
+    bottom: 129px;
+    left: 112px;
+
+}
+.LD3{
+    bottom: 106px;
+    left: 149px;
+
+}
+
+.LD4{
+    bottom: 83px;
+    left: 186px;
+
+}
+
+.LD5{
+    bottom: 60px;
+    left: 213px;
+
+}
+
+.RD1{
+    bottom: 152px;
+    right: 75px;
+
+}
+.RD2{
+    bottom: 129px;
+    right: 112px;
+
+}
+.RD3{
+    bottom: 106px;
+    right: 149px;
+
+}
+
+.RD4{
+    bottom: 83px;
+    right: 186px;
+
+}
+
+.RD5{
+    bottom: 60px;
+    right: 213px;
+
+}
+
+
+.activeEgg{
+    opacity: 1;
+}
+
+
+
+.black{
+ background: black}

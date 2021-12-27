@@ -1,0 +1,55 @@
+.back{
+    display: flex;
+    position: relative;
+    height: 850px;
+    width: 1600px;
+    background: rgb(217, 213, 202);
+}
+
+
+.display{
+    display: flex;
+    position: relative;
+    background-image: url(../img/background2.png);
+    
+    width: 800px;
+    height: 450px;
+    
+    margin-top: 8%;
+    margin-left:auto;
+    margin-right: auto;
+    border: 20px solid rgb(212, 42, 42);
+    border-radius: 3%;
+    
+}
+
+.btn{
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    border-radius: 90%;
+    background: red;
+}
+
+
+.btn-left-up{
+    left:100px;
+    top: 500px;
+}
+
+
+.btn-left-down{
+    left:100px;
+    top: 600px;
+}
+
+.btn-right-up{
+    right:200px;
+    top: 500px;
+}
+
+.btn-right-down{
+    right:200px;
+    top: 600px;
+}
+
