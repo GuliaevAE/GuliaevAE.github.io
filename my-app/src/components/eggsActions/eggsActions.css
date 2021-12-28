@@ -1,4 +1,4 @@
-.egg{
+.egg {
     position: absolute;
     height: 15px;
     width: 15px;
@@ -11,126 +11,149 @@
     width: 100%;
 } */
 
+.noneEgg {
+    opacity: 0;
+}
 
-.LU1{
+.LU1 {
     top: 167px;
     left: 75px;
 
 }
-.LU2{
+
+.LU2 {
     top: 190px;
     left: 112px;
 
 }
-.LU3{
+
+.LU3 {
     top: 213px;
     left: 149px;
 
 }
 
-.LU4{
+.LU4 {
     top: 236px;
     left: 186px;
 
 }
 
-.LU5{
+.LU5 {
     top: 259px;
     left: 213px;
 
 }
 
-.RU1{
+.RU1 {
     top: 167px;
     right: 75px;
 
 }
-.RU2{
+
+.RU2 {
     top: 190px;
     right: 112px;
 
 }
-.RU3{
+
+.RU3 {
     top: 213px;
     right: 149px;
 
 }
 
-.RU4{
+.RU4 {
     top: 236px;
     right: 186px;
 
 }
 
-.RU5{
+.RU5 {
     top: 259px;
     right: 213px;
 
 }
 
 
-.LD1{
+.LD1 {
     bottom: 152px;
     left: 75px;
 
 }
-.LD2{
+
+.LD2 {
     bottom: 129px;
     left: 112px;
 
 }
-.LD3{
+
+.LD3 {
     bottom: 106px;
     left: 149px;
 
 }
 
-.LD4{
+.LD4 {
     bottom: 83px;
     left: 186px;
 
 }
 
-.LD5{
+.LD5 {
     bottom: 60px;
     left: 213px;
 
 }
 
-.RD1{
+.RD1 {
     bottom: 152px;
     right: 75px;
 
 }
-.RD2{
+
+.RD2 {
     bottom: 129px;
     right: 112px;
 
 }
-.RD3{
+
+.RD3 {
     bottom: 106px;
     right: 149px;
 
 }
 
-.RD4{
+.RD4 {
     bottom: 83px;
     right: 186px;
 
 }
 
-.RD5{
+.RD5 {
     bottom: 60px;
     right: 213px;
 
 }
 
 
-.activeEgg{
+.activeEgg {
     opacity: 1;
 }
 
 
 
-.black{
- background: black}
+.black {
+    background: black
+}
+
+
+.btn_start {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    right: -200px;
+    background: #5c5c5c;
+    border-radius: 60px/50px;
+    border: red solid 5px;
+}
