@@ -32,13 +32,17 @@ export default class EggsActions extends Component {
             LD1: 'egg LD1 noneEgg',
             RU1: 'egg RU1 noneEgg',
             RD1: 'egg RD1 noneEgg',
+            speedEgg: 1000,
+            respaunEgg: 2000,
         };
         this.start1 = this.start1.bind(this);
         this.start11 = this.start11.bind(this);
         this.start2 = this.start2.bind(this);
         this.start3 = this.start3.bind(this);
         this.start4 = this.start4.bind(this);
-        this.nashalo = this.nashalo.bind(this);
+        this.begin = this.begin.bind(this);
+        this.auto = this.auto.bind(this);
+
     }
 
     componentDid() { }
@@ -64,48 +68,151 @@ export default class EggsActions extends Component {
 
     }
 
-    nashalo() {
-        let num = Math.floor(Math.random() * 4) + 1;
+
+    auto() {
+        let num = this.randomInteger(1, 4);
         console.log(num)
-        if (this.state.posLU === false) {
 
-            this.start11()
-        }
+        // if (this.state.posLU === false) {
+        //     if (this.state.posLU === false && this.state.posLU1 === false) {
+        //         console.log("Переход на старт2")
+        //         this.start2()
+        //     }
+        //     this.start11()
+        // } 
 
-        if (this.state.posLD === false) {
+        // if (this.state.posLD === false) {
+        //     if (this.state.posLD === false && this.state.posLD1 === false) {
+        //         console.log("Переход на старт3")
+        //         this.start3()
+        //     }
+        //     this.start22()
+        // } 
 
-            this.start22()
-        }
+        // if (this.state.posRU === false) {
+        //     if (this.state.posRU === false && this.state.posRU1 === false) {
+        //         console.log("Переход на старт4")
+        //         this.start4()
+        //     }
+        //     this.start33()
+        // } 
 
-        if (this.state.posRU === false) {
+        // if (this.state.posRD === false) {
+        //     if (this.state.posRD === false && this.state.posRD1 === false) {
+        //         console.log("Переход на старт1")
+        //         this.start1()
+        //     }
+        //     this.start44()
+        // } 
 
-            this.start33()
-        }
 
-        if (this.state.posRD === false) {
 
-            this.start44()
-        }
+
+
+
+
+
+
+
+        // if (this.state.posLU === false) {
+        //     if (this.state.posLU === false && this.state.posLU1 === false) {
+        //         console.log("Переход на старт2")
+        //         this.start2()
+        //     }else{this.start11()}
+        // }else{this.start1()}
+
+        // if (this.state.posLD === false) {
+        //     if (this.state.posLD === false && this.state.posLD1 === false) {
+        //         console.log("Переход на старт3")
+        //         this.start3()
+        //     }else{this.start22()}
+        // }else{this.start2()}
+
+        // if (this.state.posRU === false) {
+        //     if (this.state.posRU === false && this.state.posRU1 === false) {
+        //         console.log("Переход на старт4")
+        //         this.start4()
+        //     }else{this.start33()}
+        // }else{this.start3()}
+
+        // if (this.state.posRD === false) {
+        //     if (this.state.posRD === false && this.state.posRD1 === false) {
+        //         console.log("Переход на старт1")
+        //         this.start1()
+        //     }else{this.start44()}
+        // }else{this.start4()}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         switch (num) {
             case 1:
-                this.start1();
+                if (this.state.posLU === false) {
+                    if (this.state.posLU === false && this.state.posLU1 === false) {
+                        console.log("Переход на старт2")
+                        this.start2()
+                    }else{this.start11()}
+                }else{this.start1()}
 
                 break;
             case 2:
-                this.start2();
+                if (this.state.posLD === false) {
+                    if (this.state.posLD === false && this.state.posLD1 === false) {
+                        console.log("Переход на старт3")
+                        this.start3()
+                    }else{this.start22()}
+                }else{this.start2()}
                 break;
             case 3:
-                this.start3();
+                if (this.state.posRU === false) {
+                    if (this.state.posRU === false && this.state.posRU1 === false) {
+                        console.log("Переход на старт4")
+                        this.start4()
+                    }else{this.start33()}
+                }else{this.start3()}
                 break;
             case 4:
-                this.start4();
+                if (this.state.posRD === false) {
+                    if (this.state.posRD === false && this.state.posRD1 === false) {
+                        console.log("Переход на старт1")
+                        this.start1()
+                    }else{this.start44()}
+                }else{this.start4()}
                 break;
             default:
                 break;
+
         }
+
+
+
     }
 
 
+
+    begin() {
+        // setInterval(() => this.state.speedEgg-500, 1000)
+        // setInterval(() => this.state.respaunEgg-500, 10000)
+        setInterval(()=>console.log(this.state.speedEgg, this.state.respaunEgg), 1000)
+        setInterval(() => this.auto(), this.state.respaunEgg)
+
+    }
+
+    randomInteger(min, max) {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+    }
 
 
 
@@ -114,26 +221,26 @@ export default class EggsActions extends Component {
         // console.log(this.state)
         this.setState({ LU: 'egg LU1 activeEgg' })
         this.setState({ posLU: false })
-        setTimeout(() => this.setState({ LU: 'egg LU2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), 1000)
+        setTimeout(() => this.setState({ LU: 'egg LU2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg)
         // setTimeout(() => console.log(this.state), 1000)
 
 
-        setTimeout(() => this.setState({ LU: 'egg LU3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), 2000)
+        setTimeout(() => this.setState({ LU: 'egg LU3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+1000)
         // setTimeout(() => console.log(this.state), 2000)
 
-        setTimeout(() => this.setState({ LU: 'egg LU4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), 3000)
+        setTimeout(() => this.setState({ LU: 'egg LU4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+2000)
         // setTimeout(() => console.log(this.state), 3000)
 
-        setTimeout(() => this.setState({ LU: 'egg LU5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), 4000)
+        setTimeout(() => this.setState({ LU: 'egg LU5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+3000)
         // setTimeout(() => console.log(this.state), 4000)
 
-        setTimeout(() => this.setState({ LU: 'egg LU1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posLU: true }), 4500)
-        setTimeout(() => this.setState({ countLU: 0 }), 4500)
+        setTimeout(() => this.setState({ LU: 'egg LU1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posLU: true }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ countLU: 0 }), this.state.speedEgg+3500)
         // setTimeout(() => console.log(this.state), 4500)
 
 
@@ -391,7 +498,7 @@ export default class EggsActions extends Component {
         return (
             <>
                 <div className="wraper">
-                    <div className="btn_start" onClick={this.nashalo} />
+                    <div className="btn_start" onClick={this.begin} />
                     <div className={classname1} />
                     <div className={classname2} />
                     <div className={classname3} />
