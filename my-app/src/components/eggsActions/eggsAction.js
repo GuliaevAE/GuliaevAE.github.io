@@ -32,7 +32,7 @@ export default class EggsActions extends Component {
             LD1: 'egg LD1 noneEgg',
             RU1: 'egg RU1 noneEgg',
             RD1: 'egg RD1 noneEgg',
-            speedEgg: 500,
+            speedEgg: 1000,
             respaunEgg: 1000,
         };
         this.start1 = this.start1.bind(this);
@@ -115,31 +115,36 @@ export default class EggsActions extends Component {
 
 
 
+
+
+
+
+
+
     start1(i) {
         console.log("start1")
         
         this.setState({ LU: `egg ${i}1 activeEgg` })
         this.setState({ posLU: false })
-        setTimeout(() => this.setState({ LU: `egg ${i}2 activeEgg` }), this.state.speedEgg)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg)
+        setTimeout(() => this.setState({ [i]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
+        // setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg)
         
 
-
-        setTimeout(() => this.setState({ LU: `egg ${i}3 activeEgg` }), this.state.speedEgg+1000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ [i]: `egg ${i}3 activeEgg` }), this.state.speedEgg+1000)
+        // setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+1000)
         
 
-        setTimeout(() => this.setState({ LU: `egg ${i}4 activeEgg` }), this.state.speedEgg+2000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ [i]: `egg ${i}4 activeEgg` }), this.state.speedEgg+2000)
+        // setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+2000)
         
 
-        setTimeout(() => this.setState({ LU: `egg ${i}5 activeEgg` }), this.state.speedEgg+3000)
-        setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ [i]: `egg ${i}5 activeEgg` }), this.state.speedEgg+3000)
+        // setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+3000)
         
 
-        setTimeout(() => this.setState({ LU: `egg ${i}1 noneEgg` }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ [i]: `egg ${i}1 noneEgg` }), this.state.speedEgg+3500)
         setTimeout(() => this.setState({ posLU: true }), this.state.speedEgg+3500)
-        setTimeout(() => this.setState({ countLU: 0 }), this.state.speedEgg+3500)
+        // setTimeout(() => this.setState({ countLU: 0 }), this.state.speedEgg+3500)
         
 
 
@@ -152,44 +157,29 @@ export default class EggsActions extends Component {
         this.setState({ LU1: 'egg LU1 activeEgg' })
         this.setState({ posLU1: false })
         setTimeout(() => this.setState({ LU1: 'egg LU2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 1000)
+        // setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 1000)
         
 
 
         setTimeout(() => this.setState({ LU1: 'egg LU3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 2000)
+        // setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 2000)
         
 
         setTimeout(() => this.setState({ LU1: 'egg LU4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 3000)
+        // setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 3000)
         
 
         setTimeout(() => this.setState({ LU1: 'egg LU5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 4000)
+        // setTimeout(() => this.setState({ countLU1: this.state.countLU1 + 1 }), 4000)
         
 
         setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), 4500)
         setTimeout(() => this.setState({ posLU1: true }), 4500)
-        setTimeout(() => this.setState({ countLU1: 0 }), 4500)
+        // setTimeout(() => this.setState({ countLU1: 0 }), 4500)
         
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     start2() {
@@ -198,25 +188,25 @@ export default class EggsActions extends Component {
         this.setState({ LD: 'egg LD1 activeEgg' })
         this.setState({ posLD: false })
         setTimeout(() => this.setState({ LD: 'egg LD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 1000)
+        // setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 1000)
         
 
 
         setTimeout(() => this.setState({ LD: 'egg LD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 2000)
+        // setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 2000)
         
 
         setTimeout(() => this.setState({ LD: 'egg LD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 3000)
+        // setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 3000)
         
 
         setTimeout(() => this.setState({ LD: 'egg LD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 4000)
+        // setTimeout(() => this.setState({ countLD: this.state.countLD + 1 }), 4000)
         
 
         setTimeout(() => this.setState({ LD: 'egg LD1 noneEgg' }), 4500)
         setTimeout(() => this.setState({ posLD: true }), 4500)
-        setTimeout(() => this.setState({ countLD: 0 }), 4500)
+        // setTimeout(() => this.setState({ countLD: 0 }), 4500)
         
     }
 
@@ -227,20 +217,20 @@ export default class EggsActions extends Component {
         this.setState({ LD1: 'egg LD1 activeEgg' })
         this.setState({ posLD1: false })
         setTimeout(() => this.setState({ LD1: 'egg LD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 1000)
+        // setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 1000)
         
 
 
         setTimeout(() => this.setState({ LD1: 'egg LD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 2000)
+        // setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 2000)
         
 
         setTimeout(() => this.setState({ LD1: 'egg LD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 3000)
+        // setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 3000)
         
 
         setTimeout(() => this.setState({ LD1: 'egg LD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 4000)
+        // setTimeout(() => this.setState({ countLD1: this.state.countLD1 + 1 }), 4000)
         
 
         setTimeout(() => this.setState({ LD1: 'egg LD1 noneEgg' }), 4500)
@@ -255,25 +245,25 @@ export default class EggsActions extends Component {
         this.setState({ RU: 'egg RU1 activeEgg' })
         this.setState({ posRU: false })
         setTimeout(() => this.setState({ RU: 'egg RU2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 1000)
+        // setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 1000)
         
 
 
         setTimeout(() => this.setState({ RU: 'egg RU3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 2000)
+        // setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 2000)
         
 
         setTimeout(() => this.setState({ RU: 'egg RU4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 3000)
+        // setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 3000)
         
 
         setTimeout(() => this.setState({ RU: 'egg RU5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 4000)
+        // setTimeout(() => this.setState({ countRU: this.state.countRU + 1 }), 4000)
         
 
         setTimeout(() => this.setState({ RU: 'egg RU1 noneEgg' }), 4500)
         setTimeout(() => this.setState({ posRU: true }), 4500)
-        setTimeout(() => this.setState({ countRU: 0 }), 4500)
+        // setTimeout(() => this.setState({ countRU: 0 }), 4500)
         
 
     }
@@ -285,21 +275,21 @@ export default class EggsActions extends Component {
         this.setState({ RU1: 'egg RU1 activeEgg' })
         this.setState({ posRU1: false })
         setTimeout(() => this.setState({ RU1: 'egg RU2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 1000)
+        // setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 1000)
 
 
         setTimeout(() => this.setState({ RU1: 'egg RU3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 2000)
+        // setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 2000)
 
         setTimeout(() => this.setState({ RU1: 'egg RU4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 3000)
+        // setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 3000)
 
         setTimeout(() => this.setState({ RU1: 'egg RU5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 4000)
+        // setTimeout(() => this.setState({ countRU1: this.state.countRU1 + 1 }), 4000)
 
         setTimeout(() => this.setState({ RU1: 'egg RU1 noneEgg' }), 4500)
         setTimeout(() => this.setState({ posRU1: true }), 4500)
-        setTimeout(() => this.setState({ countRU1: 0 }), 4500)
+        // setTimeout(() => this.setState({ countRU1: 0 }), 4500)
 
 
     }
@@ -313,21 +303,21 @@ export default class EggsActions extends Component {
         this.setState({ RD: 'egg RD1 activeEgg' })
         this.setState({ posRD: false })
         setTimeout(() => this.setState({ RD: 'egg RD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 1000)
+        // setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 1000)
 
 
         setTimeout(() => this.setState({ RD: 'egg RD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 2000)
+        // setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 2000)
 
         setTimeout(() => this.setState({ RD: 'egg RD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 3000)
+        // setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 3000)
 
         setTimeout(() => this.setState({ RD: 'egg RD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 4000)
+        // setTimeout(() => this.setState({ countRD: this.state.countRD + 1 }), 4000)
 
         setTimeout(() => this.setState({ RD: 'egg LU1 noneEgg' }), 4500)
         setTimeout(() => this.setState({ posRD: true }), 4500)
-        setTimeout(() => this.setState({ countRD: 0 }), 4500)
+        // setTimeout(() => this.setState({ countRD: 0 }), 4500)
 
 
     }
@@ -339,21 +329,21 @@ export default class EggsActions extends Component {
         this.setState({ RD1: 'egg RD1 activeEgg' })
         setTimeout(() => this.setState({ posRD1: false }), 1000)
         setTimeout(() => this.setState({ RD1: 'egg RD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 1000)
+        // setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 1000)
 
 
         setTimeout(() => this.setState({ RD1: 'egg RD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 2000)
+        // setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 2000)
 
         setTimeout(() => this.setState({ RD1: 'egg RD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 3000)
+        // setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 3000)
 
         setTimeout(() => this.setState({ RD1: 'egg RD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 4000)
+        // setTimeout(() => this.setState({ countRD1: this.state.countRD1 + 1 }), 4000)
 
         setTimeout(() => this.setState({ RD1: 'egg LU1 noneEgg' }), 4500)
         setTimeout(() => this.setState({ posRD1: true }), 4500)
-        setTimeout(() => this.setState({ countRD1: 0 }), 4500)
+        // setTimeout(() => this.setState({ countRD1: 0 }), 4500)
 
 
     }
@@ -364,7 +354,7 @@ export default class EggsActions extends Component {
 
 
     render() {
-        let num = 1;
+        
         let classname1 = this.state.LU;
         let classname2 = this.state.LD;
         let classname3 = this.state.RU;
