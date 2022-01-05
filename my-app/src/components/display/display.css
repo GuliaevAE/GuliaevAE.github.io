@@ -53,3 +53,15 @@
     top: 600px;
 }
 
+
+
+.LOGO{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    height: 89px;
+    width: 104px;
+    background-image: url(../img/LOGO.png);
+    
+}
+

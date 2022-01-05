@@ -2,12 +2,41 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { createStore } from "redux";
+import { Provider } from 'react-redux';
+
+const defaultState = {
+  numberPosition: 0,
+}
+
+
+// action = {type:"", payload:""}
+
+
+const reducer = (state = defaultState, action) => {
+  switch (action.type) {
+    case "CHANGE":
+      return { numberPosition: action.payload }
+
+
+
+    default:
+      return state
+  }
+}
+
+
+const store = createStore(reducer)
+
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
+
   document.getElementById('root')
 );
 

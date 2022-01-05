@@ -4,6 +4,11 @@ import "../eggsActions/eggsActions.css";
 
 
 
+
+
+
+
+
 export default class EggsActions extends Component {
     constructor(props) {
         super(props);
@@ -141,6 +146,10 @@ export default class EggsActions extends Component {
         setTimeout(() => this.setState({ [i]: `egg ${i}5 activeEgg` }), this.state.speedEgg+3000)
         // setTimeout(() => this.setState({ countLU: this.state.countLU + 1 }), this.state.speedEgg+3000)
         
+        // if(this.state.LU1 === 5 && )
+
+
+
 
         setTimeout(() => this.setState({ [i]: `egg ${i}1 noneEgg` }), this.state.speedEgg+3500)
         setTimeout(() => this.setState({ posLU: true }), this.state.speedEgg+3500)

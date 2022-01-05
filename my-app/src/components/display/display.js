@@ -1,10 +1,20 @@
 import React, { Component } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Eggs from "../eggsActions/eggsAction";
 // import Buttons from "../buttons";
 import Volk from "../volk";
 import "../volk/volk.css";
 
 
+// const dispatch = useDispatch()
+
+ 
+
+const CounterComponent = () => {
+    const counter = useSelector((state) => state.numberPosition)
+    // return <div>{counter}</div>
+    console.log(counter);
+  }
 
 
 
@@ -19,6 +29,10 @@ class Display extends Component{
     }
 
     
+
+    
+
+
 
 
     renderWolf(i){
@@ -49,6 +63,9 @@ class Display extends Component{
     }
 
     render(){
+
+
+        
          
         let num = this.state.num;
         let numh = this.state.numh;
@@ -65,10 +82,11 @@ class Display extends Component{
                     <Eggs></Eggs>
                 </div>
                 
-                <button id="1" onClick={this.renderWolf} className="btn btn-left-up">LU</button>
+                <button id="1" onClick={CounterComponent} className="btn btn-left-up">LU</button>
                 <button id="2" onClick={this.renderWolf} className="btn btn-left-down">LD</button>
                 <button id="3" onClick={this.renderWolf} className="btn btn-right-up">RU</button>
                 <button id="4" onClick={this.renderWolf} className="btn btn-right-down">RD</button>
+                <div className="LOGO"/>
                 </div>
             
             </>

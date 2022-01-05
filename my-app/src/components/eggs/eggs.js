@@ -5,13 +5,10 @@ import React from "react";
 
 
 
-function Eggs (){
-    
+function Eggs() {
 
-
-    
-        return(
-            <>
+    return (
+        <>
             <div className="egg LU1"></div>
             <div className="egg LU2"></div>
             <div className="egg LU3"></div>
@@ -32,11 +29,11 @@ function Eggs (){
             <div className="egg RD3"></div>
             <div className="egg RD4"></div>
             <div className="egg RD5"></div>
-            </>
-        ) 
-    
+        </>
+    )
 
-    
+
+
 
 }
 
