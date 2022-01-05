@@ -10,11 +10,7 @@ import "../volk/volk.css";
 
  
 
-const CounterComponent = () => {
-    const counter = useSelector((state) => state.numberPosition)
-    // return <div>{counter}</div>
-    console.log(counter);
-  }
+
 
 
 
@@ -63,7 +59,11 @@ class Display extends Component{
     }
 
     render(){
-
+        const CounterComponent = () => {
+            const counter = useSelector((state) => state.numberPosition)
+            // return <div>{counter}</div>
+            console.log(counter);
+          }
 
         
          
