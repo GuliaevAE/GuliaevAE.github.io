@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import EggsNone from "../eggs";
 import "../eggsActions/eggsActions.css";
 
+
 export default class EggsActions extends Component {
     constructor(props) {
         super(props);

@@ -33,24 +33,24 @@
 
 
 .btn-left-up{
-    left:100px;
-    top: 500px;
+    left:-270px;
+    top: 300px;
 }
 
 
 .btn-left-down{
-    left:100px;
-    top: 600px;
+    left:-270px;
+    top: 450px;
 }
 
 .btn-right-up{
-    right:200px;
-    top: 500px;
+    right:-270px;
+    top: 300px;
 }
 
 .btn-right-down{
-    right:200px;
-    top: 600px;
+    right:-270px;
+    top: 450px;
 }
 
 

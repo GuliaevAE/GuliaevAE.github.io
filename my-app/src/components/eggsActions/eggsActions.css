@@ -138,16 +138,13 @@
 
 
 
-.black {
-    background: black
-}
-
 
 .btn_start {
     position: absolute;
     width: 60px;
     height: 30px;
-    right: -200px;
+    top: 50px;
+    right: -275px;
     background: #5c5c5c;
     border-radius: 60px/50px;
     border: red solid 5px;
@@ -156,12 +153,12 @@
 
 .score {
     position: absolute;
-    left: 0px;
+    left: 20px;
     font-size: 50px;
 }
 
 .mistakes {
     position: absolute;
-    right: 0px;
+    right: 20px;
     font-size: 50px;
 }
