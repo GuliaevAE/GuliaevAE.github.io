@@ -1,2 +1,2 @@
-import Eggs from "./eggs";
-export default Eggs;
+import EggsNone from "./eggs";
+export default EggsNone;
