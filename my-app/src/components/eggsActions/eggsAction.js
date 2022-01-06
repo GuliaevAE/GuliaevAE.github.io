@@ -300,7 +300,7 @@ export default class EggsActions extends Component {
     }
 
     ///////////////////////////// 
-    //Использование клавиатуры
+    //Использование клавиатуры (кнопки 2,4,6,8 на numpad)
 
     checkKey = (event) => {
         switch (event.keyCode) {
