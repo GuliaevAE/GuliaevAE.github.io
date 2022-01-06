@@ -10,9 +10,6 @@ const defaultState = {
 }
 
 
-// action = {type:"", payload:""}
-
-
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case "CHANGE":

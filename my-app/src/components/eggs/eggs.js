@@ -5,7 +5,7 @@ import React from "react";
 
 
 
-function EggsNone() {
+export default function EggsNone() {
 
     return (
         <>
@@ -38,4 +38,3 @@ function EggsNone() {
 }
 
 
-export default EggsNone;

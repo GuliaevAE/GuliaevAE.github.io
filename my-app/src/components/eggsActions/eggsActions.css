@@ -6,11 +6,6 @@
     background-image: url(../img/egg.png);
 }
 
-/* .egg img{
-    height: 100%;
-    width: 100%;
-} */
-
 .noneEgg {
     opacity: 0;
 }
@@ -159,14 +154,14 @@
 }
 
 
-.score{
+.score {
     position: absolute;
-    left:0px;
+    left: 0px;
     font-size: 50px;
 }
 
-.mistakes{
+.mistakes {
     position: absolute;
-    right:0px;
+    right: 0px;
     font-size: 50px;
 }
