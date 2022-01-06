@@ -383,9 +383,6 @@ export default class EggsActions extends Component {
     }
 
 
-
-
-
     start4() {
         console.log("start4")
         this.setState({ RD: 'egg RD1 activeEgg' })

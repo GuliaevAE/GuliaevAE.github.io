@@ -1,41 +1,26 @@
-import React, { Component } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import Eggs from "../eggsActions/eggsAction";
-// import Buttons from "../buttons";
 import Volk from "../volk";
 import "../volk/volk.css";
 
 
-
-
-function Display (){
-    
-
-    
-        
-        
-        return(
-            <>
-                <div className="back">
+export default function Display() {
+    return (
+        <>
+            <div className="back">
                 <div className="display">
-                    <Volk/>
-                    
-                    <Eggs></Eggs>
+                    <Volk />
+                    <Eggs />
                 </div>
-                
-                <div className="LOGO"/>
-                </div>
-            
-            </>
-        ) 
-   
+                <div className="LOGO" />
+            </div>
 
-    
-
+        </>
+    )
 }
 
 
 
 
-export default Display;
+ 
 
