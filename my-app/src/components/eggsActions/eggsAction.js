@@ -59,14 +59,14 @@ export default class EggsActions extends Component {
     componentDidUpdate() { }
 
 
-/////////////////////////////////////////////
+    /////////////////////////////////////////////
     componentDidMount() {
         document.addEventListener("keydown", this.checkKey);
     }
 
 
-/////////////////////////////////////////////////
-//Функция рендера случайного яйца 
+    /////////////////////////////////////////////////
+    //Функция рендера случайного яйца 
     auto() {
         let num = this.randomInteger(1, 4);
         console.log(num)
@@ -76,6 +76,9 @@ export default class EggsActions extends Component {
             case 1:
                 if (this.state.posLU === false) {
                     if (this.state.posLU === false && this.state.posLU1 === false) {
+                        if(this.state.posLU === false && this.state.posLU1 === false && this.state.LD === false){
+                            this.start22()
+                        }
                         console.log("Переход на старт2")
                         this.start2()
                     } else { this.start11() }
@@ -85,6 +88,9 @@ export default class EggsActions extends Component {
             case 2:
                 if (this.state.posLD === false) {
                     if (this.state.posLD === false && this.state.posLD1 === false) {
+                        if(this.state.posLD === false && this.state.posLD1 === false && this.state.posRU === false ){
+                            this.start33()
+                        }
                         console.log("Переход на старт3")
                         this.start3()
                     } else { this.start22() }
@@ -93,6 +99,9 @@ export default class EggsActions extends Component {
             case 3:
                 if (this.state.posRU === false) {
                     if (this.state.posRU === false && this.state.posRU1 === false) {
+                        if(this.state.posRU === false && this.state.posRU1 === false && this.state.posRD === false){
+                            this.start44()
+                        }
                         console.log("Переход на старт4")
                         this.start4()
                     } else { this.start33() }
@@ -101,6 +110,9 @@ export default class EggsActions extends Component {
             case 4:
                 if (this.state.posRD === false) {
                     if (this.state.posRD === false && this.state.posRD1 === false) {
+                        if(this.state.posRD === false && this.state.posRD1 === false && this.state.posLU === false){
+                            this.start11() 
+                        }
                         console.log("Переход на старт1")
                         this.start1()
                     } else { this.start44() }
@@ -115,7 +127,7 @@ export default class EggsActions extends Component {
 
     }
 
-/////////////////////////////////////////////
+    /////////////////////////////////////////////
 
 
     begin() {
@@ -126,16 +138,16 @@ export default class EggsActions extends Component {
 
     }
 
-///////////////////////////////////////////
-//Функция генерации рандомного числа
+    ///////////////////////////////////////////
+    //Функция генерации рандомного числа
     randomInteger(min, max) {
         // получить случайное число от (min-0.5) до (max+0.5)
         let rand = min - 0.5 + Math.random() * (max - min + 1);
         return Math.round(rand);
     }
 
-//////////////////////////////////////////
-//Функции движения яиц
+    //////////////////////////////////////////
+    //Функции движения яиц
 
     start1(i) {
         console.log("start1")
@@ -165,7 +177,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
 
         setTimeout(() => this.setState({ [i]: `egg ${i}1 noneEgg` }), this.state.speedEgg + 3500)
@@ -211,7 +223,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
 
     }
@@ -253,7 +265,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
 
 
@@ -298,7 +310,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
     }
 
@@ -338,7 +350,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
 
 
@@ -377,7 +389,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
 
     }
@@ -413,7 +425,7 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
 
 
@@ -453,18 +465,18 @@ export default class EggsActions extends Component {
             }
         }
 
-        setTimeout(() => verify(), this.state.speedEgg + 3450)
+        setTimeout(() => verify(), this.state.speedEgg + 3100)
 
     }
 
 
-    
 
 
-    
 
-///////////////////////////// 
-//Использование клавиатуры
+
+
+    ///////////////////////////// 
+    //Использование клавиатуры
 
     checkKey = (event) => {
         switch (event.keyCode) {
@@ -508,7 +520,7 @@ export default class EggsActions extends Component {
 
     }
 
-    up(){
+    up() {
         if (this.state.num === "volk1 active") {
             this.setState({ numh: "volk-hand2 active" });
         }
@@ -517,7 +529,7 @@ export default class EggsActions extends Component {
         }
     }
 
-    down(){
+    down() {
         if (this.state.num === "volk1 active") {
             this.setState({ numh: "volk-hand1 active" });
         }
@@ -526,8 +538,8 @@ export default class EggsActions extends Component {
         }
     }
 
-///////////////////////////
-//Функция рендера волка при клике на кнопки интерфейса
+    ///////////////////////////
+    //Функция рендера волка при клике на кнопки интерфейса
     renderWolf(i) {
         switch (i.target.id) {
             case "1":
@@ -589,8 +601,15 @@ export default class EggsActions extends Component {
                     <div className={classname22} />
                     <div className={classname33} />
                     <div className={classname44} />
-                    {score}
-                    {mistakes}
+
+                    <div className="score">
+                        {score}
+                    </div>
+
+                    <div className="mistakes">
+                        {mistakes}
+                    </div>
+
                     <EggsNone />
                     {wolk}
                     {wolkHand}

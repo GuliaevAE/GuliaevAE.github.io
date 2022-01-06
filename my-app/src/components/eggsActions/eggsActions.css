@@ -157,3 +157,16 @@
     border-radius: 60px/50px;
     border: red solid 5px;
 }
+
+
+.score{
+    position: absolute;
+    left:0px;
+    font-size: 50px;
+}
+
+.mistakes{
+    position: absolute;
+    right:0px;
+    font-size: 50px;
+}
