@@ -300,6 +300,7 @@ export default class EggsActions extends Component {
 
     }
 
+
     ///////////////////////////// 
     //Использование клавиатуры (кнопки 2,4,6,8 на numpad)
 
