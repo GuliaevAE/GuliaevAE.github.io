@@ -1,10 +1,16 @@
 .egg {
     position: absolute;
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
     opacity: 0.4;
     background-image: url(../img/egg.png);
 }
+
+.egg img{
+    width: 100%;
+}
+
+
 
 .noneEgg {
     opacity: 0;
