@@ -437,10 +437,10 @@ export default class EggsActions extends Component {
                     {wolk}
                     {wolkHand}
 
-                    <button id="1" onClick={this.renderWolf} className="btn btn-left-up">LU</button>
-                    <button id="2" onClick={this.renderWolf} className="btn btn-left-down">LD</button>
-                    <button id="3" onClick={this.renderWolf} className="btn btn-right-up">RU</button>
-                    <button id="4" onClick={this.renderWolf} className="btn btn-right-down">RD</button>
+                    <button id="1" onClick={this.renderWolf} className="btn btn-left-up"></button>
+                    <button id="2" onClick={this.renderWolf} className="btn btn-left-down"></button>
+                    <button id="3" onClick={this.renderWolf} className="btn btn-right-up"></button>
+                    <button id="4" onClick={this.renderWolf} className="btn btn-right-down"></button>
                 </div>
             </>
         )

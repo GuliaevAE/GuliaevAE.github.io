@@ -46,25 +46,25 @@
 }
 
 .RU1 {
-    top: 167px;
+    top: 163px;
     right: 75px;
 
 }
 
 .RU2 {
-    top: 190px;
+    top: 187px;
     right: 112px;
 
 }
 
 .RU3 {
-    top: 213px;
+    top: 210px;
     right: 149px;
 
 }
 
 .RU4 {
-    top: 236px;
+    top: 234px;
     right: 186px;
 
 }
@@ -77,25 +77,25 @@
 
 
 .LD1 {
-    bottom: 152px;
+    bottom: 150px;
     left: 75px;
 
 }
 
 .LD2 {
-    bottom: 129px;
+    bottom: 127px;
     left: 112px;
 
 }
 
 .LD3 {
-    bottom: 106px;
+    bottom: 103px;
     left: 149px;
 
 }
 
 .LD4 {
-    bottom: 83px;
+    bottom: 79px;
     left: 186px;
 
 }
@@ -107,19 +107,19 @@
 }
 
 .RD1 {
-    bottom: 152px;
+    bottom: 151px;
     right: 75px;
 
 }
 
 .RD2 {
-    bottom: 129px;
+    bottom: 128px;
     right: 112px;
 
 }
 
 .RD3 {
-    bottom: 106px;
+    bottom: 105px;
     right: 149px;
 
 }
@@ -153,6 +153,10 @@
     background: #5c5c5c;
     border-radius: 60px/50px;
     border: red solid 5px;
+}
+
+.btn_start:active{
+    background: #3a3a3a;
 }
 
 

@@ -5,6 +5,7 @@
     width: 1600px;
     background: rgb(217, 213, 202);
     border: 20px solid rgb(202, 48, 48);
+    border-radius: 20px;
 }
 
 
@@ -62,7 +63,18 @@
     width: 60px;
     border-radius: 90%;
     background: red;
+    
+    /* border: 8px solid rgb(204, 29, 29); */
+    box-shadow:  0 0 0 1px rgb(0, 0, 0), 0 0 0 8px rgb(204, 29, 29);
+    
+    
 }
+
+.btn:active{
+    background: rgb(173, 0, 0);
+}
+
+
 
 
 .btn-left-up{
