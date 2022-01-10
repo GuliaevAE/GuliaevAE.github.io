@@ -6,6 +6,9 @@
     background: rgb(217, 213, 202);
     border: 20px solid rgb(202, 48, 48);
     border-radius: 20px;
+    background-image: url(../img/crash3.png);
+    background-size: contain;
+    
 }
 
 
