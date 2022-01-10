@@ -7,11 +7,16 @@ import "../volk/volk.css";
 export default function Display() {
     return (
         <>
+
             <div className="back">
-                <div className="display">
-                    <Volk />
-                    <Eggs />
+                <div className="module">
+                    <div className="title">НУ, ПОГОДИ!</div>
+                    <div className="display">
+                        <Volk />
+                        <Eggs />
+                    </div>
                 </div>
+
                 <div className="LOGO" />
             </div>
 
@@ -22,5 +27,5 @@ export default function Display() {
 
 
 
- 
+
 

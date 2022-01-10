@@ -61,9 +61,9 @@ export default class EggsActions extends Component {
                     if (this.state.posLU === false && this.state.posLU1 === false) {
                         if (this.state.posLU === false && this.state.posLU1 === false && this.state.LD === false) {
                             this.start22()
-                        }
-                        console.log("Переход на старт2")
-                        this.start2()
+                        }else
+                        {console.log("Переход на старт2")
+                        this.start2()}
                     } else { this.start11() }
                 } else { this.start1("LU") }
 
@@ -73,9 +73,9 @@ export default class EggsActions extends Component {
                     if (this.state.posLD === false && this.state.posLD1 === false) {
                         if (this.state.posLD === false && this.state.posLD1 === false && this.state.posRU === false) {
                             this.start33()
-                        }
-                        console.log("Переход на старт3")
-                        this.start3()
+                        }else
+                        {console.log("Переход на старт3")
+                        this.start3()}
                     } else { this.start22() }
                 } else { this.start2() }
                 break;
@@ -84,9 +84,9 @@ export default class EggsActions extends Component {
                     if (this.state.posRU === false && this.state.posRU1 === false) {
                         if (this.state.posRU === false && this.state.posRU1 === false && this.state.posRD === false) {
                             this.start44()
-                        }
-                        console.log("Переход на старт4")
-                        this.start4()
+                        }else
+                        {console.log("Переход на старт4")
+                        this.start4()}
                     } else { this.start33() }
                 } else { this.start3() }
                 break;
@@ -95,9 +95,9 @@ export default class EggsActions extends Component {
                     if (this.state.posRD === false && this.state.posRD1 === false) {
                         if (this.state.posRD === false && this.state.posRD1 === false && this.state.posLU === false) {
                             this.start11()
-                        }
-                        console.log("Переход на старт1")
-                        this.start1()
+                        }else
+                        {console.log("Переход на старт1")
+                        this.start1()}
                     } else { this.start44() }
                 } else { this.start4() }
                 break;
@@ -111,10 +111,12 @@ export default class EggsActions extends Component {
 
     begin() {
         // setInterval(() => this.state.speedEgg-500, 1000)
-        // setInterval(() => this.state.respaunEgg-500, 10000)
+        // setInterval(() => this.setstate.respaunEgg-500, 1000)
         // setInterval(()=>console.log(this.state.speedEgg, this.state.respaunEgg), 1000)
         setInterval(() => this.auto(), this.state.respaunEgg)
-
+        
+        // setInterval(() => this.setState({ respaunEgg: this.respaunEgg-500 }), 1000)
+        // setInterval(() => this.setState({ speedEgg: this.speedEgg-500 }), 1000)
     }
 
     ///////////////////////////////////////////

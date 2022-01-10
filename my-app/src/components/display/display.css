@@ -4,6 +4,39 @@
     height: 850px;
     width: 1600px;
     background: rgb(217, 213, 202);
+    border: 20px solid rgb(202, 48, 48);
+}
+
+
+
+.module{
+    display: flex;
+    position: relative;
+    
+    width: 900px;
+    height: 650px;
+    background: rgb(217, 213, 202);
+    margin-top: 6%;
+    margin-left:auto;
+    margin-right: auto;
+    
+    border: 20px outset rgb(138, 134, 124) ;
+    /* border-bottom: 20px outset rgb(187, 176, 149) ;
+    border-top: 20px outset rgb(168, 163, 151) ;
+    border-left: 20px outset rgb(133, 129, 119) ;
+    border-right: 20px outset rgb(158, 154, 143) ; */
+    /* border-radius: 3%; */
+    
+}
+
+
+.title{
+    display: flex;
+    position: absolute;
+    margin-left: 35%;
+    top: 5px;
+    font-size: 40px;
+    color:red;
 }
 
 

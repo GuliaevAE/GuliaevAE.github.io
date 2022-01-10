@@ -4,11 +4,10 @@
     width: 20px;
     opacity: 0.4;
     background-image: url(../img/egg.png);
+    background-size: contain;
 }
 
-.egg img{
-    width: 100%;
-}
+
 
 
 
