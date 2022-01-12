@@ -25,10 +25,10 @@
     margin-left:auto;
     margin-right: auto;
     
-    border-left: 20px outset rgb(138, 134, 124) ;
-    border-top: 20px outset rgb(117, 114, 106) ;
-    border-right: 20px outset rgb(158, 154, 143) ;
-    border-bottom: 20px outset rgb(119, 113, 98) ;
+    border-left: 25px outset rgb(138, 134, 124) ;
+    border-top: 25px outset rgb(117, 114, 106) ;
+    border-right: 25px outset rgb(158, 154, 143) ;
+    border-bottom: 25px outset rgb(119, 113, 98) ;
     /* border-bottom: 20px outset rgb(187, 176, 149) ;
     border-top: 20px outset rgb(168, 163, 151) ;
     border-left: 20px outset rgb(133, 129, 119) ;
@@ -69,7 +69,7 @@
     margin-left:auto;
     margin-right: auto;
     border: 20px solid rgb(212, 42, 42);
-    border-radius: 3%;
+    border-radius: 10px;
     
 }
 
