@@ -6,8 +6,6 @@ import "../volk/volk.css";
 
 export default function Display() {
     return (
-        <>
-
             <div className="back">
                 <div className="module">
                     <div className="title">НУ, ПОГОДИ!</div>
@@ -17,11 +15,8 @@ export default function Display() {
                     </div>
                     <div className="title2">ЭЛЕКТРОНИКА</div>
                 </div>
-
                 <div className="LOGO" />
             </div>
-
-        </>
     )
 }
 

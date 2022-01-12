@@ -26,10 +26,6 @@ export default function EggsNone() {
             <div className="egg RD5"></div>
         </>
     )
-
-
-
-
 }
 
 

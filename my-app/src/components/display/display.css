@@ -25,7 +25,10 @@
     margin-left:auto;
     margin-right: auto;
     
-    border: 20px outset rgb(138, 134, 124) ;
+    border-left: 20px outset rgb(138, 134, 124) ;
+    border-top: 20px outset rgb(117, 114, 106) ;
+    border-right: 20px outset rgb(158, 154, 143) ;
+    border-bottom: 20px outset rgb(119, 113, 98) ;
     /* border-bottom: 20px outset rgb(187, 176, 149) ;
     border-top: 20px outset rgb(168, 163, 151) ;
     border-left: 20px outset rgb(133, 129, 119) ;
