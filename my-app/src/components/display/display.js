@@ -15,6 +15,7 @@ export default function Display() {
                         <Volk />
                         <Eggs />
                     </div>
+                    <div className="title2">ЭЛЕКТРОНИКА</div>
                 </div>
 
                 <div className="LOGO" />

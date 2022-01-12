@@ -25,7 +25,7 @@ export default class EggsActions extends Component {
             RD1: 'egg RD1 noneEgg',
             speedEgg: 1000,
             respaunEgg: 1000,
-            num: "volk1 active", numh: "volk-hand2 active",
+            num: "", numh: "",
             score: 0,
             mistakes: 0
 
@@ -35,7 +35,8 @@ export default class EggsActions extends Component {
         this.start2 = this.start2.bind(this);
         this.start3 = this.start3.bind(this);
         this.start4 = this.start4.bind(this);
-        this.begin = this.begin.bind(this);
+        this.beginA = this.beginA.bind(this);
+        this.beginB = this.beginB.bind(this);
         this.auto = this.auto.bind(this);
         this.renderWolf = this.renderWolf.bind(this);
 
@@ -109,10 +110,26 @@ export default class EggsActions extends Component {
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
 
-    begin() {
+    beginA() {
         // setInterval(() => this.state.speedEgg-500, 1000)
         // setInterval(() => this.setstate.respaunEgg-500, 1000)
         // setInterval(()=>console.log(this.state.speedEgg, this.state.respaunEgg), 1000)
+        this.setState({ speedEgg: 1000 })
+        this.setState({ respaunEgg: 1000 })
+        setInterval(() => this.auto(), this.state.respaunEgg)
+        
+        // setInterval(() => this.setState({ respaunEgg: this.respaunEgg-500 }), 1000)
+        // setInterval(() => this.setState({ speedEgg: this.speedEgg-500 }), 1000)
+    }
+
+
+
+    beginB() {
+        // setInterval(() => this.state.speedEgg-500, 1000)
+        // setInterval(() => this.setstate.respaunEgg-500, 1000)
+        // setInterval(()=>console.log(this.state.speedEgg, this.state.respaunEgg), 1000)
+        this.setState({ speedEgg: 200 })
+        this.setState({ respaunEgg: 200 })
         setInterval(() => this.auto(), this.state.respaunEgg)
         
         // setInterval(() => this.setState({ respaunEgg: this.respaunEgg-500 }), 1000)
@@ -158,8 +175,8 @@ export default class EggsActions extends Component {
         setTimeout(() => this.setState({ LU1: 'egg LU3 activeEgg' }), this.state.speedEgg + 1000)
         setTimeout(() => this.setState({ LU1: 'egg LU4 activeEgg' }), this.state.speedEgg + 2000)
         setTimeout(() => this.setState({ LU1: 'egg LU5 activeEgg' }), this.state.speedEgg + 3000)
-        setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posLU1: true }), 4500)
+        setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posLU1: true }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.LU1 === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
@@ -175,12 +192,12 @@ export default class EggsActions extends Component {
         console.log("start2")
         this.setState({ LD: 'egg LD1 activeEgg' })
         this.setState({ posLD: false })
-        setTimeout(() => this.setState({ LD: 'egg LD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ LD: 'egg LD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ LD: 'egg LD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ LD: 'egg LD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ LD: 'egg LD1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posLD: true }), 4500)
+        setTimeout(() => this.setState({ LD: 'egg LD2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ LD: 'egg LD3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ LD: 'egg LD4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ LD: 'egg LD5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ LD: 'egg LD1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posLD: true }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.LD === "egg LD5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand1 active") {
@@ -197,13 +214,13 @@ export default class EggsActions extends Component {
         console.log("start22")
         this.setState({ LD1: 'egg LD1 activeEgg' })
         this.setState({ posLD1: false })
-        setTimeout(() => this.setState({ LD1: 'egg LD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ LD1: 'egg LD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ LD1: 'egg LD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ LD1: 'egg LD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ LD1: 'egg LD1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posLD1: true }), 4500)
-        setTimeout(() => this.setState({ countLD1: 0 }), 4500)
+        setTimeout(() => this.setState({ LD1: 'egg LD2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ LD1: 'egg LD3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ LD1: 'egg LD4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ LD1: 'egg LD5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ LD1: 'egg LD1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posLD1: true }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ countLD1: 0 }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.LD1 === "egg LD5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand1 active") {
@@ -219,12 +236,12 @@ export default class EggsActions extends Component {
         console.log("start3")
         this.setState({ RU: 'egg RU1 activeEgg' })
         this.setState({ posRU: false })
-        setTimeout(() => this.setState({ RU: 'egg RU2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ RU: 'egg RU3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ RU: 'egg RU4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ RU: 'egg RU5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ RU: 'egg RU1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posRU: true }), 4500)
+        setTimeout(() => this.setState({ RU: 'egg RU2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ RU: 'egg RU3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ RU: 'egg RU4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ RU: 'egg RU5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ RU: 'egg RU1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posRU: true }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.RU === "egg RU5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand4 active") {
@@ -241,12 +258,12 @@ export default class EggsActions extends Component {
         console.log("start33")
         this.setState({ RU1: 'egg RU1 activeEgg' })
         this.setState({ posRU1: false })
-        setTimeout(() => this.setState({ RU1: 'egg RU2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ RU1: 'egg RU3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ RU1: 'egg RU4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ RU1: 'egg RU5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ RU1: 'egg RU1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posRU1: true }), 4500)
+        setTimeout(() => this.setState({ RU1: 'egg RU2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ RU1: 'egg RU3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ RU1: 'egg RU4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ RU1: 'egg RU5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ RU1: 'egg RU1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posRU1: true }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.RU1 === "egg RU5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand4 active") {
@@ -263,12 +280,12 @@ export default class EggsActions extends Component {
         console.log("start4")
         this.setState({ RD: 'egg RD1 activeEgg' })
         this.setState({ posRD: false })
-        setTimeout(() => this.setState({ RD: 'egg RD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ RD: 'egg RD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ RD: 'egg RD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ RD: 'egg RD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ RD: 'egg LU1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posRD: true }), 4500)
+        setTimeout(() => this.setState({ RD: 'egg RD2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ RD: 'egg RD3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ RD: 'egg RD4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ RD: 'egg RD5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ RD: 'egg LU1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posRD: true }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.RD === "egg RD5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand3 active") {
@@ -284,12 +301,12 @@ export default class EggsActions extends Component {
         console.log("start44")
         this.setState({ RD1: 'egg RD1 activeEgg' })
         setTimeout(() => this.setState({ posRD1: false }), 1000)
-        setTimeout(() => this.setState({ RD1: 'egg RD2 activeEgg' }), 1000)
-        setTimeout(() => this.setState({ RD1: 'egg RD3 activeEgg' }), 2000)
-        setTimeout(() => this.setState({ RD1: 'egg RD4 activeEgg' }), 3000)
-        setTimeout(() => this.setState({ RD1: 'egg RD5 activeEgg' }), 4000)
-        setTimeout(() => this.setState({ RD1: 'egg LU1 noneEgg' }), 4500)
-        setTimeout(() => this.setState({ posRD1: true }), 4500)
+        setTimeout(() => this.setState({ RD1: 'egg RD2 activeEgg' }), this.state.speedEgg)
+        setTimeout(() => this.setState({ RD1: 'egg RD3 activeEgg' }), this.state.speedEgg+1000)
+        setTimeout(() => this.setState({ RD1: 'egg RD4 activeEgg' }), this.state.speedEgg+2000)
+        setTimeout(() => this.setState({ RD1: 'egg RD5 activeEgg' }), this.state.speedEgg+3000)
+        setTimeout(() => this.setState({ RD1: 'egg LU1 noneEgg' }), this.state.speedEgg+3500)
+        setTimeout(() => this.setState({ posRD1: true }), this.state.speedEgg+3500)
 
         const verify = () => {
             if (this.state.RD1 === "egg RD5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand3 active") {
@@ -415,7 +432,10 @@ export default class EggsActions extends Component {
         return (
             <>
                 <div className="wraper">
-                    <div className="btn_start" onClick={this.begin} />
+                    <div className="btn_startA" onClick={this.beginA} />
+                    <div className="title_btn_startA">игра А</div>
+                    <div className="btn_startB" onClick={this.beginB} />
+                    <div className="title_btn_startB">игра Б</div>
                     <div className={classname1} />
                     <div className={classname2} />
                     <div className={classname3} />

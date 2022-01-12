@@ -142,9 +142,41 @@
 }
 
 
+.title_btn_startA {
+    position: absolute;
+    font-size: 25px;
+    top: 15px;
+    right: -278px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
+}
 
 
-.btn_start {
+.title_btn_startB {
+    position: absolute;
+    font-size: 25px;
+    top: 85px;
+    right: -278px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
+}
+
+
+
+.btn_startA {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    top: -20px;
+    right: -275px;
+    background: #5c5c5c;
+    border-radius: 60px/50px;
+    border: red solid 5px;
+}
+
+
+
+.btn_startB {
     position: absolute;
     width: 60px;
     height: 30px;
@@ -155,10 +187,12 @@
     border: red solid 5px;
 }
 
-.btn_start:active{
+.btn_startA:active{
     background: #3a3a3a;
 }
-
+.btn_startB:active{
+    background: #3a3a3a;
+}
 
 .score {
     position: absolute;

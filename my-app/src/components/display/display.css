@@ -6,9 +6,10 @@
     background: rgb(217, 213, 202);
     border: 20px solid rgb(202, 48, 48);
     border-radius: 20px;
-    background-image: url(../img/crash3.png);
+    /* background-image: url(../img/crash3.png); */
     background-size: contain;
-    
+    left:90px;
+    top:40px;
 }
 
 
@@ -43,6 +44,15 @@
     color:red;
 }
 
+.title2{
+    display: flex;
+    position: absolute;
+    margin-left: 35%;
+    bottom: 15px;
+    font-size: 40px;
+    color:black;
+    
+}
 
 .display{
     display: flex;
