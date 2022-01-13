@@ -375,6 +375,41 @@ export default class EggsActions extends Component {
         }
     }
 
+
+
+
+
+
+
+    createEgg(posX, posY){
+        let styleConfig={
+            display:'block',
+            position: 'absolute',
+            left: posX,
+            top: posY
+        }
+        
+        setInterval(() => styleConfig.top=== 100, 1000)
+
+
+        return(
+            <div className="egg" style={styleConfig}/>
+        )
+    
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
     ///////////////////////////
     //Функция рендера волка при клике на кнопки интерфейса
     renderWolf(i) {
@@ -445,6 +480,11 @@ export default class EggsActions extends Component {
                         {mistakes}
                     </div>
 
+
+                    {this.createEgg(50, 50)}
+
+
+
                     <EggsNone />
                     {wolk}
                     {wolkHand}
@@ -458,3 +498,48 @@ export default class EggsActions extends Component {
         )
     }
 }
+
+
+
+
+
+
+
+
+
+// createEgg(posX, posY){
+//     const styleConfig={
+//         display:'block',
+//         position: 'absolute',
+//         left: posX,
+//         top: posY
+//     }
+
+//     return(
+//         <div className="egg"/>
+//     )
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
