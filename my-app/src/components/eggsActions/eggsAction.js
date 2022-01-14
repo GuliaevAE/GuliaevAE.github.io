@@ -49,7 +49,7 @@ export default class EggsActions extends Component {
     /////////////////////////////////////////////////
     //Функция рендера случайного яйца 
     auto() {
-        let num = this.randomInteger(1, 4);
+        let num = this.randomInteger(1,4);
         console.log(num)
 
         switch (num) {
@@ -57,50 +57,50 @@ export default class EggsActions extends Component {
                 if (this.state.posLU === false) {
                     if (this.state.posLU === false && this.state.posLU1 === false) {
                         if (this.state.posLU === false && this.state.posLU1 === false && this.state.LD === false) {
-                            this.start22()
+                            this.start11("LD", "posLD")
                         } else {
                             console.log("Переход на старт2")
-                            this.start2()
+                            this.start1("LD", "posLD")
                         }
-                    } else { this.start11() }
-                } else { this.start1("LU") }
+                    } else { this.start11("LU", "posLU") }
+                } else { this.start1("LU", "posLU") }
 
                 break;
             case 2:
                 if (this.state.posLD === false) {
                     if (this.state.posLD === false && this.state.posLD1 === false) {
                         if (this.state.posLD === false && this.state.posLD1 === false && this.state.posRU === false) {
-                            this.start33()
+                            this.start11("RU", "posRU")
                         } else {
                             console.log("Переход на старт3")
-                            this.start3()
+                            this.start1("RU", "posRU")
                         }
-                    } else { this.start22() }
-                } else { this.start2() }
+                    } else { this.start11("LD", "posLD") }
+                } else { this.start1("LD", "posLD") }
                 break;
             case 3:
                 if (this.state.posRU === false) {
                     if (this.state.posRU === false && this.state.posRU1 === false) {
                         if (this.state.posRU === false && this.state.posRU1 === false && this.state.posRD === false) {
-                            this.start44()
+                            this.start11("RD", "posRD")
                         } else {
                             console.log("Переход на старт4")
-                            this.start4()
+                            this.start1("RD", "posRD")
                         }
-                    } else { this.start33() }
-                } else { this.start3() }
+                    } else { this.start11("RU", "posRU") }
+                } else { this.start1("RU", "posRU") }
                 break;
             case 4:
                 if (this.state.posRD === false) {
                     if (this.state.posRD === false && this.state.posRD1 === false) {
                         if (this.state.posRD === false && this.state.posRD1 === false && this.state.posLU === false) {
-                            this.start11()
+                            this.start11("LU", "posLU")
                         } else {
                             console.log("Переход на старт1")
-                            this.start1()
+                            this.start1("LU", "posLU")
                         }
-                    } else { this.start44() }
-                } else { this.start4() }
+                    } else { this.start11("RD", "posRD") }
+                } else { this.start1("RD", "posRD") }
                 break;
             default:
                 break;
@@ -139,10 +139,10 @@ export default class EggsActions extends Component {
     //////////////////////////////////////////
     //Функции движения яиц
 
-    start1(i) {
+    start1(i, pos) {
         console.log("start1")
-        this.setState({ LU: `egg ${i}1 activeEgg` })
-        this.setState({ posLU: false })
+        this.setState({ [i]: `egg ${i}1 activeEgg` })
+        this.setState({ [pos]: false })
         setTimeout(() => this.setState({ [i]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
         setTimeout(() => this.setState({ [i]: `egg ${i}3 activeEgg` }), this.state.speedEgg * 2)
         setTimeout(() => this.setState({ [i]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
@@ -156,29 +156,54 @@ export default class EggsActions extends Component {
         }
         setTimeout(() => verify(), this.state.speedEgg * 4.1)
         setTimeout(() => this.setState({ [i]: `egg ${i}1 noneEgg` }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posLU: true }), this.state.speedEgg * 4.5)
+        setTimeout(() => this.setState({ [pos]: true }), this.state.speedEgg * 4.5)
     }
 
-    start11() {
-        console.log("start11")
-        this.setState({ LU1: 'egg LU1 activeEgg' })
-        this.setState({ posLU1: false })
-        setTimeout(() => this.setState({ LU1: 'egg LU2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ LU1: 'egg LU3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ LU1: 'egg LU4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ LU1: 'egg LU5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posLU1: true }), this.state.speedEgg * 4.5)
 
+    start11(i, pos) {
+        let x = i+1;
+        let y = pos+1;
+        console.log(x)
+        console.log("start11")
+        this.setState({ [x]: `egg ${i}1 activeEgg` })
+        this.setState({ [y]: false })
+        setTimeout(() => this.setState({ [x]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
+        setTimeout(() => this.setState({ [x]: `egg ${i}3 activeEgg` }), this.state.speedEgg * 2)
+        setTimeout(() => this.setState({ [x]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
+        setTimeout(() => this.setState({ [x]: `egg ${i}5 activeEgg` }), this.state.speedEgg * 4)
         const verify = () => {
-            if (this.state.LU1 === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
+            if (this.state.LU === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
                 this.setState({ score: this.state.score + 1 })
             } else {
                 this.setState({ mistakes: this.state.mistakes + 1 })
             }
         }
         setTimeout(() => verify(), this.state.speedEgg * 4.1)
+        setTimeout(() => this.setState({ [x]: `egg ${i}1 noneEgg` }), this.state.speedEgg * 4.5)
+        setTimeout(() => this.setState({ [y]: true }), this.state.speedEgg * 4.5)
     }
+
+
+    // start11() {
+    //     console.log("start11")
+    //     this.setState({ LU1: 'egg LU1 activeEgg' })
+    //     this.setState({ posLU1: false })
+    //     setTimeout(() => this.setState({ LU1: 'egg LU2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posLU1: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.LU1 === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
 
     start2() {
         console.log("start2")
@@ -381,22 +406,22 @@ export default class EggsActions extends Component {
 
 
 
-    createEgg(posX, posY){
-        let styleConfig={
-            display:'block',
-            position: 'absolute',
-            left: posX,
-            top: posY
-        }
+    // createEgg(posX, posY){
+       
         
-        setInterval(() => styleConfig.top=== 100, 1000)
+    //     let className = this.state.LU;
+    //     this.setState({ LU1: 'egg LU1 activeEgg' })
+    //     setTimeout(() => this.setState({ LU: 'egg LU2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ LU: 'egg LU3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ LU: 'egg LU4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ LU: 'egg LU5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ LU: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
 
-
-        return(
-            <div className="egg" style={styleConfig}/>
-        )
+    //     return(
+    //         <div  className={className}/>
+    //     )
     
-    }
+    // }
     
 
 
@@ -481,7 +506,7 @@ export default class EggsActions extends Component {
                     </div>
 
 
-                    {this.createEgg(50, 50)}
+                    {/* {this.createEgg(50, 50)} */}
 
 
 
