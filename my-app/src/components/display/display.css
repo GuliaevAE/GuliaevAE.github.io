@@ -1,10 +1,10 @@
 .back{
     display: flex;
     position: relative;
-    height: 850px;
-    width: 1600px;
+    height: 550px;
+    width: 1100px;
     background: rgb(217, 213, 202);
-    border: 20px solid rgb(202, 48, 48);
+    border: 15px solid rgb(202, 48, 48);
     border-radius: 20px;
     /* background-image: url(../img/crash3.png); */
     background-size: contain;
@@ -15,20 +15,20 @@
 
 
 .module{
-    display: flex;
+    display: block;
     position: relative;
     
-    width: 900px;
-    height: 650px;
+    width: 700px;
+    height:440px;
     background: rgb(217, 213, 202);
-    margin-top: 6%;
+    margin-top: 4%;
     margin-left:auto;
     margin-right: auto;
     
-    border-left: 25px outset rgb(138, 134, 124) ;
-    border-top: 25px outset rgb(117, 114, 106) ;
-    border-right: 25px outset rgb(158, 154, 143) ;
-    border-bottom: 25px outset rgb(119, 113, 98) ;
+    border-left: 15px outset rgb(138, 134, 124) ;
+    border-top: 15px outset rgb(117, 114, 106) ;
+    border-right: 15px outset rgb(158, 154, 143) ;
+    border-bottom: 15px outset rgb(119, 113, 98) ;
     /* border-bottom: 20px outset rgb(187, 176, 149) ;
     border-top: 20px outset rgb(168, 163, 151) ;
     border-left: 20px outset rgb(133, 129, 119) ;
@@ -43,7 +43,7 @@
     position: absolute;
     margin-left: 35%;
     top: 5px;
-    font-size: 40px;
+    font-size: 20px;
     color:red;
 }
 
@@ -51,37 +51,37 @@
     display: flex;
     position: absolute;
     margin-left: 35%;
-    bottom: 15px;
-    font-size: 40px;
+    /* bottom: 10px; */
+    font-size: 20px;
     color:black;
     
 }
 
 .display{
-    display: flex;
+    display: block;
     position: relative;
-    background-image: url(../img/background2.png);
+    background-image: url(../img/background2.png) ;
+    background-size: cover;
+    width: 640px;
+    height: 360px;
     
-    width: 800px;
-    height: 450px;
-    
-    margin-top: 8%;
+    margin-top: 5%;
     margin-left:auto;
     margin-right: auto;
-    border: 20px solid rgb(212, 42, 42);
+    border: 10px solid rgb(212, 42, 42);
     border-radius: 10px;
     
 }
 
 .btn{
     position: absolute;
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
     border-radius: 90%;
     background: red;
     
     /* border: 8px solid rgb(204, 29, 29); */
-    box-shadow:  0 0 0 1px rgb(0, 0, 0), 0 0 0 8px rgb(204, 29, 29);
+    box-shadow:  0 0 0 1px rgb(0, 0, 0), 0 0 0 6px rgb(204, 29, 29);
     
     
 }
@@ -94,35 +94,36 @@
 
 
 .btn-left-up{
-    left:-270px;
-    top: 300px;
+    left:-140px;
+    top: 250px;
 }
 
 
 .btn-left-down{
-    left:-270px;
-    top: 450px;
+    left:-140px;
+    top: 345px;
 }
 
 .btn-right-up{
-    right:-270px;
-    top: 300px;
+    right:-140px;
+    top: 250px;
 }
 
 .btn-right-down{
-    right:-270px;
-    top: 450px;
+    right:-140px;
+    top: 345px;
 }
 
 
 
 .LOGO{
     position: absolute;
-    top: 100px;
-    left: 100px;
-    height: 89px;
-    width: 104px;
-    background-image: url(../img/LOGO.png);
+    top: 45px;
+    left: 40px;
+    height: 70px;
+    width: 80px;
+    background: url(../img/LOGO.png) no-repeat;
+    background-size: contain;
     
 }
 

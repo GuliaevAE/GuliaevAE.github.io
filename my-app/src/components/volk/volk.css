@@ -1,33 +1,36 @@
 .volk1{
     display: flex;
     position: absolute;
-    left: 290px;
-    top: 290px;
-    height: 150px;
-    width: 100px;
-    background: url("../img/wolf-p-0.png") no-repeat;
+    left: 230px;
+    top: 220px;
+    height: 125px;
+    width: 80px;
+    background: url("../img/wolf-p-0.png") ;
+    background-size: cover;
     opacity: 0.4;
 }
 
 .volk2{
     display: flex;
     position: absolute;
-    right: 280px;
-    top: 290px;
-    height: 150px;
-    width: 100px;
+    right: 243px;
+    top: 218px;
+    height: 125px;
+    width: 80px;
     background: url("../img/wolf-p-1.png") no-repeat;
+    background-size: contain;
     opacity: 0.4;
 }
 
 .volk-hand1{
     display: flex;
     position: absolute;
-    left: 220px;
-    top: 360px;
-    height: 150px;
+    left: 173px;
+    top: 280px;
+    height: 60px;
     width: 100px;
     background: url("../img/basket-p-0-0.png") no-repeat;
+    background-size: contain;
     opacity: 0.4;
 }
 
@@ -35,22 +38,24 @@
 .volk-hand2{
     display: flex;
     position: absolute;
-    left: 220px;
-    top: 250px;
-    height: 150px;
+    left: 175px;
+    top: 195px;
+    height: 70px;
     width: 100px;
     background: url("../img/basket-p-0-1.png") no-repeat;
+    background-size: contain;
     opacity: 0.4;
 }
 
 .volk-hand3{
     display: flex;
     position: absolute;
-    right: 210px;
-    top: 360px;
-    height: 150px;
+    right: 160px;
+    top: 280px;
+    height: 60px;
     width: 100px;
     background: url("../img/basket-p-1-0.png") no-repeat;
+    background-size: contain;
     opacity: 0.4;
 }
 
@@ -58,11 +63,12 @@
 .volk-hand4{
     display: flex;
     position: absolute;
-    right: 210px;
-    top: 250px;
-    height: 150px;
+    right: 150px;
+    top: 195px;
+    height: 70px;
     width: 100px;
     background: url("../img/basket-p-1-1.png") no-repeat;
+    background-size: contain;
     opacity: 0.4;
 }
 
