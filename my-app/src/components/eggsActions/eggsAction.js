@@ -32,13 +32,12 @@ export default class EggsActions extends Component {
         };
         this.start1 = this.start1.bind(this);
         this.start11 = this.start11.bind(this);
-        this.start2 = this.start2.bind(this);
-        this.start3 = this.start3.bind(this);
-        this.start4 = this.start4.bind(this);
+
         this.beginA = this.beginA.bind(this);
         this.beginB = this.beginB.bind(this);
         this.auto = this.auto.bind(this);
         this.renderWolf = this.renderWolf.bind(this);
+        this.checkPos = this.checkPos.bind(this);
     }
 
     /////////////////////////////////////////////
@@ -46,61 +45,87 @@ export default class EggsActions extends Component {
         document.addEventListener("keydown", this.checkKey);
     }
 
+    checkPos(){
+
+        if (this.state.posLU === true) {
+            this.start1("LU", "posLU")
+        } else
+            if (this.state.posLU1 === true) {
+                this.start11("LU", "posLU")
+            } else
+                if (this.state.posLD === true) {
+                    this.start1("LD", "posLD")
+                } else
+                    if (this.state.posLD1 === true) {
+                        this.start11("LD", "posLD")
+                    } else
+                        if (this.state.posRU === true) {
+                            this.start1("RU", "posRU")
+                        } else
+                            if (this.state.posRU1 === true) {
+                                this.start11("RU", "posRU")
+                            } else
+                                if (this.state.posRD === true) {
+                                    this.start1("RD", "posRD")
+                                } else
+                                    if (this.state.posRD1 === true) {
+                                        this.start11("RD", "posRD")
+                                    }
+
+
+
+    }
+
     /////////////////////////////////////////////////
     //Функция рендера случайного яйца 
     auto() {
-        let num = this.randomInteger(1,4);
+        let num = this.randomInteger(1, 4);
         console.log(num)
 
         switch (num) {
             case 1:
-                if (this.state.posLU === false) {
-                    if (this.state.posLU === false && this.state.posLU1 === false) {
-                        if (this.state.posLU === false && this.state.posLU1 === false && this.state.LD === false) {
-                            this.start11("LD", "posLD")
-                        } else {
-                            console.log("Переход на старт2")
-                            this.start1("LD", "posLD")
-                        }
-                    } else { this.start11("LU", "posLU") }
-                } else { this.start1("LU", "posLU") }
-
+                if (this.state.posLU === true) {
+                    this.start1("LU", "posLU")
+                } else
+                    if (this.state.posLU1 === true) {
+                        this.start11("LU", "posLU")
+                    }else
+                    if(this.state.posLU === false && this.state.posLU1 === false){
+                        this.checkPos()
+                    }
                 break;
             case 2:
-                if (this.state.posLD === false) {
-                    if (this.state.posLD === false && this.state.posLD1 === false) {
-                        if (this.state.posLD === false && this.state.posLD1 === false && this.state.posRU === false) {
-                            this.start11("RU", "posRU")
-                        } else {
-                            console.log("Переход на старт3")
-                            this.start1("RU", "posRU")
-                        }
-                    } else { this.start11("LD", "posLD") }
-                } else { this.start1("LD", "posLD") }
+                if (this.state.posLD === true) {
+                    this.start1("LD", "posLD")
+                } else
+                    if (this.state.posLD1 === true) {
+                        this.start11("LD", "posLD")
+                    }else
+                    if(this.state.posLD === false && this.state.posLD1 === false){
+                        this.checkPos()
+                    }
                 break;
             case 3:
-                if (this.state.posRU === false) {
-                    if (this.state.posRU === false && this.state.posRU1 === false) {
-                        if (this.state.posRU === false && this.state.posRU1 === false && this.state.posRD === false) {
-                            this.start11("RD", "posRD")
-                        } else {
-                            console.log("Переход на старт4")
-                            this.start1("RD", "posRD")
-                        }
-                    } else { this.start11("RU", "posRU") }
-                } else { this.start1("RU", "posRU") }
+                if (this.state.posRU === true) {
+                    this.start1("RU", "posRU")
+                } else
+                    if (this.state.posRU1 === true) {
+                        this.start11("RU", "posRU")
+                    }else
+                    if(this.state.posRU === false && this.state.posRU1 === false){
+                        this.checkPos()
+                    }
                 break;
             case 4:
-                if (this.state.posRD === false) {
-                    if (this.state.posRD === false && this.state.posRD1 === false) {
-                        if (this.state.posRD === false && this.state.posRD1 === false && this.state.posLU === false) {
-                            this.start11("LU", "posLU")
-                        } else {
-                            console.log("Переход на старт1")
-                            this.start1("LU", "posLU")
-                        }
-                    } else { this.start11("RD", "posRD") }
-                } else { this.start1("RD", "posRD") }
+                if (this.state.posRD === true) {
+                    this.start1("RD", "posRD")
+                } else
+                    if (this.state.posRD1 === true) {
+                        this.start11("RD", "posRD")
+                    }else
+                    if(this.state.posRD === false && this.state.posRD1 === false){
+                        this.checkPos()
+                    }
                 break;
             default:
                 break;
@@ -121,8 +146,8 @@ export default class EggsActions extends Component {
 
 
     beginB() {
-        this.state.speedEgg = 700;
-        this.state.respaunEgg = 700;
+        this.state.speedEgg = 500;
+        this.state.respaunEgg = 500;
         console.log(this.state.speedEgg)
         console.log(this.state.respaunEgg)
         setInterval(() => this.auto(), this.state.respaunEgg)
@@ -148,10 +173,22 @@ export default class EggsActions extends Component {
         setTimeout(() => this.setState({ [i]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
         setTimeout(() => this.setState({ [i]: `egg ${i}5 activeEgg` }), this.state.speedEgg * 4)
         const verify = () => {
-            if (this.state.LU === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
+            console.log(this.state[i])
+            if (this.state[i] === `egg ${i}5 activeEgg`) {
+                if (i === "LU" && this.state.numh === "volk-hand2 active") {
+                    this.setState({ score: this.state.score + 1 })
+                } else
+                    if (i === "LD" && this.state.numh === "volk-hand1 active") {
+                        this.setState({ score: this.state.score + 1 })
+                    } else
+                        if (i === "RU" && this.state.numh === "volk-hand4 active") {
+                            this.setState({ score: this.state.score + 1 })
+                        } else
+                            if (i === "RD" && this.state.numh === "volk-hand3 active") {
+                                this.setState({ score: this.state.score + 1 })
+                            } else {
+                                this.setState({ mistakes: this.state.mistakes + 1 })
+                            }
             }
         }
         setTimeout(() => verify(), this.state.speedEgg * 4.1)
@@ -161,8 +198,8 @@ export default class EggsActions extends Component {
 
 
     start11(i, pos) {
-        let x = i+1;
-        let y = pos+1;
+        let x = i + 1;
+        let y = pos + 1;
         console.log(x)
         console.log("start11")
         this.setState({ [x]: `egg ${i}1 activeEgg` })
@@ -172,168 +209,27 @@ export default class EggsActions extends Component {
         setTimeout(() => this.setState({ [x]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
         setTimeout(() => this.setState({ [x]: `egg ${i}5 activeEgg` }), this.state.speedEgg * 4)
         const verify = () => {
-            if (this.state.LU === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
+            console.log(this.state[i])
+            if (this.state[x] === `egg ${i}5 activeEgg`) {
+                if (x === "LU1" && this.state.numh === "volk-hand2 active") {
+                    this.setState({ score: this.state.score + 1 })
+                } else
+                    if (x === "LD1" && this.state.numh === "volk-hand1 active") {
+                        this.setState({ score: this.state.score + 1 })
+                    } else
+                        if (x === "RU1" && this.state.numh === "volk-hand4 active") {
+                            this.setState({ score: this.state.score + 1 })
+                        } else
+                            if (x === "RD1" && this.state.numh === "volk-hand3 active") {
+                                this.setState({ score: this.state.score + 1 })
+                            } else {
+                                this.setState({ mistakes: this.state.mistakes + 1 })
+                            }
             }
         }
         setTimeout(() => verify(), this.state.speedEgg * 4.1)
         setTimeout(() => this.setState({ [x]: `egg ${i}1 noneEgg` }), this.state.speedEgg * 4.5)
         setTimeout(() => this.setState({ [y]: true }), this.state.speedEgg * 4.5)
-    }
-
-
-    // start11() {
-    //     console.log("start11")
-    //     this.setState({ LU1: 'egg LU1 activeEgg' })
-    //     this.setState({ posLU1: false })
-    //     setTimeout(() => this.setState({ LU1: 'egg LU2 activeEgg' }), this.state.speedEgg)
-    //     setTimeout(() => this.setState({ LU1: 'egg LU3 activeEgg' }), this.state.speedEgg * 2)
-    //     setTimeout(() => this.setState({ LU1: 'egg LU4 activeEgg' }), this.state.speedEgg * 3)
-    //     setTimeout(() => this.setState({ LU1: 'egg LU5 activeEgg' }), this.state.speedEgg * 4)
-    //     setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
-    //     setTimeout(() => this.setState({ posLU1: true }), this.state.speedEgg * 4.5)
-
-    //     const verify = () => {
-    //         if (this.state.LU1 === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
-    //             this.setState({ score: this.state.score + 1 })
-    //         } else {
-    //             this.setState({ mistakes: this.state.mistakes + 1 })
-    //         }
-    //     }
-    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
-    // }
-
-    start2() {
-        console.log("start2")
-        this.setState({ LD: 'egg LD1 activeEgg' })
-        this.setState({ posLD: false })
-        setTimeout(() => this.setState({ LD: 'egg LD2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ LD: 'egg LD3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ LD: 'egg LD4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ LD: 'egg LD5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ LD: 'egg LD1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posLD: true }), this.state.speedEgg * 4.5)
-
-        const verify = () => {
-            if (this.state.LD === "egg LD5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand1 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-        setTimeout(() => verify(), this.state.speedEgg * 4.1)
-    }
-
-
-    start22() {
-        console.log("start22")
-        this.setState({ LD1: 'egg LD1 activeEgg' })
-        this.setState({ posLD1: false })
-        setTimeout(() => this.setState({ LD1: 'egg LD2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ LD1: 'egg LD3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ LD1: 'egg LD4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ LD1: 'egg LD5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ LD1: 'egg LD1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posLD1: true }), this.state.speedEgg * 4.5)
-
-        const verify = () => {
-            if (this.state.LD1 === "egg LD5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand1 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-        setTimeout(() => verify(), this.state.speedEgg * 4.1)
-    }
-
-    start3() {
-        console.log("start3")
-        this.setState({ RU: 'egg RU1 activeEgg' })
-        this.setState({ posRU: false })
-        setTimeout(() => this.setState({ RU: 'egg RU2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ RU: 'egg RU3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ RU: 'egg RU4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ RU: 'egg RU5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ RU: 'egg RU1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posRU: true }), this.state.speedEgg * 4.5)
-
-        const verify = () => {
-            if (this.state.RU === "egg RU5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand4 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-        setTimeout(() => verify(), this.state.speedEgg * 4.1)
-    }
-
-
-    start33() {
-        console.log("start33")
-        this.setState({ RU1: 'egg RU1 activeEgg' })
-        this.setState({ posRU1: false })
-        setTimeout(() => this.setState({ RU1: 'egg RU2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ RU1: 'egg RU3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ RU1: 'egg RU4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ RU1: 'egg RU5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ RU1: 'egg RU1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posRU1: true }), this.state.speedEgg * 4.5)
-
-        const verify = () => {
-            if (this.state.RU1 === "egg RU5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand4 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-        setTimeout(() => verify(), this.state.speedEgg * 4.1)
-    }
-
-
-    start4() {
-        console.log("start4")
-        this.setState({ RD: 'egg RD1 activeEgg' })
-        this.setState({ posRD: false })
-        setTimeout(() => this.setState({ RD: 'egg RD2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ RD: 'egg RD3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ RD: 'egg RD4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ RD: 'egg RD5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ RD: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posRD: true }), this.state.speedEgg * 4.5)
-
-        const verify = () => {
-            if (this.state.RD === "egg RD5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand3 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-        setTimeout(() => verify(), this.state.speedEgg * 4.1)
-    }
-
-    start44() {
-        console.log("start44")
-        this.setState({ RD1: 'egg RD1 activeEgg' })
-        this.setState({ posRD1: false })
-        setTimeout(() => this.setState({ posRD1: false }), 1000)
-        setTimeout(() => this.setState({ RD1: 'egg RD2 activeEgg' }), this.state.speedEgg)
-        setTimeout(() => this.setState({ RD1: 'egg RD3 activeEgg' }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ RD1: 'egg RD4 activeEgg' }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ RD1: 'egg RD5 activeEgg' }), this.state.speedEgg * 4)
-        setTimeout(() => this.setState({ RD1: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
-        setTimeout(() => this.setState({ posRD1: true }), this.state.speedEgg * 4.5)
-
-        const verify = () => {
-            if (this.state.RD1 === "egg RD5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand3 active") {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-        setTimeout(() => verify(), this.state.speedEgg * 4.1)
-
     }
 
 
@@ -399,39 +295,6 @@ export default class EggsActions extends Component {
             this.setState({ numh: "volk-hand3 active" });
         }
     }
-
-
-
-
-
-
-
-    // createEgg(posX, posY){
-       
-        
-    //     let className = this.state.LU;
-    //     this.setState({ LU1: 'egg LU1 activeEgg' })
-    //     setTimeout(() => this.setState({ LU: 'egg LU2 activeEgg' }), this.state.speedEgg)
-    //     setTimeout(() => this.setState({ LU: 'egg LU3 activeEgg' }), this.state.speedEgg * 2)
-    //     setTimeout(() => this.setState({ LU: 'egg LU4 activeEgg' }), this.state.speedEgg * 3)
-    //     setTimeout(() => this.setState({ LU: 'egg LU5 activeEgg' }), this.state.speedEgg * 4)
-    //     setTimeout(() => this.setState({ LU: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
-
-    //     return(
-    //         <div  className={className}/>
-    //     )
-    
-    // }
-    
-
-
-
-
-
-
-
-
-
 
 
 
@@ -514,10 +377,10 @@ export default class EggsActions extends Component {
                     {wolk}
                     {wolkHand}
 
-                    <button id="1" onClick={this.renderWolf} className="btn btn-left-up"/>
-                    <button id="2" onClick={this.renderWolf} className="btn btn-left-down"/>
-                    <button id="3" onClick={this.renderWolf} className="btn btn-right-up"/>
-                    <button id="4" onClick={this.renderWolf} className="btn btn-right-down"/>
+                    <button id="1" onClick={this.renderWolf} className="btn btn-left-up" />
+                    <button id="2" onClick={this.renderWolf} className="btn btn-left-down" />
+                    <button id="3" onClick={this.renderWolf} className="btn btn-right-up" />
+                    <button id="4" onClick={this.renderWolf} className="btn btn-right-down" />
                 </div>
             </>
         )
@@ -532,19 +395,6 @@ export default class EggsActions extends Component {
 
 
 
-// createEgg(posX, posY){
-//     const styleConfig={
-//         display:'block',
-//         position: 'absolute',
-//         left: posX,
-//         top: posY
-//     }
-
-//     return(
-//         <div className="egg"/>
-//     )
-
-// }
 
 
 
@@ -563,8 +413,154 @@ export default class EggsActions extends Component {
 
 
 
+// start11() {
+    //     console.log("start11")
+    //     this.setState({ LU1: 'egg LU1 activeEgg' })
+    //     this.setState({ posLU1: false })
+    //     setTimeout(() => this.setState({ LU1: 'egg LU2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ LU1: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posLU1: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.LU1 === "egg LU5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand2 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
+
+    // start2() {
+    //     console.log("start2")
+    //     this.setState({ LD: 'egg LD1 activeEgg' })
+    //     this.setState({ posLD: false })
+    //     setTimeout(() => this.setState({ LD: 'egg LD2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ LD: 'egg LD3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ LD: 'egg LD4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ LD: 'egg LD5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ LD: 'egg LD1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posLD: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.LD === "egg LD5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand1 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
 
 
+    // start22() {
+    //     console.log("start22")
+    //     this.setState({ LD1: 'egg LD1 activeEgg' })
+    //     this.setState({ posLD1: false })
+    //     setTimeout(() => this.setState({ LD1: 'egg LD2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ LD1: 'egg LD3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ LD1: 'egg LD4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ LD1: 'egg LD5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ LD1: 'egg LD1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posLD1: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.LD1 === "egg LD5 activeEgg" && this.state.num === "volk1 active" && this.state.numh === "volk-hand1 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
+
+    // start3() {
+    //     console.log("start3")
+    //     this.setState({ RU: 'egg RU1 activeEgg' })
+    //     this.setState({ posRU: false })
+    //     setTimeout(() => this.setState({ RU: 'egg RU2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ RU: 'egg RU3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ RU: 'egg RU4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ RU: 'egg RU5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ RU: 'egg RU1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posRU: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.RU === "egg RU5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand4 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
 
 
+    // start33() {
+    //     console.log("start33")
+    //     this.setState({ RU1: 'egg RU1 activeEgg' })
+    //     this.setState({ posRU1: false })
+    //     setTimeout(() => this.setState({ RU1: 'egg RU2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ RU1: 'egg RU3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ RU1: 'egg RU4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ RU1: 'egg RU5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ RU1: 'egg RU1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posRU1: true }), this.state.speedEgg * 4.5)
 
+    //     const verify = () => {
+    //         if (this.state.RU1 === "egg RU5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand4 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
+
+
+    // start4() {
+    //     console.log("start4")
+    //     this.setState({ RD: 'egg RD1 activeEgg' })
+    //     this.setState({ posRD: false })
+    //     setTimeout(() => this.setState({ RD: 'egg RD2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ RD: 'egg RD3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ RD: 'egg RD4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ RD: 'egg RD5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ RD: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posRD: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.RD === "egg RD5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand3 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+    // }
+
+    // start44() {
+    //     console.log("start44")
+    //     this.setState({ RD1: 'egg RD1 activeEgg' })
+    //     this.setState({ posRD1: false })
+    //     setTimeout(() => this.setState({ posRD1: false }), 1000)
+    //     setTimeout(() => this.setState({ RD1: 'egg RD2 activeEgg' }), this.state.speedEgg)
+    //     setTimeout(() => this.setState({ RD1: 'egg RD3 activeEgg' }), this.state.speedEgg * 2)
+    //     setTimeout(() => this.setState({ RD1: 'egg RD4 activeEgg' }), this.state.speedEgg * 3)
+    //     setTimeout(() => this.setState({ RD1: 'egg RD5 activeEgg' }), this.state.speedEgg * 4)
+    //     setTimeout(() => this.setState({ RD1: 'egg LU1 noneEgg' }), this.state.speedEgg * 4.5)
+    //     setTimeout(() => this.setState({ posRD1: true }), this.state.speedEgg * 4.5)
+
+    //     const verify = () => {
+    //         if (this.state.RD1 === "egg RD5 activeEgg" && this.state.num === "volk2 active" && this.state.numh === "volk-hand3 active") {
+    //             this.setState({ score: this.state.score + 1 })
+    //         } else {
+    //             this.setState({ mistakes: this.state.mistakes + 1 })
+    //         }
+    //     }
+    //     setTimeout(() => verify(), this.state.speedEgg * 4.1)
+
+    // }
