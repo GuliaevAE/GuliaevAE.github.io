@@ -215,7 +215,7 @@
     top: 50px;
     right: 80px;
     height: 28px;
-    width: 100px;
+    /* width: 100px; */
     background: url(../img/loss.png);
     background-size: cover;
 }

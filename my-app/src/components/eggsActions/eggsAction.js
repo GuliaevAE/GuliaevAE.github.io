@@ -29,7 +29,8 @@ export default class EggsActions extends Component {
             score: 0,
             mistakes: 0,
             loss: 0,
-            
+            // start: false
+
 
         };
         this.start1 = this.start1.bind(this);
@@ -40,22 +41,23 @@ export default class EggsActions extends Component {
         this.renderWolf = this.renderWolf.bind(this);
         this.checkPos = this.checkPos.bind(this);
         this.loss = this.loss.bind(this);
-        
+
     }
 
     /////////////////////////////////////////////
     componentDidMount() {
         document.addEventListener("keydown", this.checkKey);
-        
+
     }
 
 
 
-    componentDidUpdate(){
-        // if(this.state.loss===99){
-        //     alert("пиздец")
-        // }
-        
+    componentDidUpdate() {
+        if(this.state.loss===99){
+            setTimeout(()=>this.setState({loss: 0}), 5000)
+            ;
+        }
+
     }
 
     //////////////////////////////////////////////////////
@@ -92,8 +94,7 @@ export default class EggsActions extends Component {
     //Функция рендера случайного яйца 
     auto() {
         let num = this.randomInteger(1, 4);
-        console.log(num)
-
+        
         switch (num) {
             case 1:
                 if (this.state.posLU === true) {
@@ -148,27 +149,47 @@ export default class EggsActions extends Component {
     ///Функция генерации яиц с определенным интервалом
 
     beginA() {
-        this.state.speedEgg = 1000;
-        this.state.respaunEgg = 1000;
-        console.log(this.state.speedEgg)
-        console.log(this.state.respaunEgg)
+        if(this.state.loss===99){
+            this.setState({loss: 0})
+            
+        }
+        this.state.speedEgg = 2000;
+        this.state.respaunEgg = 2000;
+        
         setInterval(() => this.auto(), this.state.respaunEgg)
+
+        let timer =  setInterval(() => {this.auto()
+            if(this.state.loss===99){
+                clearInterval(timer)
+            } 
+        
+        }, this.state.respaunEgg)
     }
 
 
 
     beginB() {
+        if(this.state.loss===99){
+            this.setState({loss: 0})
+            
+        }
         // this.setState({ speedEgg: 500 })
         // this.setState({ respaunEgg: 500})
         this.state.speedEgg = 500;
         this.state.respaunEgg = 500;
-        console.log(this.state.speedEgg)
-        console.log(this.state.respaunEgg)
-        let timerB = setInterval(() => this.auto(), this.state.respaunEgg)
-        if(this.state.loss===99){
-            clearInterval(timerB)
-        }
+        // this.state.start = true
         
+        
+        
+        
+        let timer =  setInterval(() => {this.auto()
+            if(this.state.loss===99){
+                clearInterval(timer)
+            } 
+        
+        }, this.state.respaunEgg)
+        
+
 
     }
 
@@ -184,16 +205,18 @@ export default class EggsActions extends Component {
     //Функции движения яиц
 
     start1(i, pos) {
-        console.log("start1")
+        
         this.setState({ [i]: `egg ${i}1 activeEgg` })
         this.setState({ [pos]: false })
-        setTimeout(() => this.setState({ [i]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
-        setTimeout(() => this.setState({ [i]: `egg ${i}3 activeEgg` }), this.state.speedEgg * 2)
-        setTimeout(() => this.setState({ [i]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
-        setTimeout(() => this.setState({ [i]: `egg ${i}5 activeEgg` }), this.state.speedEgg * 4)
+        
+        setTimeout(() => this.setState({ [i]: `egg activeEgg ${i}2` }), this.state.speedEgg)
+        setTimeout(() => this.setState({ [i]: `egg activeEgg ${i}3` }), this.state.speedEgg * 2)
+        setTimeout(() => this.setState({ [i]: `egg activeEgg ${i}4` }), this.state.speedEgg * 3)
+        setTimeout(() => this.setState({ [i]: `egg activeEgg ${i}5` }), this.state.speedEgg * 4)
         const verify = () => {
             console.log(this.state[i])
             if (this.state[i] === `egg ${i}5 activeEgg`) {
+                console.log("Сраюотал старт1")
                 if (i === "LU" && this.state.numh === "volk-hand2 active") {
                     this.setState({ score: this.state.score + 1 })
                 } else
@@ -218,10 +241,10 @@ export default class EggsActions extends Component {
 
 
 
-    
 
-    loser(){
-        if(this.state.loss!==99){
+
+    loser() {
+        if (this.state.loss !== 99) {
             this.setState({ loss: this.state.loss + 33 })
         }
         // else{
@@ -233,7 +256,7 @@ export default class EggsActions extends Component {
         // this.state.LD1 = 'egg LD1 noneEgg ';
         // this.state.RU1 = 'egg RU1 noneEgg ';
         // this.state.RD1 = 'egg RD1 noneEgg ';}
-        
+
     }
 
 
@@ -243,8 +266,7 @@ export default class EggsActions extends Component {
     start11(i, pos) {
         let x = i + 1;
         let y = pos + 1;
-        console.log(x)
-        console.log("start11")
+       
         this.setState({ [x]: `egg ${i}1 activeEgg` })
         this.setState({ [y]: false })
         setTimeout(() => this.setState({ [x]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
@@ -254,6 +276,7 @@ export default class EggsActions extends Component {
         const verify = () => {
             console.log(this.state[i])
             if (this.state[x] === `egg ${i}5 activeEgg`) {
+                console.log("Сраюотал старт11")
                 if (x === "LU1" && this.state.numh === "volk-hand2 active") {
                     this.setState({ score: this.state.score + 1 })
                 } else
@@ -283,13 +306,13 @@ export default class EggsActions extends Component {
 
 
 
-    loss(x){
+    loss(x) {
         let config = {
             width: x,
         }
 
-        return(
-            <div className="loss" style={config}/>
+        return (
+            <div className="loss" style={config} />
         )
     }
 
@@ -388,7 +411,7 @@ export default class EggsActions extends Component {
             default:
                 break;
         }
-        console.log(this.state)
+        
     }
 
     render() {
