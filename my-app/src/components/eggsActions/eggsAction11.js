@@ -126,9 +126,17 @@ export default class EggsActions extends Component {
     ///Функция генерации яиц с определенным интервалом
 
     beginA() {
-        this.reset();
-        this.state.speedEgg = 400;
-        this.state.respaunEgg = 800;
+        if (this.state.loss === 99) {
+            this.setState({ loss: 0 })
+
+        }
+
+        this.state.speedEgg = 1000;
+        this.state.respaunEgg = 1000;
+
+
+
+
 
         let timerB = setInterval(() => {
             this.auto()
@@ -142,9 +150,17 @@ export default class EggsActions extends Component {
 
 
     beginB() {
-        this.reset();
+        if (this.state.loss === 99) {
+            this.setState({ loss: 0 })
+
+        }
+
         this.state.speedEgg = 100;
         this.state.respaunEgg =100;
+
+
+
+
 
         let timerB = setInterval(() => {
             this.auto()
@@ -153,6 +169,9 @@ export default class EggsActions extends Component {
             }
 
         }, this.state.respaunEgg)
+
+
+
     }
 
     ///////////////////////////////////////////
@@ -163,142 +182,53 @@ export default class EggsActions extends Component {
         return Math.round(rand);
     }
 
-    reset() {
-        this.setState( {score: 0});
-        this.setState( {mistakes: 0});
-        this.setState( {loss: 0});
-    }
-
     //////////////////////////////////////////
-    // Проверка успеха или ошибки
-    checkScoreOrMistake(x, egg) {
-        if (this.state[x] === `egg ${egg}5 activeEgg`) {
-            if ((x === "LU" && this.state.numh === "volk-hand2 active")||(x === "LU1" && this.state.numh === "volk-hand2 active")) {
-                this.setState({ score: this.state.score + 1 })
-            } else
-            if ((x === "LD" && this.state.numh === "volk-hand1 active")||(x === "LD1" && this.state.numh === "volk-hand1 active")) {
-                this.setState({ score: this.state.score + 1 })
-            } else
-            if ((x === "RU" && this.state.numh === "volk-hand4 active")||(x === "RU1" && this.state.numh === "volk-hand4 active")) {
-                this.setState({ score: this.state.score + 1 })
-            } else
-            if ((x === "RD" && this.state.numh === "volk-hand3 active")||(x === "RD1" && this.state.numh === "volk-hand3 active")) {
-                this.setState({ score: this.state.score + 1 })
-            } else {
-                this.loser()
-                this.setState({ mistakes: this.state.mistakes + 1 })
-            }
-        }
-    }
-
-    //Функция движения яйца по позициям
-    moveEgg(x, y, egg) {
-        let self = this;
-
-        // Если нет ошибок, то вешается таймаут.
-        // Если ошибки есть, то выводится alert о том, что ты проиграл и выполняется выход из функции
-        // С помощью return
-        if (this.state.mistakes !== 3) {
-
-            // positionNumber - в  строке `egg ${i}1 activeEgg` будетя являться 1
-            // То есть допустим у тебя идёт egg LU {positionNumber} activeEgg
-            // когда в функции делается так func(arg = 1) {}, то 1 - это значение по-умолчанию
-            // Почитать про это можешь здесь
-            // https://learn.javascript.ru/function-basics#parametry-po-umolchaniyu
-            let timer = setTimeout( function makeEggStep(positionNumber = 1) {
-                let currentPositionNumber = positionNumber;
-                console.log("[DEBUG] EXIT", self);
-                // Здесь просто яйцо ставится в текущую позицию
-                self.setState({ [x]: `egg ${egg}${currentPositionNumber} activeEgg` });
-
-                // Если начальная позиция 1, то флаг ставится в false
-                if (currentPositionNumber === 1) {
-                    self.setState({ [y]: false });
-                }
-
-                // Если выясняется, что есть три ошибки или текущая позиция яйца - 6,
-                // То удаляется таймер - функция clearTimeout (она встроена в JS, тоже самое, что и clearInterval)
-                // И яйцо возвращается в 1 позицию, ну и флаг твой ставится
-                // P.S. проверка именно на 6 позицию, т.к. её у тебя по сути не может быть, там их только пять
-                if (self.state.mistakes === 3 || currentPositionNumber === 6) {
-                    console.log("[DEBUG] EXIT");
-                    self.setState({ [x]: `egg ${egg}1 noneEgg` });
-                    self.setState({ [y]: true });
-                    clearTimeout(timer);
-                    return
-                }
-
-                // Вынес твою функцию verify в отдельный метод checkScoreOrMistake
-                // Внутри ничего не менял. Тут по сути если яйцо в пятой позиции, то идёт проверка
-                // На попадание в корзину или промах (ну твоя функция verify по сути отрабатывает)
-                if (currentPositionNumber === 5) {
-                    setTimeout(()=>self.checkScoreOrMistake(x, egg), self.state.speedEgg * 0.5)
-                    
-                }
-
-                // Ты можешь не понять эту строчку, попытаюсь объяснить
-                // Это рекурсивный setTimeout, почитать про него можешь тут:
-                // https://learn.javascript.ru/settimeout-setinterval#rekursivnyy-settimeout
-                //
-                // Здесь всё просто, на самом деле, создаётся таймаут, но с увеличенной позицией на 1.
-                // То есть начальная позция движения у яйца равна 1, после прохождения всех проверок
-                // Делается рекурсивный таймаут, в котором позиция увеличивается на 2, то есть выполняется
-                // Весь тот же код, что и сверху, но positionNumber уже будет 2
-                // И так далее, пока не дойдёт до 6 позиции или 3 ошибок, после чего
-                // Яйцо возвращается в начальное положени, меняется флаг, удаляется таймер и выход из функции
-                timer = setTimeout(makeEggStep, self.state.speedEgg, currentPositionNumber + 1);
-            }, this.state.speedEgg);
-        } else {
-            alert(`Ваш счет: ${self.state.score}`);
-            return;
-        }
-    }
+    //Функции движения яиц
 
     start1(i, pos) {
+
         let x = i;
         let y = pos;
 
         let pos1=y
         let pos2=y+1
         console.log(pos2)
-
         if (this.state[pos1] === false && this.state[pos2] === true) {
+            
             x +=  1;
             y +=  1;
+           
         }
         console.log(x, y)
+        this.setState({ [x]: `egg ${i}1 activeEgg` })
+        this.setState({ [y]: false })
+        setTimeout(() => this.setState({ [x]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
+        setTimeout(() => this.setState({ [x]: `egg ${i}3 activeEgg` }), this.state.speedEgg * 2)
+        setTimeout(() => this.setState({ [x]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
+        setTimeout(() => this.setState({ [x]: `egg ${i}5 activeEgg` }), this.state.speedEgg * 4)
+        setTimeout(() => verify(), this.state.speedEgg * 4.1)
+        setTimeout(() => this.setState({ [x]: `egg ${i}1 noneEgg` }), this.state.speedEgg * 4.5)
+        setTimeout(() => this.setState({ [y]: true }), this.state.speedEgg * 4.5)
 
-        this.moveEgg(x, y, i, 2);
-
-        // const verify = () => {
-        //     if (this.state[x] === `egg ${i}5 activeEgg`) {
-        //         if ((x === "LU" && this.state.numh === "volk-hand2 active")||(x === "LU1" && this.state.numh === "volk-hand2 active")) {
-        //             this.setState({ score: this.state.score + 1 })
-        //         } else
-        //         if ((x === "LD" && this.state.numh === "volk-hand1 active")||(x === "LD1" && this.state.numh === "volk-hand1 active")) {
-        //             this.setState({ score: this.state.score + 1 })
-        //         } else
-        //         if ((x === "RU" && this.state.numh === "volk-hand4 active")||(x === "RU1" && this.state.numh === "volk-hand4 active")) {
-        //             this.setState({ score: this.state.score + 1 })
-        //         } else
-        //         if ((x === "RD" && this.state.numh === "volk-hand3 active")||(x === "RD1" && this.state.numh === "volk-hand3 active")) {
-        //             this.setState({ score: this.state.score + 1 })
-        //         } else {
-        //             this.loser()
-        //             this.setState({ mistakes: this.state.mistakes + 1 })
-        //         }
-        //     }
-        // }
-
-        // this.setState({ [x]: `egg ${i}1 activeEgg` })
-        // this.setState({ [y]: false })
-        // setTimeout(() => this.setState({ [x]: `egg ${i}2 activeEgg` }), this.state.speedEgg)
-        // setTimeout(() => this.setState({ [x]: `egg ${i}3 activeEgg` }), this.state.speedEgg * 2)
-        // setTimeout(() => this.setState({ [x]: `egg ${i}4 activeEgg` }), this.state.speedEgg * 3)
-        // setTimeout(() => this.setState({ [x]: `egg ${i}5 activeEgg` }), this.state.speedEgg * 4)
-        // setTimeout(() => verify(), this.state.speedEgg * 4.1)
-        // setTimeout(() => this.setState({ [x]: `egg ${i}1 noneEgg` }), this.state.speedEgg * 4.5)
-        // setTimeout(() => this.setState({ [y]: true }), this.state.speedEgg * 4.5)
+        const verify = () => {
+            if (this.state[x] === `egg ${i}5 activeEgg`) {
+                if ((x === "LU" && this.state.numh === "volk-hand2 active")||(x === "LU1" && this.state.numh === "volk-hand2 active")) {
+                    this.setState({ score: this.state.score + 1 })
+                } else
+                    if ((x === "LD" && this.state.numh === "volk-hand1 active")||(x === "LD1" && this.state.numh === "volk-hand1 active")) {
+                        this.setState({ score: this.state.score + 1 })
+                    } else
+                        if ((x === "RU" && this.state.numh === "volk-hand4 active")||(x === "RU1" && this.state.numh === "volk-hand4 active")) {
+                            this.setState({ score: this.state.score + 1 })
+                        } else
+                            if ((x === "RD" && this.state.numh === "volk-hand3 active")||(x === "RD1" && this.state.numh === "volk-hand3 active")) {
+                                this.setState({ score: this.state.score + 1 })
+                            } else {
+                                this.loser()
+                                this.setState({ mistakes: this.state.mistakes + 1 })
+                            }
+            }
+        }
     }
 
 
@@ -318,6 +248,9 @@ export default class EggsActions extends Component {
 
     }
 
+
+
+
     loss(x) {
         let config = {
             width: x,
@@ -327,6 +260,14 @@ export default class EggsActions extends Component {
             <div className="loss" style={config} />
         )
     }
+
+
+
+
+
+
+
+
 
     ///////////////////////////// 
     //Использование клавиатуры (кнопки 2,4,6,8 на numpad)
