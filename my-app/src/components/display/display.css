@@ -12,7 +12,7 @@
     margin-right: auto;
     margin-top: 50px;
     /* border: rgb(134, 131, 131) 2px solid; */
-    box-shadow:inset 0px 0px 5px rgb(0, 0, 0),0 0 5px 9.5px rgb(202, 48, 48),0 0 0 10px rgb(0, 0, 0),20px 25px 5px 10px rgb(0, 0, 0);
+    box-shadow:inset 0px 0px 5px rgb(0, 0, 0),0 0 5px 9.5px rgb(202, 48, 48),0 0 0 10px rgb(0, 0, 0),20px 25px 5px 10px rgba(0, 0, 0, 0.712);
 }
 
 
@@ -47,6 +47,10 @@
     src: url("../fonts/soviet.ttf") format("truetype");
    }
 
+   @font-face {
+    font-family: "TacticRound-Bld";
+    src: url("../fonts/TacticRound-Bld.ttf") format("truetype");
+   }
 
 .title{
     display: flex;
@@ -63,9 +67,11 @@
     display: flex;
     position: absolute;
     margin-left: 35%;
-    bottom: 5px;
-    font-size: 20px;
+    bottom: 3px;
+    font-size: 25px;
     color:black;
+    font-family: "TacticRound-Bld";
+    letter-spacing: 6px;
     
 }
 
