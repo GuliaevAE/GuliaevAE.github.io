@@ -161,6 +161,15 @@
 
 }
 
+.title_btn_time {
+    position: absolute;
+    font-size: 20px;
+    top: 155px;
+    right: -150px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+
+}
+
 
 
 .btn_startA {
@@ -181,7 +190,17 @@
     width: 45px;
     height: 25px;
     top: 50px;
-    
+    right: -140px;
+    background: #5c5c5c;
+    border-radius: 60px/50px;
+    border: red solid 5px;
+}
+
+.btn_time {
+    position: absolute;
+    width: 45px;
+    height: 25px;
+    top: 120px;
     right: -140px;
     background: #5c5c5c;
     border-radius: 60px/50px;
@@ -196,10 +215,22 @@
     background: #3a3a3a;
 }
 
+.btn_time:active {
+    background: #3a3a3a;
+}
+
+
+@font-face {
+    font-family: "digital-7";
+    src: url("../fonts/digital_7italic.ttf") format("truetype");
+   }
+
 .score {
     position: absolute;
-    left: 20px;
-    font-size: 50px;
+    right: 125px;
+    top: 10px;
+    font-size: 80px;
+    font-family: "digital-7";
 }
 
 .mistakes {
@@ -210,12 +241,19 @@
 
 
 
+
 .loss{
+    display: flex;
     position: absolute;
-    top: 50px;
-    right: 80px;
-    height: 28px;
+    top: 90px;
+    right: 170px;
+    height: 34px;
     /* width: 100px; */
     background: url(../img/loss.png);
     background-size: cover;
 }
+
+/* 
+.score1{
+    background
+} */
