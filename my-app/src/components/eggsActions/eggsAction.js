@@ -3,6 +3,7 @@ import EggsNone from "../eggs";
 import "../eggsActions/eggsActions.css";
 
 
+
 export default class EggsActions extends Component {
     constructor(props) {
         super(props);
@@ -131,6 +132,7 @@ export default class EggsActions extends Component {
     ///Функция генерации яиц с определенным интервалом
 
     beginA() {
+        this.state.mistakes = 3;
         this.reset();
         this.state.speedEgg = 400;
         this.state.respaunEgg = 800;
@@ -258,8 +260,7 @@ export default class EggsActions extends Component {
     nextAcceleration() {
         if (this.state.score !== 0) {
             if (this.state.score % 10 === 0) {
-                // this.state.speedEgg=
-                alert("fdsdkbfhkac")
+                // alert("fdsdkbfhkac")
                 this.setState({ speedEgg: this.state.speedEgg - 15 });
                 this.setState({ respaunEgg: this.state.respaunEgg - 50 });
             }
@@ -525,6 +526,10 @@ export default class EggsActions extends Component {
                     <button id="2" onClick={this.renderWolf} className="btn btn-left-down" />
                     <button id="3" onClick={this.renderWolf} className="btn btn-right-up" />
                     <button id="4" onClick={this.renderWolf} className="btn btn-right-down" />
+                    <div className="rectangle1"/>
+                    <div className="rectangle2"/>
+                    <div className="rectangle3"/>
+                    <div className="rectangle4"/>
                 </div>
             </>
         )

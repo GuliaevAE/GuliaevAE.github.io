@@ -11,7 +11,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-    box-shadow: 0 0 6px 10px rgb(202, 48, 48),0 0 0 10px rgb(0, 0, 0);
+    /* border: rgb(134, 131, 131) 2px solid; */
+    box-shadow:inset 0px 0px 5px rgb(0, 0, 0),0 0 5px 9.5px rgb(202, 48, 48),0 0 0 10px rgb(0, 0, 0),20px 25px 5px 10px rgb(0, 0, 0);
 }
 
 
@@ -27,6 +28,8 @@
     margin-left:auto;
     margin-right: auto;
     
+    /* box-shadow: 0 0 0 15px rgb(0, 0, 0); */
+
     border-left: 15px outset rgb(138, 134, 124) ;
     border-top: 15px outset rgb(117, 114, 106) ;
     border-right: 15px outset rgb(158, 154, 143) ;
@@ -39,21 +42,28 @@
     
 }
 
+@font-face {
+    font-family: "soviet";
+    src: url("../fonts/soviet.ttf") format("truetype");
+   }
+
 
 .title{
     display: flex;
     position: absolute;
     margin-left: 35%;
-    top: 5px;
-    font-size: 20px;
-    color:red;
+    /* top: 5px; */
+    font-size: 18px;
+    letter-spacing: 6px;
+    font-family: "soviet";
+    color:rgb(214, 5, 5);
 }
 
 .title2{
     display: flex;
     position: absolute;
     margin-left: 35%;
-    /* bottom: 10px; */
+    bottom: 5px;
     font-size: 20px;
     color:black;
     
@@ -62,15 +72,16 @@
 .display{
     display: block;
     position: relative;
-    background-image: url(../img/background2.png) ;
+    background-image: url(../img/background4dark.png) ;
     background-size: cover;
     width: 640px;
     height: 360px;
     
-    margin-top: 5%;
+    margin-top: 5.5%;
     margin-left:auto;
     margin-right: auto;
-    border: 10px solid rgb(212, 42, 42);
+    /* border: 10px solid rgb(212, 42, 42); */
+    box-shadow:0 0 0 10px rgb(212, 42, 42), 0 0 0 11px rgb(0, 0, 0);
     border-radius: 10px;
     
 }
@@ -100,15 +111,49 @@
     top: 250px;
 }
 
+.rectangle1{
+    
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    left:-180px;
+    top: 215px;
+    transform: rotate(-56.09deg);
+    background: url(../img/Rectangle.png) no-repeat;
+
+}
 
 .btn-left-down{
     left:-140px;
     top: 345px;
 }
 
+
+.rectangle2{
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    left:-180px;
+    top: 380px;
+    background: url(../img/Rectangle.png) no-repeat;
+    transform: matrix(0.56, 0.83, 0.83, -0.56, 0, 0);
+}
+
+
 .btn-right-up{
     right:-140px;
     top: 250px;
+}
+
+
+.rectangle3{
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    right:-180px;
+    top: 215px;
+    background: url(../img/Rectangle.png) no-repeat;
+    transform: matrix(-0.56, -0.83, -0.83, 0.56, 0, 0);
 }
 
 .btn-right-down{
@@ -116,7 +161,15 @@
     top: 345px;
 }
 
-
+.rectangle4{
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    right:-180px;
+    top: 380px;
+    background: url(../img/Rectangle.png) no-repeat;
+    transform: rotate(123.91deg);
+}
 
 .LOGO{
     position: absolute;
