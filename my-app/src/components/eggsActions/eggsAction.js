@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import EggsNone from "../eggs";
 import "../eggsActions/eggsActions.css";
+import actEggSound from "../sounds/bit-pong-sound.mp3";
+import hitEgg from "../sounds/bit-punch.mp3";
+import {Howl, Howler} from "howler";
 
-
+const audioClips = [
+    {sound: actEggSound, label: "actEggSound"},
+    {sound: hitEgg, label: "hitEgg"}
+]
 
 export default class EggsActions extends Component {
     constructor(props) {
@@ -48,6 +54,25 @@ export default class EggsActions extends Component {
 
     }
 
+
+    SoundPlay = (src) =>{
+        console.log(src)
+        const sound = new Howl({
+            src
+        })
+        sound.play()
+    }
+
+
+    RenderNewButton = () =>{
+        return audioClips.map((soundObj, index)=>{
+            return (
+                <button key={index} onClick={()=>this.SoundPlay(soundObj.sound)}>
+                    {soundObj.label}
+                </button>
+            )
+        })
+    }
     /////////////////////////////////////////////
     componentDidMount() {
         document.addEventListener("keydown", this.checkKey);
@@ -135,7 +160,7 @@ export default class EggsActions extends Component {
         this.state.mistakes = 3;
         this.reset();
         this.state.speedEgg = 400;
-        this.state.respaunEgg = 800;
+        this.state.respaunEgg = 1000;
         // this.setState({ speedEgg: 400 });
         // this.setState({ respaunEgg: 800 });
         this.setState({ timerOn: false });
@@ -214,18 +239,22 @@ export default class EggsActions extends Component {
     checkScoreOrMistake(x, egg) {
         if (this.state[x] === `egg ${egg}5 activeEgg`) {
             if ((x === "LU" && this.state.numh === "volk-hand2 active") || (x === "LU1" && this.state.numh === "volk-hand2 active")) {
+                this.SoundPlay(hitEgg)
                 this.setState({ score: this.state.score + 1 })
                 this.nextAcceleration()
             } else
                 if ((x === "LD" && this.state.numh === "volk-hand1 active") || (x === "LD1" && this.state.numh === "volk-hand1 active")) {
+                    this.SoundPlay(hitEgg)
                     this.setState({ score: this.state.score + 1 })
                     this.nextAcceleration()
                 } else
                     if ((x === "RU" && this.state.numh === "volk-hand4 active") || (x === "RU1" && this.state.numh === "volk-hand4 active")) {
+                       this.SoundPlay(hitEgg)
                         this.setState({ score: this.state.score + 1 })
                         this.nextAcceleration()
                     } else
                         if ((x === "RD" && this.state.numh === "volk-hand3 active") || (x === "RD1" && this.state.numh === "volk-hand3 active")) {
+                            this.SoundPlay(hitEgg)
                             this.setState({ score: this.state.score + 1 })
                             this.nextAcceleration()
                         } else {
@@ -270,7 +299,7 @@ export default class EggsActions extends Component {
     //Функция движения яйца по позициям
     moveEgg(x, y, egg) {
         let self = this;
-
+        
         // Если нет ошибок, то вешается таймаут.
         // Если ошибки есть, то выводится alert о том, что ты проиграл и выполняется выход из функции
         // С помощью return
@@ -284,6 +313,12 @@ export default class EggsActions extends Component {
                 if (currentPositionNumber === 1) {
                     self.setState({ [y]: false });
                 }
+
+
+                
+                self.SoundPlay(actEggSound)
+
+
 
                 if (self.state.mistakes === 3 || currentPositionNumber === 6) {
                     console.log("[DEBUG] EXIT");
@@ -470,7 +505,7 @@ export default class EggsActions extends Component {
     }
 
     render() {
-
+        Howler.volume(0.1)
         let classname1 = this.state.LU;
         let classname2 = this.state.LD;
         let classname3 = this.state.RU;
@@ -514,7 +549,7 @@ export default class EggsActions extends Component {
                     {/* <div className="mistakes">
                         {mistakes}
                     </div> */}
-
+                    {this.RenderNewButton()}
 
                     {/* {this.time} */}
                     {this.loss(this.state.loss)}
