@@ -3,11 +3,11 @@ import EggsNone from "../eggs";
 import "../eggsActions/eggsActions.css";
 import actEggSound from "../sounds/bit-pong-sound.mp3";
 import hitEgg from "../sounds/bit-punch.mp3";
-import {Howl, Howler} from "howler";
+import { Howl, Howler } from "howler";
 
 const audioClips = [
-    {sound: actEggSound, label: "actEggSound"},
-    {sound: hitEgg, label: "hitEgg"}
+    { sound: actEggSound, label: "actEggSound" },
+    { sound: hitEgg, label: "hitEgg" }
 ]
 
 export default class EggsActions extends Component {
@@ -37,7 +37,8 @@ export default class EggsActions extends Component {
             mistakes: 0,
             loss: 0,
             acceleration: 0,
-            timerOn: false
+            timerOn: false,
+            newFlag:false
 
 
         };
@@ -46,7 +47,7 @@ export default class EggsActions extends Component {
         this.beginA = this.beginA.bind(this);
         this.beginB = this.beginB.bind(this);
         this.auto = this.auto.bind(this);
-        
+
         this.renderWolf = this.renderWolf.bind(this);
         this.checkPos = this.checkPos.bind(this);
         this.loss = this.loss.bind(this);
@@ -55,7 +56,7 @@ export default class EggsActions extends Component {
     }
 
 
-    SoundPlay = (src) =>{
+    SoundPlay = (src) => {
         console.log(src)
         const sound = new Howl({
             src
@@ -64,15 +65,15 @@ export default class EggsActions extends Component {
     }
 
 
-    RenderNewButton = () =>{
-        return audioClips.map((soundObj, index)=>{
-            return (
-                <button key={index} onClick={()=>this.SoundPlay(soundObj.sound)}>
-                    {soundObj.label}
-                </button>
-            )
-        })
-    }
+    // RenderNewButton = () => {
+    //     return audioClips.map((soundObj, index) => {
+    //         return (
+    //             <button key={index} onClick={() => this.SoundPlay(soundObj.sound)}>
+    //                 {soundObj.label}
+    //             </button>
+    //         )
+    //     })
+    // }
     /////////////////////////////////////////////
     componentDidMount() {
         document.addEventListener("keydown", this.checkKey);
@@ -109,6 +110,7 @@ export default class EggsActions extends Component {
     //Функция рендера случайного яйца 
     auto() {
         let num = this.randomInteger(1, 4);
+
 
         switch (num) {
             case 1:
@@ -157,20 +159,23 @@ export default class EggsActions extends Component {
     ///Функция генерации яиц с определенным интервалом
 
     beginA() {
-        this.state.mistakes = 3;
-        this.reset();
-        this.state.speedEgg = 400;
-        this.state.respaunEgg = 1000;
-        // this.setState({ speedEgg: 400 });
-        // this.setState({ respaunEgg: 800 });
-        this.setState({ timerOn: false });
-        let timerA = setInterval(() => {
-            this.auto()
-            if (this.state.loss === 120) {
-                clearInterval(timerA)
-            }
+        
 
-        }, this.state.respaunEgg)
+     
+            this.state.mistakes = 3;
+            this.reset();
+            this.state.speedEgg = 400;
+            this.state.respaunEgg = 1000;
+            this.setState({ timerOn: false });
+            let timerA = setInterval(() => {
+                this.auto()
+                if (this.state.loss === 120) {
+                    clearInterval(timerA)
+                }
+            }, this.state.respaunEgg)
+        
+
+
     }
 
 
@@ -180,23 +185,20 @@ export default class EggsActions extends Component {
 
         this.state.speedEgg = 100;
         this.state.respaunEgg = 100;
-        // this.setState({ speedEgg: 100 });
-        // this.setState({ respaunEgg: 100 });
         this.setState({ timerOn: false });
         let timerB = setInterval(() => {
             this.auto()
             if (this.state.loss === 120) {
                 clearInterval(timerB)
             }
-
         }, this.state.respaunEgg)
     }
 
 
     time() {
         this.reset();
-
-        let date = new Date(),
+        if(this.state.timerOn === false){
+            let date = new Date(),
             hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
             minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
             seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
@@ -206,16 +208,20 @@ export default class EggsActions extends Component {
         this.setState({ timerOn: true })
         this.setState({ score: [hours, ":", minutes] })
 
-
-
-
         let timerTime = setInterval(() => {
             this.auto()
-            if (this.state.loss === 120) {
+            if (this.state.loss === 120 || this.state.timerOn === false) {
                 clearInterval(timerTime)
             }
 
         }, this.state.respaunEgg)
+        }else {
+        this.state.timerOn = false
+        
+        return;}
+            
+        
+        
     }
 
 
@@ -249,7 +255,7 @@ export default class EggsActions extends Component {
                     this.nextAcceleration()
                 } else
                     if ((x === "RU" && this.state.numh === "volk-hand4 active") || (x === "RU1" && this.state.numh === "volk-hand4 active")) {
-                       this.SoundPlay(hitEgg)
+                        this.SoundPlay(hitEgg)
                         this.setState({ score: this.state.score + 1 })
                         this.nextAcceleration()
                     } else
@@ -299,14 +305,18 @@ export default class EggsActions extends Component {
     //Функция движения яйца по позициям
     moveEgg(x, y, egg) {
         let self = this;
-        
+
         // Если нет ошибок, то вешается таймаут.
         // Если ошибки есть, то выводится alert о том, что ты проиграл и выполняется выход из функции
         // С помощью return
+
+        
+
+
         if (this.state.mistakes !== 3) {
             let timer = setTimeout(function makeEggStep(positionNumber = 1) {
                 let currentPositionNumber = positionNumber;
-                console.log("[DEBUG] EXIT", self);
+               
                 // Здесь просто яйцо ставится в текущую позицию
                 self.setState({ [x]: `egg ${egg}${currentPositionNumber} activeEgg` });
                 // Если начальная позиция 1, то флаг ставится в false
@@ -314,14 +324,12 @@ export default class EggsActions extends Component {
                     self.setState({ [y]: false });
                 }
 
-
-                
-                self.SoundPlay(actEggSound)
+                if(self.state.timerOn === false){
+                self.SoundPlay(actEggSound)}
 
 
 
                 if (self.state.mistakes === 3 || currentPositionNumber === 6) {
-                    console.log("[DEBUG] EXIT");
                     self.setState({ [x]: `egg ${egg}1 noneEgg` });
                     self.setState({ [y]: true });
                     clearTimeout(timer);
@@ -349,23 +357,23 @@ export default class EggsActions extends Component {
         if (this.state.mistakes !== 3) {
             let x = i;
             let y = pos;
-    
+
             let pos1 = y
             let pos2 = y + 1
             console.log(pos2)
-    
+
             if (this.state[pos1] === false && this.state[pos2] === true) {
                 x += 1;
                 y += 1;
             }
             console.log(x, y)
-    
+
             this.moveEgg(x, y, i, 2);
         } else {
 
             return;
         }
-        
+
 
         // const verify = () => {
         //     if (this.state[x] === `egg ${i}5 activeEgg`) {
@@ -549,7 +557,7 @@ export default class EggsActions extends Component {
                     {/* <div className="mistakes">
                         {mistakes}
                     </div> */}
-                    {this.RenderNewButton()}
+                    {/* {this.RenderNewButton()} */}
 
                     {/* {this.time} */}
                     {this.loss(this.state.loss)}
@@ -561,10 +569,10 @@ export default class EggsActions extends Component {
                     <button id="2" onClick={this.renderWolf} className="btn btn-left-down" />
                     <button id="3" onClick={this.renderWolf} className="btn btn-right-up" />
                     <button id="4" onClick={this.renderWolf} className="btn btn-right-down" />
-                    <div className="rectangle1"/>
-                    <div className="rectangle2"/>
-                    <div className="rectangle3"/>
-                    <div className="rectangle4"/>
+                    <div className="rectangle1" />
+                    <div className="rectangle2" />
+                    <div className="rectangle3" />
+                    <div className="rectangle4" />
                 </div>
             </>
         )
