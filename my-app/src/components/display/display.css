@@ -193,8 +193,8 @@
 .right_arrow{
     
     position: absolute;
-    right: 4.5%;
-    bottom: 50%;
+    right: 1%;
+    bottom: 49%;
     background: url(../img/bottom-arrow.png) no-repeat;
     height: 60px;
     width: 60px;
@@ -204,12 +204,13 @@
 }
 
 .right_arrow:hover{
+    animation: 1s;
     opacity: 1;
 }
 
 .rotated{
     transform: rotate(90deg);
-    right: 0;
+    right: 1%;
 }
 .footer{
     display: flex;

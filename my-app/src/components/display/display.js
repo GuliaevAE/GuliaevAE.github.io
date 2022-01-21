@@ -6,8 +6,7 @@ import "../volk/volk.css";
 import github from "../img/github.png";
 import vk from "../img/vk.png";
 import styled, { keyframes } from 'styled-components';
-import { rotateInDownRight , rotateInUpRight } from 'react-animations';
-// import RotateInUpLeft from "@bit/formidablelabs.react-animations.rotate-in-up-left";
+import { rotateInDownRight, rotateInUpRight } from 'react-animations';
 
 
 const RotateInDownRight = styled.div`animation: 1s ${keyframes`${rotateInDownRight}`}`;
@@ -27,10 +26,7 @@ export default class Display extends Component {
 
     }
 
-
     toggleClasses() {
-
-
         if (this.state.classNameForArrow === "right_arrow") {
             this.setState({ classNameForArrow: "right_arrow rotated" })
             this.setState({ classNameForFooter: "footer none" })
@@ -38,8 +34,6 @@ export default class Display extends Component {
             this.setState({ classNameForArrow: "right_arrow" })
             this.setState({ classNameForFooter: "footer" })
         }
-
-
     }
 
     render() {
@@ -57,15 +51,12 @@ export default class Display extends Component {
                     <div className="LOGO" />
                 </div>
                 <div className="divForArrow" onClick={this.toggleClasses}>
-
+                </div>
+                <div className={this.state.classNameForFooter}>
+                    <RotateInDownRight><a href="https://github.com/GuliaevAE"><img src={github} alt="github" /></a></RotateInDownRight>
+                    <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight>
                 </div>
                 <div className={this.state.classNameForArrow} onClick={this.toggleClasses} />
-                <div className={this.state.classNameForFooter}>
-                <RotateInDownRight><a href="https://github.com/GuliaevAE"><img src={github} alt="github" /></a></RotateInDownRight>
-                   <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight> 
-
-
-                </div>
             </>
         )
     }
