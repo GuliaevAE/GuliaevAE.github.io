@@ -36,6 +36,8 @@ export default class EggsActions extends Component {
             respawnEgg: 5000,
             wolfPosition: "volk1 active",
             wolfBascetPosition: "volk-hand2 active",
+            brokenEggLeft:"brokenEggLeft noneEgg",
+            brokenEggRight:"brokenEggRight noneEgg",
             isGameStarted: false,
             isGameSwitched: false,
             score: 0,
@@ -227,16 +229,11 @@ export default class EggsActions extends Component {
         }
     }
 
-
     generateEgg(eggLocation, classnameForEgg, abilityToRender) {
         if (this.state.mistakes !== 3) {
-
-
-
             if (this.state[abilityToRender] === false && this.state[abilityToRender + "_Second"] === true) {
                 classnameForEgg += "_Second";
                 abilityToRender += "_Second";
-
             }
 
             this.moveEgg(classnameForEgg, abilityToRender, eggLocation);
@@ -322,6 +319,14 @@ export default class EggsActions extends Component {
                             this.setState({ score: this.state.score + 1 })
                             this.nextAcceleration()
                         } else {
+                            if(eggLocation==="RU"||eggLocation==="RD"){
+                            this.setState({ brokenEggRight: "brokenEggRight"})
+                            setTimeout(() =>  this.setState({ brokenEggRight: "brokenEggRight noneEgg"}),1000)
+                        }else{
+                            this.setState({ brokenEggLeft: "brokenEggLeft"})
+                            setTimeout(() =>  this.setState({ brokenEggLeft: "brokenEggLeft noneEgg"}),1000)
+                        }
+
                             this.loser()
                             this.setState({ mistakes: this.state.mistakes + 1 })
                         }
@@ -458,7 +463,6 @@ export default class EggsActions extends Component {
             default:
                 break;
         }
-
     }
 
     render() {
@@ -478,8 +482,11 @@ export default class EggsActions extends Component {
         let wolf = <div className={wolfPosition} />;
         let wolfBascet = <div className={wolfBascetPosition} />
 
+        
+
+
+
         let score = this.state.score;
-        let mistakes = this.state.mistakes;
 
         return (
             <>
@@ -502,6 +509,10 @@ export default class EggsActions extends Component {
                     <div className="score">
                         {score}
                     </div>
+
+                    <div className={this.state.brokenEggLeft}/>
+                    <div className={this.state.brokenEggRight}/>
+                    {/* <div className="brokenEggLeft"/> */}
 
                     {this.loss(this.state.loss)}
                     <EggsNone />

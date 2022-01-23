@@ -137,6 +137,29 @@
 }
 
 
+.brokenEggRight{
+    position: absolute;
+    background: url(../img/brokenEgg.png) no-repeat;
+    height: 28px;
+    width: 69px;
+    bottom: 10px;
+    right: 150px;
+    
+}
+
+
+.brokenEggLeft{
+    position: absolute;
+    background: url(../img/brokenEgg.png) no-repeat;
+    height: 28px;
+    width: 69px;
+    bottom: 10px;
+    left: 150px;
+    transform: scale(-1, 1)
+}
+
+
+
 .activeEgg {
     opacity: 1;
 }
