@@ -89,7 +89,7 @@ export default class EggsActions extends Component {
         }
     }
 
-  
+
     start() {
         this.#activeInterval = setInterval(() => {
             this.renderRandomEgg();
@@ -99,7 +99,7 @@ export default class EggsActions extends Component {
         }, this.state.respaunEgg);
     }
 
- 
+
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
     beginA() {
@@ -131,7 +131,7 @@ export default class EggsActions extends Component {
             this.setState({ score: [hours, ":", minutes] })
             this.start();
 
-            
+
         } else {
             this.state.timerOn = false
 
@@ -139,7 +139,7 @@ export default class EggsActions extends Component {
         }
     }
 
-    
+
     ///////////////////////////////////////////
     //Функция генерации рандомного числа
     randomInteger(min, max) {
@@ -148,7 +148,7 @@ export default class EggsActions extends Component {
         return Math.round(rand);
     }
 
-   
+
     reset() {
         clearInterval(this.#activeInterval);
         this.setState({
@@ -163,7 +163,7 @@ export default class EggsActions extends Component {
             abilityToRenderLeftDownEgg_Second: true,
             abilityToRenderRightUpEgg_Second: true,
             abilityToRenderRightDownEgg_Second: true,
-            timerOn:false,
+            timerOn: false,
             isGameSwitched: true,
             classnameForLU: 'egg LU1 noneEgg ',
             classnameForLD: 'egg LD1 noneEgg',
@@ -176,10 +176,10 @@ export default class EggsActions extends Component {
         });
     }
 
-    generatePossibleEgg(pos, pos1, i) {
-        if (this.state[pos] === true || this.state[pos1] === true) {
-            this.generateEgg(i, pos)
-        } else if (this.state[pos] === false && this.state[pos1] === false) {
+    generatePossibleEgg(eggLocation, classnameForEgg, abilityToRender) {
+        if (this.state[abilityToRender] === true || this.state[abilityToRender + "_Second"] === true) {
+            this.generateEgg(eggLocation, classnameForEgg, abilityToRender)
+        } else if (this.state[abilityToRender] === false && this.state[abilityToRender + "_Second"] === false) {
             this.checkPos()
         }
     }
@@ -191,33 +191,36 @@ export default class EggsActions extends Component {
 
         switch (num) {
             case 1:
-                // this.generatePossibleEgg("abilityToRenderLeftUpEgg", "abilityToRenderLeftUpEgg_Second", "LU")
-                if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEgg_Second === true) {
-                    this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
-                } else if (this.state.abilityToRenderLeftUpEgg === false && this.state.abilityToRenderLeftUpEgg_Second === false) {
-                    this.checkPos()
-                }
+                this.generatePossibleEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
+                // if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEgg_Second === true) {
+                //     this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
+                // } else if (this.state.abilityToRenderLeftUpEgg === false && this.state.abilityToRenderLeftUpEgg_Second === false) {
+                //     this.checkPos()
+                // }
                 break;
             case 2:
-                if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEgg_Second === true) {
-                    this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
-                } else if (this.state.abilityToRenderLeftDownEgg === false && this.state.abilityToRenderLeftDownEgg_Second === false) {
-                    this.checkPos()
-                }
+                this.generatePossibleEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
+                // if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEgg_Second === true) {
+                //     this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
+                // } else if (this.state.abilityToRenderLeftDownEgg === false && this.state.abilityToRenderLeftDownEgg_Second === false) {
+                //     this.checkPos()
+                // }
                 break;
             case 3:
-                if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEgg_Second === true) {
-                    this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
-                } else if (this.state.abilityToRenderRightUpEgg === false && this.state.abilityToRenderRightUpEgg_Second === false) {
-                    this.checkPos()
-                }
+                this.generatePossibleEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
+                // if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEgg_Second === true) {
+                //     this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
+                // } else if (this.state.abilityToRenderRightUpEgg === false && this.state.abilityToRenderRightUpEgg_Second === false) {
+                //     this.checkPos()
+                // }
                 break;
             case 4:
-                if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEgg_Second === true) {
-                    this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
-                } else if (this.state.abilityToRenderRightDownEgg === false && this.state.abilityToRenderRightDownEgg_Second === false) {
-                    this.checkPos()
-                }
+                this.generatePossibleEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
+                // if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEgg_Second === true) {
+                //     this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
+                // } else if (this.state.abilityToRenderRightDownEgg === false && this.state.abilityToRenderRightDownEgg_Second === false) {
+                //     this.checkPos()
+                // }
                 break;
             default:
                 break;
@@ -227,13 +230,13 @@ export default class EggsActions extends Component {
 
     generateEgg(eggLocation, classnameForEgg, abilityToRender) {
         if (this.state.mistakes !== 3) {
-            
-            
 
-            if (this.state[abilityToRender] === false && this.state[abilityToRender+"_Second"] === true) {
+
+
+            if (this.state[abilityToRender] === false && this.state[abilityToRender + "_Second"] === true) {
                 classnameForEgg += "_Second";
                 abilityToRender += "_Second";
-                
+
             }
 
             this.moveEgg(classnameForEgg, abilityToRender, eggLocation);
