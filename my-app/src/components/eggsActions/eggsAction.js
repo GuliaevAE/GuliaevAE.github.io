@@ -5,11 +5,6 @@ import actEggSound from "../sounds/bit-pong-sound.mp3";
 import hitEgg from "../sounds/bit-punch.mp3";
 import { Howl, Howler } from "howler";
 
-const audioClips = [
-    { sound: actEggSound, label: "actEggSound" },
-    { sound: hitEgg, label: "hitEgg" }
-]
-
 export default class EggsActions extends Component {
     #activeInterval;
 
@@ -36,8 +31,8 @@ export default class EggsActions extends Component {
             respawnEgg: 5000,
             wolfPosition: "volk1 active",
             wolfBascetPosition: "volk-hand2 active",
-            brokenEggLeft:"brokenEggLeft noneEgg",
-            brokenEggRight:"brokenEggRight noneEgg",
+            brokenEggLeft: "brokenEggLeft noneEgg",
+            brokenEggRight: "brokenEggRight noneEgg",
             isGameStarted: false,
             isGameSwitched: false,
             score: 0,
@@ -114,8 +109,8 @@ export default class EggsActions extends Component {
     // Через setState
     beginB() {
         this.reset();
-        this.state.speedEgg = 500;
-        this.state.respaunEgg = 500;
+        this.state.speedEgg = 1000;
+        this.state.respaunEgg = 1000;
         this.start();
     }
 
@@ -141,7 +136,6 @@ export default class EggsActions extends Component {
         }
     }
 
-
     ///////////////////////////////////////////
     //Функция генерации рандомного числа
     randomInteger(min, max) {
@@ -149,7 +143,6 @@ export default class EggsActions extends Component {
         let rand = min - 0.5 + Math.random() * (max - min + 1);
         return Math.round(rand);
     }
-
 
     reset() {
         clearInterval(this.#activeInterval);
@@ -194,35 +187,15 @@ export default class EggsActions extends Component {
         switch (num) {
             case 1:
                 this.generatePossibleEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
-                // if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEgg_Second === true) {
-                //     this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
-                // } else if (this.state.abilityToRenderLeftUpEgg === false && this.state.abilityToRenderLeftUpEgg_Second === false) {
-                //     this.checkPos()
-                // }
                 break;
             case 2:
                 this.generatePossibleEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
-                // if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEgg_Second === true) {
-                //     this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
-                // } else if (this.state.abilityToRenderLeftDownEgg === false && this.state.abilityToRenderLeftDownEgg_Second === false) {
-                //     this.checkPos()
-                // }
                 break;
             case 3:
                 this.generatePossibleEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
-                // if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEgg_Second === true) {
-                //     this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
-                // } else if (this.state.abilityToRenderRightUpEgg === false && this.state.abilityToRenderRightUpEgg_Second === false) {
-                //     this.checkPos()
-                // }
                 break;
             case 4:
                 this.generatePossibleEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
-                // if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEgg_Second === true) {
-                //     this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
-                // } else if (this.state.abilityToRenderRightDownEgg === false && this.state.abilityToRenderRightDownEgg_Second === false) {
-                //     this.checkPos()
-                // }
                 break;
             default:
                 break;
@@ -242,7 +215,7 @@ export default class EggsActions extends Component {
         }
     }
 
-    // НЕ МЕНЯТЬ, кроме название аргументов
+    ///////////////////////////////////////////////
     //Функция движения яйца по позициям
     moveEgg(classnameForEgg, abilityToRender, eggLocation) {
         let self = this;
@@ -319,13 +292,13 @@ export default class EggsActions extends Component {
                             this.setState({ score: this.state.score + 1 })
                             this.nextAcceleration()
                         } else {
-                            if(eggLocation==="RU"||eggLocation==="RD"){
-                            this.setState({ brokenEggRight: "brokenEggRight"})
-                            setTimeout(() =>  this.setState({ brokenEggRight: "brokenEggRight noneEgg"}),1000)
-                        }else{
-                            this.setState({ brokenEggLeft: "brokenEggLeft"})
-                            setTimeout(() =>  this.setState({ brokenEggLeft: "brokenEggLeft noneEgg"}),1000)
-                        }
+                            if (eggLocation === "RU" || eggLocation === "RD") {
+                                setTimeout(() => this.setState({ brokenEggRight: "brokenEggRight" }), this.state.speedEgg * 0.5)
+                                setTimeout(() => this.setState({ brokenEggRight: "brokenEggRight noneEgg" }), this.state.speedEgg * 1.5)
+                            } else {
+                                setTimeout(() => this.setState({ brokenEggLeft: "brokenEggLeft" }), this.state.speedEgg * 0.5)
+                                setTimeout(() => this.setState({ brokenEggLeft: "brokenEggLeft noneEgg" }), this.state.speedEgg * 1.5)
+                            }
 
                             this.loser()
                             this.setState({ mistakes: this.state.mistakes + 1 })
@@ -482,10 +455,6 @@ export default class EggsActions extends Component {
         let wolf = <div className={wolfPosition} />;
         let wolfBascet = <div className={wolfBascetPosition} />
 
-        
-
-
-
         let score = this.state.score;
 
         return (
@@ -510,8 +479,8 @@ export default class EggsActions extends Component {
                         {score}
                     </div>
 
-                    <div className={this.state.brokenEggLeft}/>
-                    <div className={this.state.brokenEggRight}/>
+                    <div className={this.state.brokenEggLeft} />
+                    <div className={this.state.brokenEggRight} />
                     {/* <div className="brokenEggLeft"/> */}
 
                     {this.loss(this.state.loss)}
@@ -532,3 +501,77 @@ export default class EggsActions extends Component {
         )
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// renderRandomEgg() {
+//     let num = this.randomInteger(1, 4);
+
+//     switch (num) {
+//         case 1:
+//             // if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEgg_Second === true) {
+//             //     this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
+//             // } else if (this.state.abilityToRenderLeftUpEgg === false && this.state.abilityToRenderLeftUpEgg_Second === false) {
+//             //     this.checkPos()
+//             // }
+//             break;
+//         case 2:
+//             // if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEgg_Second === true) {
+//             //     this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
+//             // } else if (this.state.abilityToRenderLeftDownEgg === false && this.state.abilityToRenderLeftDownEgg_Second === false) {
+//             //     this.checkPos()
+//             // }
+//             break;
+//         case 3:
+//             // if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEgg_Second === true) {
+//             //     this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
+//             // } else if (this.state.abilityToRenderRightUpEgg === false && this.state.abilityToRenderRightUpEgg_Second === false) {
+//             //     this.checkPos()
+//             // }
+//             break;
+//         case 4:
+//             // if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEgg_Second === true) {
+//             //     this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
+//             // } else if (this.state.abilityToRenderRightDownEgg === false && this.state.abilityToRenderRightDownEgg_Second === false) {
+//             //     this.checkPos()
+//             // }
+//             break;
+//         default:
+//             break;
+//     }
+// }
+
+// generateEgg(eggLocation, classnameForEgg, abilityToRender) {
+//     if (this.state.mistakes !== 3) {
+//         if (this.state[abilityToRender] === false && this.state[abilityToRender + "_Second"] === true) {
+//             classnameForEgg += "_Second";
+//             abilityToRender += "_Second";
+//         }
+
+//         this.moveEgg(classnameForEgg, abilityToRender, eggLocation);
+//     } else {
+//         return;
+//     }
+// }
