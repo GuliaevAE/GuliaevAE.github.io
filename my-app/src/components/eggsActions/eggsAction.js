@@ -45,7 +45,6 @@ export default class EggsActions extends Component {
         this.beginA = this.beginA.bind(this);
         this.beginB = this.beginB.bind(this);
         this.renderRandomEgg = this.renderRandomEgg.bind(this);
-
         this.renderWolf = this.renderWolf.bind(this);
         this.checkPos = this.checkPos.bind(this);
         this.loss = this.loss.bind(this);
@@ -372,7 +371,6 @@ export default class EggsActions extends Component {
             default:
                 break;
         }
-
     }
 
     left() {
@@ -382,7 +380,6 @@ export default class EggsActions extends Component {
         if (this.state.wolfBascetPosition === "volk-hand3 active") {
             this.setState({ wolfBascetPosition: "volk-hand1 active" });
         }
-
     }
 
     right() {
@@ -392,7 +389,6 @@ export default class EggsActions extends Component {
         if (this.state.wolfBascetPosition === "volk-hand2 active") {
             this.setState({ wolfBascetPosition: "volk-hand4 active" });
         }
-
     }
 
     up() {
@@ -440,23 +436,6 @@ export default class EggsActions extends Component {
 
     render() {
         Howler.volume(0.1)
-        let styleClassFirstEggLU = this.state.classnameForLU;
-        let styleClassFirstEggLD = this.state.classnameForLD;
-        let styleClassFirstEggRU = this.state.classnameForRU;
-        let styleClassFirstEggRD = this.state.classnameForRD;
-
-        let styleClassSecondEggLU = this.state.classnameForLU_Second;
-        let styleClassSecondEggLD = this.state.classnameForLD_Second;
-        let styleClassSecondEggRU = this.state.classnameForRU_Second;
-        let styleClassSecondEggRD = this.state.classnameForRD_Second;
-
-        let wolfPosition = this.state.wolfPosition;
-        let wolfBascetPosition = this.state.wolfBascetPosition;
-        let wolf = <div className={wolfPosition} />;
-        let wolfBascet = <div className={wolfBascetPosition} />
-
-        let score = this.state.score;
-
         return (
             <>
                 <div className="wraper">
@@ -466,27 +445,26 @@ export default class EggsActions extends Component {
                     <div className="title_btn_startB">игра Б</div>
                     <div className="btn_time" onClick={this.time} />
                     <div className="title_btn_time">время</div>
-                    <div className={styleClassFirstEggLU} />
-                    <div className={styleClassFirstEggLD} />
-                    <div className={styleClassFirstEggRU} />
-                    <div className={styleClassFirstEggRD} />
-                    <div className={styleClassSecondEggLU} />
-                    <div className={styleClassSecondEggLD} />
-                    <div className={styleClassSecondEggRU} />
-                    <div className={styleClassSecondEggRD} />
+                    <div className={this.state.classnameForLU} />
+                    <div className={this.state.classnameForLD} />
+                    <div className={this.state.classnameForRU} />
+                    <div className={this.state.classnameForRD} />
+                    <div className={this.state.classnameForLU_Second} />
+                    <div className={this.state.classnameForLD_Second} />
+                    <div className={this.state.classnameForRU_Second} />
+                    <div className={this.state.classnameForRD_Second} />
 
                     <div className="score">
-                        {score}
+                        {this.state.score}
                     </div>
 
                     <div className={this.state.brokenEggLeft} />
                     <div className={this.state.brokenEggRight} />
-                    {/* <div className="brokenEggLeft"/> */}
 
                     {this.loss(this.state.loss)}
                     <EggsNone />
-                    {wolf}
-                    {wolfBascet}
+                    <div className={this.state.wolfPosition} />
+                    <div className={this.state.wolfBascetPosition} />
 
                     <button id="1" onClick={this.renderWolf} className="btn btn-left-up" />
                     <button id="2" onClick={this.renderWolf} className="btn btn-left-down" />
@@ -575,3 +553,26 @@ export default class EggsActions extends Component {
 //         return;
 //     }
 // }
+
+
+
+
+
+
+
+// let styleClassFirstEggLU = this.state.classnameForLU;
+        // let styleClassFirstEggLD = this.state.classnameForLD;
+        // let styleClassFirstEggRU = this.state.classnameForRU;
+        // let styleClassFirstEggRD = this.state.classnameForRD;
+
+        // let styleClassSecondEggLU = this.state.classnameForLU_Second;
+        // let styleClassSecondEggLD = this.state.classnameForLD_Second;
+        // let styleClassSecondEggRU = this.state.classnameForRU_Second;
+        // let styleClassSecondEggRD = this.state.classnameForRD_Second;
+
+        // let wolfPosition = this.state.wolfPosition;
+        // let wolfBascetPosition = this.state.wolfBascetPosition;
+        // let wolf = <div className={this.state.wolfPosition} />;
+        // let wolfBascet = <div className={this.state.wolfBascetPosition} />
+
+        // let score = this.state.score;

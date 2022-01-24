@@ -7,10 +7,6 @@
     background-size: contain;
 }
 
-
-
-
-
 .noneEgg {
     opacity: 0;
 }
@@ -136,7 +132,6 @@
     transform: rotate(-10deg);
 }
 
-
 .brokenEggRight{
     position: absolute;
     background: url(../img/brokenEgg.png) no-repeat;
@@ -146,7 +141,6 @@
     right: 150px;
     
 }
-
 
 .brokenEggLeft{
     position: absolute;
@@ -158,12 +152,9 @@
     transform: scale(-1, 1)
 }
 
-
-
 .activeEgg {
     opacity: 1;
 }
-
 
 @font-face {
     font-family: "TacticRound-Bld";
@@ -201,8 +192,6 @@
 
 }
 
-
-
 .btn_startA {
     position: absolute;
     width: 45px;
@@ -211,7 +200,6 @@
     right: -140px;
     background: #5c5c5c;
     border-radius: 60px/50px;
-    /* border: rgb(0, 0, 0) solid -1px; */
     box-shadow: inset 0px 0px 4px #949494, 0 0 2px 1px black, 0 0 0 5px red;
 }
 
@@ -274,9 +262,6 @@
     font-size: 50px;
 }
 
-
-
-
 .loss {
     display: flex;
     position: absolute;
@@ -287,8 +272,3 @@
     background: url(../img/loss.png);
     background-size: cover;
 }
-
-/* 
-.score1{
-    background
-} */

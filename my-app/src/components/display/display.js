@@ -16,6 +16,7 @@ export default class Display extends Component {
             classNameForFooter: "footer none",
             modalhelp: "modalhelp none",
             back: "back",
+            ikonModalHelp: "help",
         };
         this.toggleClasses = this.toggleClasses.bind(this);
         this.modalhelp = this.modalhelp.bind(this);
@@ -26,10 +27,12 @@ export default class Display extends Component {
     modalhelp(){
         if(this.state.modalhelp === "modalhelp none"){
         this.setState({ modalhelp: "modalhelp " })
+        this.setState({ ikonModalHelp: "offModalHelp " })
         this.setState({ back: "back none" })
         }else{
             this.setState({ modalhelp: "modalhelp none" })
             this.setState({ back: "back " })
+            this.setState({ ikonModalHelp: "help " })
         }
     }
 
@@ -41,7 +44,6 @@ export default class Display extends Component {
                 А по-настоящему народной игру сделали её персонажи – Заяц и Волк из любимых мультфильмов «Ну погоди!».
                 </p> 
                 <p>Управление: Используйте кнопки wasd</p>
-               
                 <div className="wasd"/>
             </h2>
         )
@@ -62,9 +64,6 @@ export default class Display extends Component {
         }
         
 
-       
-
-
     }
 
     render() {
@@ -74,9 +73,9 @@ export default class Display extends Component {
                 <div className={this.state.modalhelp}>
                     {this.textInModalHelp()}
                 </div>
-                <div class="bg"></div>
-                <div class="bg bg2"></div>
-                <div class="bg bg3"></div>
+                <div className="bg"></div>
+                <div className="bg bg2"></div>
+                <div className="bg bg3"></div>
                 <div className={this.state.back}>
                     <div className="module">
                         <div className="frame" />
@@ -98,7 +97,7 @@ export default class Display extends Component {
                     <RotateInDownRight><a href="https://github.com/GuliaevAE"><img src={github} alt="github" /></a></RotateInDownRight>
                     <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight>
                 </div>
-                <Swing><div id="help" className="help" onClick={this.toggleClasses}/></Swing>
+                <Swing><div id="help" className={this.state.ikonModalHelp} onClick={this.toggleClasses}/></Swing>
                 <div className={this.state.classNameForArrow} onClick={this.toggleClasses} />
             </>
         )

@@ -34,7 +34,6 @@
     opacity: 0;
 }
 
-
 .volk-hand2{
     display: flex;
     position: absolute;
@@ -59,7 +58,6 @@
     opacity: 0;
 }
 
-
 .volk-hand4{
     display: flex;
     position: absolute;
@@ -71,7 +69,6 @@
     background-size: contain;
     opacity: 0;
 }
-
 
 .active{
     opacity: 1;
