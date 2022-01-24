@@ -49,7 +49,8 @@ export default class EggsActions extends Component {
         this.checkPos = this.checkPos.bind(this);
         this.loss = this.loss.bind(this);
         this.time = this.time.bind(this);
-
+        this.eggCaught = this.eggCaught.bind(this);
+        
     }
 
 
@@ -267,29 +268,28 @@ export default class EggsActions extends Component {
         }
     }
 
+
+    eggCaught(){
+        this.SoundPlay(hitEgg)
+                this.setState({ score: this.state.score + 1 })
+                this.nextAcceleration()
+    }
+
     //////////////////////////////////////////
     //Проверка успеха или ошибки
     checkScoreOrMistake(classnameForEgg, eggLocation) {
         if (this.state[classnameForEgg] === `egg ${eggLocation}5 activeEgg`) {
             if ((classnameForEgg === "classnameForLU" && this.state.wolfBascetPosition === "volk-hand2 active") || (classnameForEgg === "classnameForLU_Second" && this.state.wolfBascetPosition === "volk-hand2 active")) {
-                this.SoundPlay(hitEgg)
-                this.setState({ score: this.state.score + 1 })
-                this.nextAcceleration()
+                this.eggCaught()
             } else
                 if ((classnameForEgg === "classnameForLD" && this.state.wolfBascetPosition === "volk-hand1 active") || (classnameForEgg === "classnameForLD_Second" && this.state.wolfBascetPosition === "volk-hand1 active")) {
-                    this.SoundPlay(hitEgg)
-                    this.setState({ score: this.state.score + 1 })
-                    this.nextAcceleration()
+                    this.eggCaught()
                 } else
                     if ((classnameForEgg === "classnameForRU" && this.state.wolfBascetPosition === "volk-hand4 active") || (classnameForEgg === "classnameForRU_Second" && this.state.wolfBascetPosition === "volk-hand4 active")) {
-                        this.SoundPlay(hitEgg)
-                        this.setState({ score: this.state.score + 1 })
-                        this.nextAcceleration()
+                        this.eggCaught()
                     } else
                         if ((classnameForEgg === "classnameForRD" && this.state.wolfBascetPosition === "volk-hand3 active") || (classnameForEgg === "classnameForRD_Second" && this.state.wolfBascetPosition === "volk-hand3 active")) {
-                            this.SoundPlay(hitEgg)
-                            this.setState({ score: this.state.score + 1 })
-                            this.nextAcceleration()
+                            this.eggCaught()
                         } else {
                             if (eggLocation === "RU" || eggLocation === "RD") {
                                 setTimeout(() => this.setState({ brokenEggRight: "brokenEggRight" }), this.state.speedEgg * 0.5)

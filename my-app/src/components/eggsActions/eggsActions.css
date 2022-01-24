@@ -3,7 +3,7 @@
     height: 20px;
     width: 20px;
     opacity: 0;
-    background-image: url(../img/egg.png);
+    background: url(../img/egg1.png) no-repeat;
     background-size: contain;
 }
 
@@ -12,19 +12,19 @@
 }
 
 .LU1 {
-    top: 136px;
+    top: 137px;
     left: 75px;
     transform: rotate(75deg);
 }
 
 .LU2 {
-    top: 152px;
+    top: 151px;
     left: 95px;
     transform: rotate(190deg);
 }
 
 .LU3 {
-    top: 170px;
+    top: 165px;
     left: 120px;
     transform: rotate(-50deg);
 }
@@ -42,13 +42,13 @@
 }
 
 .RU1 {
-    top: 140px;
+    top: 141px;
     right: 75px;
     transform: rotate(90deg);
 }
 
 .RU2 {
-    top: 153px;
+    top: 154px;
     right: 100px;
     transform: rotate(10deg);
 }
@@ -66,32 +66,32 @@
 }
 
 .RU5 {
-    top: 195px;
+    top: 193px;
     right: 165px;
     transform: rotate(-1200deg);
 }
 
 
 .LD1 {
-    bottom: 107px;
+    bottom: 106px;
     left: 75px;
     transform: rotate(160deg);
 }
 
 .LD2 {
-    bottom: 96px;
+    bottom: 97px;
     left: 97px;
     transform: rotate(250deg);
 }
 
 .LD3 {
-    bottom: 80px;
+    bottom: 76px;
     left: 120px;
     transform: rotate(120deg);
 }
 
 .LD4 {
-    bottom: 64px;
+    bottom: 67px;
     left: 142px;
     transform: rotate(-30deg);
 }
@@ -103,13 +103,13 @@
 }
 
 .RD1 {
-    bottom: 108px;
+    bottom: 107px;
     right: 75px;
     transform: rotate(120deg);
 }
 
 .RD2 {
-    bottom: 94px;
+    bottom: 90px;
     right: 100px;
     transform: rotate(60deg);
 }
@@ -121,7 +121,7 @@
 }
 
 .RD4 {
-    bottom: 65px;
+    bottom: 68px;
     right: 143px;
     transform: rotate(-70deg);
 }
