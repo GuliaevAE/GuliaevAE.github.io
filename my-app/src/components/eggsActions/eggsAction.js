@@ -54,7 +54,7 @@ export default class EggsActions extends Component {
     }
 
 
-    SoundPlay = (src) => {
+    soundPlay = (src) => {
         const sound = new Howl({
             src
         })
@@ -249,7 +249,7 @@ export default class EggsActions extends Component {
                 }
 
                 if (self.state.timerOn === false) {
-                    self.SoundPlay(actEggSound)
+                    self.soundPlay(actEggSound)
                 }
 
                 if (currentPositionNumber === 5) {
@@ -270,7 +270,7 @@ export default class EggsActions extends Component {
 
 
     eggCaught(){
-        this.SoundPlay(hitEgg)
+        this.soundPlay(hitEgg)
                 this.setState({ score: this.state.score + 1 })
                 this.nextAcceleration()
     }

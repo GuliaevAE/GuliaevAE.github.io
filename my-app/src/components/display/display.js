@@ -20,9 +20,7 @@ export default class Display extends Component {
         };
         this.toggleClasses = this.toggleClasses.bind(this);
         this.modalhelp = this.modalhelp.bind(this);
-
     }
-
 
     modalhelp(){
         if(this.state.modalhelp === "modalhelp none"){
@@ -35,7 +33,6 @@ export default class Display extends Component {
             this.setState({ ikonModalHelp: "help " })
         }
     }
-
 
     textInModalHelp(){
         return(
@@ -50,7 +47,6 @@ export default class Display extends Component {
         )
     }
 
-
     toggleClasses(e) {
         if(e.target.id !== 'help'){
             if (this.state.classNameForArrow === "right_arrow") {
@@ -63,12 +59,8 @@ export default class Display extends Component {
         }else{
             this.modalhelp()
         }
-        
-
     }
-
     render() {
-
         return (
             <>
                 <div className={this.state.modalhelp}>
@@ -85,8 +77,7 @@ export default class Display extends Component {
                             <Volk />
                             <Eggs />
                         </div>
-                        <div className="title2">ЭЛЕКТРОНИКА</div>
-                        
+                        <div className="title2">ЭЛЕКТРОНИКА</div> 
                     </div>
                     <div className="LOGO" />
                     <div className="bell"/>
