@@ -29,31 +29,34 @@
     }
 }
 
-
-
-
-
-
 .back {
     display: flex;
     position: relative;
     height: 550px;
-    max-width: 1100px;
+    width: 1100px;
     background: rgb(217, 213, 202);
     border-radius: 20px;
     background-size: contain;
-    
     margin: 50px auto;
     box-shadow: inset 0 0 1px 0.5px rgb(202, 48, 48), inset 0px 0px 5px 0.5px rgb(0, 0, 0), inset 0px 0px 5px rgb(0, 0, 0), 0 0 4px 9.5px rgb(202, 48, 48), 0 0 0 10px rgb(0, 0, 0), 20px 25px 5px 10px rgba(0, 0, 0, 0.712);
 
 }
 
+.backSide {
+    display: flex;
+    position: relative;
+    height: 550px;
+    width: 1100px;
+    background: url(../img/backSide.png);
+    border-radius: 20px;
+    background-size: contain;
+    margin: 50px auto;
+    box-shadow:   0 0 4px 9.5px rgb(202, 48, 48), 0 0 0 10px rgb(0, 0, 0), 20px 25px 5px 10px rgba(0, 0, 0, 0.712);
 
-@media (max-widht:1200px) {
-    .back{
-        max-widht:900px;
-    }
 }
+
+
+
 
 
 
@@ -114,13 +117,65 @@
     background-size: cover;
     width: 640px;
     height: 360px;
-    margin-top: 5.5%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 5.5% auto;
     box-shadow: 0 0 0 10px rgb(212, 42, 42), 0 0 0 11px rgb(0, 0, 0);
     border-radius: 10px;
+    
 
 }
+
+
+/* .displayGlass {
+    display: block;
+    position: absolute;
+    background:rgba(112, 112, 112, 0.308);
+    
+    border-radius: 10px;
+    z-index: 2;
+    
+    width: 640px;
+    height: 360px;
+    left: 50%;
+    top: 50%;
+    margin-left: -320px;
+    margin-top: -181.5px;
+    
+    
+    
+    box-shadow: inset 0 0 20px 1px rgb(77, 77, 77);
+    
+
+} */
+
+
+
+.displayGlass {
+    display: block;
+    position: absolute;
+    background:url(../img/retro.jpg);
+    opacity: 0.1;
+    border-radius: 10px;
+    z-index: 2;
+    
+    width: 640px;
+    height: 360px;
+    left: 50%;
+    top: 50%;
+    margin-left: -320px;
+    margin-top: -181.5px;
+    
+    
+    
+    /* box-shadow: inset 0 0 20px 1px rgb(77, 77, 77); */
+    
+
+}
+
+
+
+
+
+
 
 .btn {
     position: absolute;
@@ -199,8 +254,8 @@
 
 .LOGO {
     position: absolute;
-    top: 45px;
-    left: 40px;
+    top: 0px;
+    left: -150px;
     height: 70px;
     width: 80px;
     background: url(../img/LOGO.png) no-repeat;
@@ -220,14 +275,38 @@
     opacity: 0.3;
 }
 
+.down_arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    background: url(../img/bottom-arrow.png) no-repeat;
+    height: 60px;
+    width: 60px;
+    background-size: contain;
+    transform: rotate(180deg);
+    opacity: 0.3;
+}
+
+
 .right_arrow:hover {
     opacity: 1;
 }
 
-.rotated {
+
+.down_arrow:hover {
+    opacity: 1;
+}
+
+.rotatedRight {
     transform: rotate(90deg);
     right: 1%;
 }
+
+.rotatedDown {
+    transform: rotate(0deg);
+    right: 1%;
+}
+
 
 .footer {
     display: flex;
@@ -301,10 +380,10 @@
 
 .bell {
     position: absolute;
-    height: 45px;
+    height: 48px;
     width: 25px;
-    right: 45px;
-    top: 80px;
+    right: -160px;
+    top: 15px;
     background: url(../img/bell1.png) no-repeat;
     background-size: contain;
 }
@@ -313,8 +392,8 @@
     position: absolute;
     height: 42px;
     width: 27px;
-    right: 45px;
-    top: 160px;
+    right: -160px;
+    top: 90px;
     background: url(../img/clockFace1.png) no-repeat;
     background-size: contain;
 }
@@ -323,12 +402,12 @@
     z-index: 1;
     position: absolute;
     width: 600px;
-    height: 400px;
+    height: 500px;
     position: absolute;
     left: 50%;
     top: 50%;
     margin-left: -300px;
-    margin-top: -200px;
+    margin-top: -250px;
     background: rgb(217, 213, 202);
     box-shadow: inset 0 0 1px 0.5px rgb(202, 48, 48), inset 0px 0px 5px 0.5px rgb(0, 0, 0), inset 0px 0px 5px rgb(0, 0, 0), 0 0 4px 9.5px rgb(202, 48, 48), 0 0 0 10px rgb(0, 0, 0), 20px 25px 5px 10px rgba(0, 0, 0, 0.712);
 
