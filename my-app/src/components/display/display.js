@@ -12,18 +12,20 @@ export default class Display extends Component {
     constructor() {
         super();
         this.state = {
-            classNameForRightArrow: "right_arrow rotatedRight",
-            classNameForDownArrow: "down_arrow ",
+            classNameForRightArrow: "arrow right_arrow ",
+            classNameForDownArrow: "arrow down_arrow ",
+            classNameForLeftArrow: "arrow left_arrow ",
             classNameForFooter: "footer none",
             modalhelp: "modalhelp none",
             back: "back",
             ikonModalHelp: "help",
-
+            classNameForRecordsTable: "highScoreTable none",
             display: "display",
             module: "module",
         };
         this.toggleClasses = this.toggleClasses.bind(this);
         this.modalhelp = this.modalhelp.bind(this);
+        this.renderRecords = this.renderRecords.bind(this);
     }
 
     modalhelp() {
@@ -79,34 +81,76 @@ export default class Display extends Component {
                 this.presDownArrow()
                 break;
 
+            case 'leftArrow':
+                this.presLeftArrow()
+                break;
+
             default:
                 break;
         }
     }
 
-    presRightArrow(){
-        if (this.state.classNameForRightArrow === "right_arrow") {
-            this.setState({ classNameForRightArrow: "right_arrow rotatedRight" })
-            this.setState({ classNameForFooter: "footer none" })
+    presRightArrow() {
+        if (this.state.classNameForRightArrow === "arrow right_arrow ") {
+            this.setState({ classNameForRightArrow: "arrow right_arrow rotatedRight" })
+            this.setState({ classNameForFooter: "footer " })
         } else {
-            this.setState({ classNameForRightArrow: "right_arrow" })
-            this.setState({ classNameForFooter: "footer" })
+            this.setState({ classNameForRightArrow: "arrow right_arrow " })
+            this.setState({ classNameForFooter: "footer none" })
         }
     }
 
-    presDownArrow(){
-        if (this.state.classNameForDownArrow === "down_arrow ") {
-            this.setState({ classNameForDownArrow: "down_arrow rotatedDown" })
+    presLeftArrow() {
+        if (this.state.classNameForLeftArrow === "arrow left_arrow ") {
+            this.setState({ classNameForLeftArrow: "arrow left_arrow rotatedLeft" })
+            this.setState({ classNameForRecordsTable: "highScoreTable " })
+        } else {
+            this.setState({ classNameForLeftArrow: "arrow left_arrow " })
+            this.setState({ classNameForRecordsTable: "highScoreTable none" })
+        }
+    }
+
+    presDownArrow() {
+        if (this.state.classNameForDownArrow === "arrow down_arrow ") {
+            this.setState({ classNameForDownArrow: "arrow down_arrow rotatedDown" })
             this.setState({ display: "display none" })
             this.setState({ module: "module none" })
             this.setState({ back: "backSide " })
         } else {
-            this.setState({ classNameForDownArrow: "down_arrow " })
+            this.setState({ classNameForDownArrow: "arrow down_arrow " })
             this.setState({ display: "display " })
             this.setState({ module: "module " })
             this.setState({ back: "back " })
         }
     }
+
+    renderRecords() {
+        let config = {
+            display: "flex",
+            background: "black",
+            position: "absolute",
+            width: "400px",
+            height: "50px",
+
+        }
+
+        
+
+
+        return (
+            <div style={config}>
+
+                <div id="left" className="arrow right_arrow rotatedRight" />
+                <div className="avatar" />
+                <div className="arrow left_arrow rotatedLeft" />
+
+            </div>
+        )
+    }
+
+
+
+
 
     render() {
         return (
@@ -117,7 +161,7 @@ export default class Display extends Component {
                 <div className="bg"></div>
                 <div className="bg bg2"></div>
                 <div className="bg bg3"></div>
-                
+
                 <div className={this.state.back}>
                     <div className={this.state.module}>
                         <div className="frame" />
@@ -143,9 +187,12 @@ export default class Display extends Component {
                     <RotateInDownRight><a href="https://github.com/GuliaevAE"><img src={github} alt="github" /></a></RotateInDownRight>
                     <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight>
                 </div>
+
+                <div className={this.state.classNameForRecordsTable}>{this.renderRecords()}</div>
                 <Swing><div id="help" className={this.state.ikonModalHelp} onClick={this.toggleClasses} /></Swing>
                 <div id="rightArrow" className={this.state.classNameForRightArrow} onClick={this.toggleClasses} />
                 <div id="downArrow" className={this.state.classNameForDownArrow} onClick={this.toggleClasses} />
+                <div id="leftArrow" className={this.state.classNameForLeftArrow} onClick={this.toggleClasses} />
             </>
         )
     }

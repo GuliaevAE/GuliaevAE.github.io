@@ -255,30 +255,42 @@
     background-size: contain;
 
 }
-
-.right_arrow {
+.arrow{
     position: absolute;
-    right: 10px;
-    bottom: 49%;
     background: url(../img/bottom-arrow.png) no-repeat;
     height: 60px;
-    width: 60px;
-    background-size: contain;
-    transform: rotate(270deg);
+        width: 60px;
+     background-size: contain;
+}
+
+
+.right_arrow {
+   
+    right: 10px;
+    bottom: 49%;
+    
+    
+   
+    transform: rotate(90deg);
     opacity: 0.3;
 }
 
 .down_arrow {
-    position: absolute;
     left: 50%;
     bottom: 10px;
-    background: url(../img/bottom-arrow.png) no-repeat;
-    height: 60px;
-    width: 60px;
-    background-size: contain;
     transform: rotate(180deg);
     opacity: 0.3;
 }
+
+.left_arrow {
+    left: 10px;
+    bottom: 49%;
+    transform: rotate(270deg);
+    opacity: 0.3;
+    z-index: 3;
+}
+
+
 
 .right_arrow:hover {
     opacity: 1;
@@ -289,12 +301,17 @@
 }
 
 .rotatedRight {
-    transform: rotate(90deg);
+    transform: rotate(270deg);
     right: 1%;
 }
 
 .rotatedDown {
     transform: rotate(0deg);
+    right: 1%;
+}
+
+.rotatedLeft {
+    transform: rotate(90deg);
     right: 1%;
 }
 
@@ -320,7 +337,31 @@
 
 .footer img:hover {
     opacity: 1;
+    
 }
+
+.highScoreTable{
+    padding: 20px;
+    position: absolute;
+    z-index:2 ;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background: rgba(138, 42, 42, 0.623);
+    
+}
+
+
+.avatar{
+    position: relative;
+    background:yellow;
+    margin-left: 45%;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+}
+
+
 
 .none {
     display: none;
