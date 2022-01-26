@@ -2,7 +2,7 @@ import React from "react";
 import "../volk/volk.css";
 
 
-function Volk(){
+export default function Volk(){
     return(
         <>
             <div className="volk1 "></div>
@@ -14,6 +14,3 @@ function Volk(){
         </>
     )
 }
-
-
-export default Volk;

@@ -90,7 +90,7 @@ export default class EggsActions extends Component {
     start() {
         this.#activeInterval = setInterval(() => {
             this.renderRandomEgg();
-            
+
             if (this.state.timerOn === true) {
                 let date = new Date(),
                     hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
@@ -115,32 +115,19 @@ export default class EggsActions extends Component {
         this.start();
     }
 
-    // Через setState
     beginB() {
         this.reset();
         this.state.speedEgg = 300;
-        this.state.respaunEgg = 500;
+        this.state.respaunEgg = 400;
         this.start();
     }
 
     time() {
         this.reset();
-        
         this.state.speedEgg = 400;
         this.state.respaunEgg = 400;
         this.setState({ timerOn: true });
         this.start();
-        
-
-
-    }
-
-    ///////////////////////////////////////////
-    //Функция генерации рандомного числа
-    randomInteger(min, max) {
-        // получить случайное число от (min-0.5) до (max+0.5)
-        let rand = min - 0.5 + Math.random() * (max - min + 1);
-        return Math.round(rand);
     }
 
     reset() {
@@ -171,12 +158,25 @@ export default class EggsActions extends Component {
     }
 
     generatePossibleEgg(eggLocation, classnameForEgg, abilityToRender) {
-        if (this.state[abilityToRender] === true || this.state[abilityToRender + "Second"] === true) {
+        if (this.state[abilityToRender]|| this.state[abilityToRender + "Second"]) {
             this.generateEgg(eggLocation, classnameForEgg, abilityToRender)
         } else if (this.state[abilityToRender] === false && this.state[abilityToRender + "Second"] === false) {
             this.checkPos()
         }
     }
+
+
+
+    ///////////////////////////////////////////
+    //Функция генерации рандомного числа
+    randomInteger(min, max) {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+    }
+
+    // let numPool = [1, 3, 5, 7, 9, 10],
+    //         rand = numPool[Math.floor(Math.random() * numPool.length)];
 
     /////////////////////////////////////////////////
     //Функция рендера случайного яйца
@@ -233,7 +233,6 @@ export default class EggsActions extends Component {
                     clearTimeout(timer);
                     return
                 }
-
                 if (self.state.mistakes === 3 || currentPositionNumber === 6) {
                     self.setState({ [classnameForEgg]: `egg ${eggLocation}1 noneEgg` });
                     self.setState({ [abilityToRender]: true });
@@ -266,7 +265,6 @@ export default class EggsActions extends Component {
             return;
         }
     }
-
 
     eggCaught() {
         this.soundPlay(hitEgg)

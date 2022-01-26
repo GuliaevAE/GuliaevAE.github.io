@@ -65,7 +65,6 @@ export default class Display extends Component {
     }
 
     toggleClasses(e) {
-
         switch (e.target.id) {
             case 'help':
                 this.modalhelp()
@@ -85,8 +84,6 @@ export default class Display extends Component {
         }
     }
 
-
-
     presRightArrow(){
         if (this.state.classNameForRightArrow === "right_arrow") {
             this.setState({ classNameForRightArrow: "right_arrow rotatedRight" })
@@ -97,7 +94,6 @@ export default class Display extends Component {
         }
     }
 
-    
     presDownArrow(){
         if (this.state.classNameForDownArrow === "down_arrow ") {
             this.setState({ classNameForDownArrow: "down_arrow rotatedDown" })
@@ -112,12 +108,6 @@ export default class Display extends Component {
         }
     }
 
-
-
-
-
-
-
     render() {
         return (
             <>
@@ -127,8 +117,7 @@ export default class Display extends Component {
                 <div className="bg"></div>
                 <div className="bg bg2"></div>
                 <div className="bg bg3"></div>
-
-
+                
                 <div className={this.state.back}>
                     <div className={this.state.module}>
                         <div className="frame" />
