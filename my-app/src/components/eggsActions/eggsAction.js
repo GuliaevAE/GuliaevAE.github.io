@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import EggsNone from "../eggs";
-import "../eggsActions/eggsActions.css";
+import "./eggsActions.css";
 import actEggSound from "../sounds/bit-pong-sound.mp3";
 import hitEgg from "../sounds/bit-punch.mp3";
 import { Howl, Howler } from "howler";

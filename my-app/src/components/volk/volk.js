@@ -1,5 +1,5 @@
 import React from "react";
-import "../volk/volk.css";
+import "./volk.css";
 
 
 export default function Volk(){
