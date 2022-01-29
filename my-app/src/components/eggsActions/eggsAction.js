@@ -39,7 +39,13 @@ export default class EggsActions extends Component {
             mistakes: 0,
             loss: 0,
             acceleration: 0,
-            timerOn: false,
+            
+
+            theGameStarted: "",
+            theGameStartedClass: "none",
+            arrayWithNumbers: []
+
+
         };
         this.generateEgg = this.generateEgg.bind(this);
         this.beginA = this.beginA.bind(this);
@@ -50,6 +56,7 @@ export default class EggsActions extends Component {
         this.loss = this.loss.bind(this);
         this.time = this.time.bind(this);
         this.eggCaught = this.eggCaught.bind(this);
+        this.newRecord = this.newRecord.bind(this);
 
     }
 
@@ -70,28 +77,44 @@ export default class EggsActions extends Component {
         if (this.state.loss === 120) {
             setTimeout(() => this.setState({ loss: 0 }), 4000);
         }
+
+
+
     }
 
     //////////////////////////////////////////////////////
     ///////Проверка свободной позиции для рендеринга яйца
     checkPos() {
-        if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEggSecond === true) {
-            this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
-        } else if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEggSecond === true) {
-            this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
-        } else if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEggSecond === true) {
-            this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
-        } else if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEggSecond === true) {
-            this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
+        if (this.state.theGameStarted === "gameA") {
+            if ((this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEggSecond === true) && (this.state.mistakes !== 1.5 || this.state.mistakes !== 2)) {
+                this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
+            } else if ((this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEggSecond === true) && this.state.mistakes !== 0) {
+                this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
+            } else if ((this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEggSecond === true) && this.state.mistakes !== 2.5) {
+                this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
+            } else if ((this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEggSecond === true) && (this.state.mistakes !== 0.5 || this.state.mistakes !== 1)) {
+                this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
+            }
+        } else {
+            if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEggSecond === true) {
+                this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
+            } else if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEggSecond === true) {
+                this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
+            } else if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEggSecond === true) {
+                this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
+            } else if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEggSecond === true) {
+                this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
+            }
         }
+
     }
 
 
-    start() {
+    start(f) {
         this.#activeInterval = setInterval(() => {
-            this.renderRandomEgg();
+            this.renderRandomEgg(f);
 
-            if (this.state.timerOn === true) {
+            if (this.state.theGameStarted === "time") {
                 let date = new Date(),
                     hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
                     minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
@@ -100,33 +123,58 @@ export default class EggsActions extends Component {
             }
 
             if (this.state.loss === 120) {
+                this.newRecord()
                 clearInterval(this.#activeInterval);
             }
         }, this.state.respaunEgg);
     }
 
 
+    newRecord() {
+        if (this.state.score > localStorage.getItem('Рекорд')) {
+            alert(this.state.score)
+            localStorage.setItem('Рекорд', this.state.score);
+            localStorage.setItem('Полный этап', this.state.fullStage)
+
+            this.props.recordUpdate()
+        }
+
+
+    }
+
+
+
+
+
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
-    beginA() {
+    beginA=()=> {
         this.reset();
-        this.state.speedEgg = 800;
-        this.state.respaunEgg = 1000;
+        this.setState({ theGameStarted: "gameA" });
+        this.setState({theGameStartedClass: "theGameAStarted"})
+        this.state.speedEgg = 300;
+        this.state.respaunEgg = 400;
+
+
         this.start();
     }
 
-    beginB() {
+    beginB = () => {
         this.reset();
+        this.setState({ theGameStarted: "gameB" });
+        this.setState({theGameStartedClass: "theGameBStarted"})
         this.state.speedEgg = 300;
         this.state.respaunEgg = 400;
         this.start();
     }
 
     time() {
+
+        // localStorage.clear()
         this.reset();
         this.state.speedEgg = 400;
         this.state.respaunEgg = 400;
-        this.setState({ timerOn: true });
+        this.setState({ theGameStarted: "time" });
         this.start();
     }
 
@@ -135,7 +183,10 @@ export default class EggsActions extends Component {
         this.setState({
             score: 0,
             mistakes: 0,
+            fullStage: 0,
             loss: 0,
+            theGameStarted: '',
+            theGameStartedClass:'none',
             abilityToRenderLeftUpEgg: true,
             abilityToRenderLeftDownEgg: true,
             abilityToRenderRightUpEgg: true,
@@ -144,7 +195,7 @@ export default class EggsActions extends Component {
             abilityToRenderLeftDownEggSecond: true,
             abilityToRenderRightUpEggSecond: true,
             abilityToRenderRightDownEggSecond: true,
-            timerOn: false,
+            
             isGameSwitched: true,
             classnameForLU: 'egg LU1 noneEgg ',
             classnameForLD: 'egg LD1 noneEgg',
@@ -158,7 +209,7 @@ export default class EggsActions extends Component {
     }
 
     generatePossibleEgg(eggLocation, classnameForEgg, abilityToRender) {
-        if (this.state[abilityToRender]|| this.state[abilityToRender + "Second"]) {
+        if (this.state[abilityToRender] || this.state[abilityToRender + "Second"]) {
             this.generateEgg(eggLocation, classnameForEgg, abilityToRender)
         } else if (this.state[abilityToRender] === false && this.state[abilityToRender + "Second"] === false) {
             this.checkPos()
@@ -169,10 +220,36 @@ export default class EggsActions extends Component {
 
     ///////////////////////////////////////////
     //Функция генерации рандомного числа
-    randomInteger(min, max) {
-        // получить случайное число от (min-0.5) до (max+0.5)
-        let rand = min - 0.5 + Math.random() * (max - min + 1);
-        return Math.round(rand);
+    randomInteger() {
+
+        if (this.state.theGameStarted === "gameA" ) {
+
+            this.state.arrayWithNumbers = [1, 3, 4];
+
+            if (this.state.mistakes === 0.5 || this.state.mistakes === 1) {
+                this.state.arrayWithNumbers = [1, 2, 3]
+            }
+
+            if (this.state.mistakes === 1.5 || this.state.mistakes === 2) {
+                this.state.arrayWithNumbers = [2, 3, 4]
+            }
+
+            if (this.state.mistakes === 2.5) {
+                this.state.arrayWithNumbers = [4, 2, 1]
+            }
+
+        }else this.state.arrayWithNumbers = [1,2,3,4]
+
+
+
+        console.log(this.state.arrayWithNumbers)
+        
+        const randomElement = this.state.arrayWithNumbers[Math.floor(Math.random() * this.state.arrayWithNumbers.length)];
+
+
+        // получить случайное число 
+        
+        return randomElement;
     }
 
     // let numPool = [1, 3, 5, 7, 9, 10],
@@ -181,8 +258,8 @@ export default class EggsActions extends Component {
     /////////////////////////////////////////////////
     //Функция рендера случайного яйца
     renderRandomEgg() {
-        let num = this.randomInteger(1, 4);
-
+        let num = this.randomInteger();
+        console.log(num)
         switch (num) {
             case 1:
                 this.generatePossibleEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
@@ -204,8 +281,10 @@ export default class EggsActions extends Component {
     generateEgg(eggLocation, classnameForEgg, abilityToRender) {
         if (this.state.mistakes !== 3) {
             if (this.state[abilityToRender] === false && this.state[abilityToRender + "Second"] === true) {
+                
                 classnameForEgg += "Second";
                 abilityToRender += "Second";
+                
             }
 
             this.moveEgg(classnameForEgg, abilityToRender, eggLocation);
@@ -237,6 +316,7 @@ export default class EggsActions extends Component {
                     self.setState({ [classnameForEgg]: `egg ${eggLocation}1 noneEgg` });
                     self.setState({ [abilityToRender]: true });
                     clearTimeout(timer);
+
                     return
                 }
 
@@ -246,12 +326,12 @@ export default class EggsActions extends Component {
                     self.setState({ [abilityToRender]: false });
                 }
 
-                if (self.state.timerOn === false) {
+                if (self.state.theGameStarted !== "time") {
                     self.soundPlay(actEggSound)
                 }
 
                 if (currentPositionNumber === 5) {
-                    if (self.state.timerOn === true) {
+                    if (self.state.theGameStarted === "time") {
                         setTimeout(() => self.checkScoreOrMistakeInAutoPlay(classnameForEgg, eggLocation), self.state.speedEgg * 0.5)
                     } else {
                         setTimeout(() => self.checkScoreOrMistake(classnameForEgg, eggLocation), self.state.speedEgg * 0.5)
@@ -261,7 +341,9 @@ export default class EggsActions extends Component {
                 timer = setTimeout(makeEggStep, self.state.speedEgg, currentPositionNumber + 1);
             }, this.state.speedEgg);
         } else {
+
             self.setState({ isGameSwitched: false });
+
             return;
         }
     }
@@ -269,14 +351,19 @@ export default class EggsActions extends Component {
     eggCaught() {
         this.soundPlay(hitEgg)
         this.setState({ score: this.state.score + 1 })
+
         this.nextAcceleration()
+
+        if (this.state.score === 10) {
+            this.setState({ fullStage: this.state.fullStage += 1 })
+        }
     }
 
     //////////////////////////////////////////
     //Проверка успеха или ошибки
     checkScoreOrMistake(classnameForEgg, eggLocation) {
         if (this.state[classnameForEgg] === `egg ${eggLocation}5 activeEgg`) {
-            if ((classnameForEgg === "classnameForLU" && this.state.wolfBascetPosition === "volk-hand2 active") || (classnameForEgg === "classnameForLUSecond" && this.state.wolfBascetPosition === "volk-hand2 active")) {
+            if ((classnameForEgg === "classnameForLU" || classnameForEgg === "classnameForLUSecond") && this.state.wolfBascetPosition === "volk-hand2 active") {
                 this.eggCaught()
             } else
                 if ((classnameForEgg === "classnameForLD" && this.state.wolfBascetPosition === "volk-hand1 active") || (classnameForEgg === "classnameForLDSecond" && this.state.wolfBascetPosition === "volk-hand1 active")) {
@@ -297,10 +384,13 @@ export default class EggsActions extends Component {
                             }
 
                             this.loser()
-                            this.setState({ mistakes: this.state.mistakes + 1 })
+                            if (this.state.theGameStarted === "gameA") {
+                                this.setState({ mistakes: this.state.mistakes + 0.5 })
+                            } else { this.setState({ mistakes: this.state.mistakes + 1 }) }
+
                         }
         }
-    }
+    } 
 
     checkScoreOrMistakeInAutoPlay(classnameForEgg, eggLocation) {
         if (this.state[classnameForEgg] === `egg ${eggLocation}5 activeEgg`) {
@@ -333,13 +423,15 @@ export default class EggsActions extends Component {
 
     loser() {
         if (this.state.loss !== 120) {
-            this.setState({ loss: this.state.loss + 40 })
+            if (this.state.theGameStarted === "gameA") {
+                this.setState({ loss: this.state.loss + 20 })
+            } else this.setState({ loss: this.state.loss + 40 })
         }
     }
 
     loss(x) {
         let config = {
-            width: x,
+            width: x*40,
         }
 
         return (
@@ -452,13 +544,19 @@ export default class EggsActions extends Component {
                     <div className={this.state.classnameForRDSecond} />
 
                     <div className="score">
+
                         {this.state.score}
                     </div>
+
+
+                    <div className={this.state.theGameStartedClass}></div>
+                    
+
 
                     <div className={this.state.brokenEggLeft} />
                     <div className={this.state.brokenEggRight} />
 
-                    {this.loss(this.state.loss)}
+                    {this.loss(this.state.mistakes)}
                     <EggsNone />
                     <div className={this.state.wolfPosition} />
                     <div className={this.state.wolfBascetPosition} />
@@ -477,99 +575,3 @@ export default class EggsActions extends Component {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// renderRandomEgg() {
-//     let num = this.randomInteger(1, 4);
-
-//     switch (num) {
-//         case 1:
-//             // if (this.state.abilityToRenderLeftUpEgg === true || this.state.abilityToRenderLeftUpEggSecond === true) {
-//             //     this.generateEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
-//             // } else if (this.state.abilityToRenderLeftUpEgg === false && this.state.abilityToRenderLeftUpEggSecond === false) {
-//             //     this.checkPos()
-//             // }
-//             break;
-//         case 2:
-//             // if (this.state.abilityToRenderLeftDownEgg === true || this.state.abilityToRenderLeftDownEggSecond === true) {
-//             //     this.generateEgg("LD", "classnameForLD", "abilityToRenderLeftDownEgg")
-//             // } else if (this.state.abilityToRenderLeftDownEgg === false && this.state.abilityToRenderLeftDownEggSecond === false) {
-//             //     this.checkPos()
-//             // }
-//             break;
-//         case 3:
-//             // if (this.state.abilityToRenderRightUpEgg === true || this.state.abilityToRenderRightUpEggSecond === true) {
-//             //     this.generateEgg("RU", "classnameForRU", "abilityToRenderRightUpEgg")
-//             // } else if (this.state.abilityToRenderRightUpEgg === false && this.state.abilityToRenderRightUpEggSecond === false) {
-//             //     this.checkPos()
-//             // }
-//             break;
-//         case 4:
-//             // if (this.state.abilityToRenderRightDownEgg === true || this.state.abilityToRenderRightDownEggSecond === true) {
-//             //     this.generateEgg("RD", "classnameForRD", "abilityToRenderRightDownEgg")
-//             // } else if (this.state.abilityToRenderRightDownEgg === false && this.state.abilityToRenderRightDownEggSecond === false) {
-//             //     this.checkPos()
-//             // }
-//             break;
-//         default:
-//             break;
-//     }
-// }
-
-// generateEgg(eggLocation, classnameForEgg, abilityToRender) {
-//     if (this.state.mistakes !== 3) {
-//         if (this.state[abilityToRender] === false && this.state[abilityToRender + "Second"] === true) {
-//             classnameForEgg += "Second";
-//             abilityToRender += "Second";
-//         }
-
-//         this.moveEgg(classnameForEgg, abilityToRender, eggLocation);
-//     } else {
-//         return;
-//     }
-// }
-
-
-
-
-
-
-
-// let styleClassFirstEggLU = this.state.classnameForLU;
-        // let styleClassFirstEggLD = this.state.classnameForLD;
-        // let styleClassFirstEggRU = this.state.classnameForRU;
-        // let styleClassFirstEggRD = this.state.classnameForRD;
-
-        // let styleClassSecondEggLU = this.state.classnameForLUSecond;
-        // let styleClassSecondEggLD = this.state.classnameForLDSecond;
-        // let styleClassSecondEggRU = this.state.classnameForRUSecond;
-        // let styleClassSecondEggRD = this.state.classnameForRDSecond;
-
-        // let wolfPosition = this.state.wolfPosition;
-        // let wolfBascetPosition = this.state.wolfBascetPosition;
-        // let wolf = <div className={this.state.wolfPosition} />;
-        // let wolfBascet = <div className={this.state.wolfBascetPosition} />
-
-        // let score = this.state.score;

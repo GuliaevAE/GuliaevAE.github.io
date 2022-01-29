@@ -271,3 +271,38 @@
     background: url(../img/loss1.png);
     background-size: cover;
 }
+
+
+
+
+.theGameAStarted{
+    position:absolute;
+    height: 30px;
+    width: 60px;
+    bottom:0;
+    left: 15px;
+    align-items:center;
+    font-family: "TacticRound-Bld";
+    
+}
+
+.theGameAStarted::before{
+    content: "игра А";
+}
+
+
+.theGameBStarted{
+    position:absolute;
+    height: 30px;
+    width: 60px;
+    bottom:0;
+    right: 15px;
+    align-items:center;
+    font-family: "TacticRound-Bld";
+}
+
+
+
+.theGameBStarted::before{
+    content: "игра Б";
+}

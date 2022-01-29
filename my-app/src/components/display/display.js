@@ -22,11 +22,53 @@ export default class Display extends Component {
             classNameForRecordsTable: "highScoreTable none",
             display: "display",
             module: "module",
+
+            user: localStorage.getItem('Пользователь'),
+            record: localStorage.getItem('Рекорд'),
+            fullStage: localStorage.getItem('Полный этап'),
+            value: '',
+            valueOld: '',
+
+
         };
         this.toggleClasses = this.toggleClasses.bind(this);
         this.modalhelp = this.modalhelp.bind(this);
         this.renderRecords = this.renderRecords.bind(this);
+
     }
+
+
+
+    componentDidUpdate() {
+
+
+
+
+
+
+        // if (this.state.record !== prevState.record) {
+        //     return(
+        //     this.setState({
+        //         user: localStorage.getItem('Пользователь'),
+        //         record: localStorage.getItem('Рекорд'),
+        //         fullStage: localStorage.getItem('Полный этап')
+        //     }))
+        // }else return
+       
+        // this.state.user = localStorage.getItem('Пользователь')
+        // this.state.record = localStorage.getItem('Рекорд')
+        // this.state.fullStage = localStorage.getItem('Полный этап')
+    }
+
+
+    recordUpdate=()=>{
+        this.setState({
+            user: localStorage.getItem('Пользователь'),
+            record: localStorage.getItem('Рекорд'),
+            fullStage: localStorage.getItem('Полный этап')
+        })
+    }
+
 
     modalhelp() {
         if (this.state.modalhelp === "modalhelp none") {
@@ -101,12 +143,13 @@ export default class Display extends Component {
     }
 
     presLeftArrow() {
+        
         if (this.state.classNameForLeftArrow === "arrow left_arrow ") {
             this.setState({ classNameForLeftArrow: "arrow left_arrow rotatedLeft" })
-            this.setState({ classNameForRecordsTable: "highScoreTable " })
+            this.setState({ classNameForRecordsTable: "highScoreTable classForSlideRight" })
         } else {
             this.setState({ classNameForLeftArrow: "arrow left_arrow " })
-            this.setState({ classNameForRecordsTable: "highScoreTable none" })
+            this.setState({ classNameForRecordsTable: "highScoreTable classForSlideLeft" })
         }
     }
 
@@ -124,27 +167,57 @@ export default class Display extends Component {
         }
     }
 
+
+    button1Click = () => {
+        if (this.state.value !== '' && this.state.valueOld !== this.state.value) {
+            localStorage.setItem('Пользователь', this.state.value)
+            alert(`Имя пользователя было изменено на ${this.state.value}, старое имя ${this.state.valueOld} `);
+            this.state.valueOld = this.state.value
+
+        } else alert("Поле заполнено не верно")
+        this.recordUpdate()
+    }
+
+    changeName = (e) => {
+        let user = this.state
+        user.value = e.target.value;
+        this.recordUpdate()
+
+    }
+
+
+
+
     renderRecords() {
-        let config = {
-            display: "flex",
-            background: "black",
-            position: "absolute",
-            width: "400px",
-            height: "50px",
-
-        }
-
-        
-
 
         return (
-            <div style={config}>
+            <>
+                <div>
+                    <table border="1" >
+                        <tr>
+                            <th>Пользователь</th>
+                            <th>Рекорд</th>
+                            <th>Полных кругов</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>{this.state.user}</p>
+                            </td>
+                            <td>
+                                <p>{this.state.record}</p>
+                            </td>
+                            <td>
+                                <p>{this.state.fullStage}</p>
+                            </td>
 
-                <div id="left" className="arrow right_arrow rotatedRight" />
-                <div className="avatar" />
-                <div className="arrow left_arrow rotatedLeft" />
 
-            </div>
+
+
+                        </tr>
+                    </table>
+                </div>
+
+            </>
         )
     }
 
@@ -171,7 +244,7 @@ export default class Display extends Component {
                         </div>
                         <div className={this.state.display}>
                             <Volk />
-                            <Eggs />
+                            <Eggs recordUpdate={this.recordUpdate}/>
                         </div>
                         <div className="title2">ЭЛЕКТРОНИКА</div>
                         <div className="LOGO" />
@@ -188,7 +261,18 @@ export default class Display extends Component {
                     <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight>
                 </div>
 
-                <div className={this.state.classNameForRecordsTable}>{this.renderRecords()}</div>
+
+
+
+
+                <div className={this.state.classNameForRecordsTable}>
+                    <div className="avatar" >
+                        <input type="text" maxlength={20} onChange={this.changeName}></input>
+                        <p>{this.state.user}</p>
+                        <button onClick={this.button1Click}>Button</button>
+                    </div>
+                    {this.renderRecords()}
+                </div>
                 <Swing><div id="help" className={this.state.ikonModalHelp} onClick={this.toggleClasses} /></Swing>
                 <div id="rightArrow" className={this.state.classNameForRightArrow} onClick={this.toggleClasses} />
                 <div id="downArrow" className={this.state.classNameForDownArrow} onClick={this.toggleClasses} />
