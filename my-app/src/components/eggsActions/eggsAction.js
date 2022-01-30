@@ -3,6 +3,7 @@ import EggsNone from "../eggs";
 import "./eggsActions.css";
 import actEggSound from "../sounds/bit-pong-sound.mp3";
 import hitEgg from "../sounds/bit-punch.mp3";
+import crash from "../sounds/crash.mp3";
 import { Howl, Howler } from "howler";
 import axios from "axios";
 
@@ -131,8 +132,6 @@ export default class EggsActions extends Component {
             localStorage.setItem('Полный этап', this.state.fullStage)
             this.props.recordUpdate()
         }
-
-
     }
 
     /////////////////////////////////////////////
@@ -141,8 +140,8 @@ export default class EggsActions extends Component {
         this.reset();
         this.setState({ theGameStarted: "gameA" });
         this.setState({ theGameStartedClass: "theGameAStarted" })
-        this.state.speedEgg = 300;
-        this.state.respaunEgg = 400;
+        this.state.speedEgg = 600;
+        this.state.respaunEgg = 900;
         this.start();
     }
 
@@ -150,8 +149,8 @@ export default class EggsActions extends Component {
         this.reset();
         this.setState({ theGameStarted: "gameB" });
         this.setState({ theGameStartedClass: "theGameBStarted" })
-        this.state.speedEgg = 300;
-        this.state.respaunEgg = 400;
+        this.state.speedEgg = 350;
+        this.state.respaunEgg = 500;
         this.start();
     }
 
@@ -397,10 +396,16 @@ export default class EggsActions extends Component {
             this.setState({ speedEgg: this.state.speedEgg - 10 });
             this.setState({ respaunEgg: this.state.respaunEgg - 25 });
         }
+
+        if(this.state.score === 200 || this.state.score === 500){
+            this.setState({ mistakes: 0 });
+            this.setState({ loss: 0 });
+        }
     }
 
     loser() {
         if (this.state.loss !== 120) {
+            this.soundPlay(crash)
             if (this.state.theGameStarted === "gameA") {
                 this.setState({ loss: this.state.loss + 20 })
             } else this.setState({ loss: this.state.loss + 40 })

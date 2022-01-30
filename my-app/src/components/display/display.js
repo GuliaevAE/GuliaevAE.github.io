@@ -8,6 +8,10 @@ import vk from "../img/vk.png";
 import styled, { keyframes } from 'styled-components';
 import { rotateInDownRight, rotateInUpRight, flash } from 'react-animations';
 import axios from "axios";
+import wasd from "../img/wasd1.png"
+
+
+
 
 export default class Display extends Component {
     constructor() {
@@ -46,7 +50,7 @@ export default class Display extends Component {
         this.updateLeaderboard()
     }
 
-    updateLeaderboard(){
+    updateLeaderboard() {
         axios.get(`http://localhost:5000/api/score/`)
             .then(res => {
                 const resdata = res.data;
@@ -60,7 +64,7 @@ export default class Display extends Component {
             score: localStorage.getItem('Рекорд'),
             loop: localStorage.getItem('Полный этап')
         }
-    
+
         const response = await axios.post('http://localhost:5000/api/score/', scoreObj);
         console.log(response.data)
         this.updateLeaderboard()
@@ -106,29 +110,29 @@ export default class Display extends Component {
 
     textInModalHelp() {
         return (
-            <h2><p>
-                Пожалуй, это была самая популярная электронная игра в СССР!
-                В «Ну погоди» играли все – школьники на переменках, рабочие на заводах, студенты и военные, взрослые и дети в автобусах и метро.
-                А по-настоящему народной игру сделали её персонажи – Заяц и Волк из любимых мультфильмов «Ну погоди!».
-            </p>
-                <table >
-                    <tr>
-                        <th>Режимы игры</th>
-                        <th>Управление</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>"игра А": яйца катятся с нормальной скоростью. Увеличение скорости на 15мс.</p> <p>"игра Б": яйца катятся быстрее скоростью. Увеличение скорости на 50мс.</p>
-                        </td>
-                        <td>
-                            <p>Используйте кнопки wasd для перемещения волка.</p>
-                            <div className="wasd" />
-                        </td>
-                    </tr>
-                    <tr>
+            <h2>
+                <h1><p>Описание игры</p></h1>
+                <p>
+                    Пожалуй, это была самая популярная электронная игра в СССР!
+                    Четыре курицы, сидящие на насестах, несут яйца, скатывающиеся вниз по четырём лоткам.
+                    Управляя Волком, который может принимать четыре положения (напротив каждого лотка), требуется наловить как можно больше яиц в корзину.
+                    За каждое пойманное яйцо игроку добавляется по одному очку. Сначала яйца катятся медленно, но постепенно темп игры ускоряется.
+                    После набора каждой целой сотни очков темп игры немного замедляется.
+                </p>
 
-                    </tr>
-                </table>
+                <h1><p>Режимы игры</p></h1>
+                <p>Игра имеет две степени сложности, вызываемые соответственно кнопками «Игра А» и «Игра Б», расположенными в правом верхнем углу игры.
+                    Игра А означает, что яйца начинают катиться только по трём лоткам одновременно, в Игре Б — по всем четырём с увеличенной скоростью. Неиспользуемый лоток в Игре А зависит от количества штрафных очков: при 0 очков не используется нижний левый лоток, при 0,5 и 1 штрафном очке — нижний правый лоток, при 1,5 и 2 штрафных очках — верхний левый лоток, а при 2,5 штрафных очках — верхний правый лоток.
+                    При аннулировании штрафных очков незадействованный лоток меняется на нижний левый, как при 0 штрафных очков, как только по нему скатываются все яйца. Под двумя кнопками запуска игры находится кнопка «Время» для переключения из игрового режима в режим показаний времени.</p>
+                <h1><p>Управление</p></h1>
+                <p>Используйте кнопки на приставке или клавиатурные клавищи wasd для перемещения волка. </p> 
+                <img url='../img/wasd1.png' width="100" height="100"
+                    alt="wasd" align="left"
+                    vspace="5" hspace="5"></img>
+                {/* <div className="wasd" /> */}
+                <h1><p>Интерактив</p></h1>
+                <p>При нажатии на левую стрелку вызывается таблица рекордов. </p>
+
             </h2>
         )
     }
@@ -196,7 +200,7 @@ export default class Display extends Component {
             localStorage.setItem('Пользователь', this.state.value)
             alert(`Имя пользователя было изменено на ${this.state.value}, старое имя ${this.state.valueOld} `);
             this.state.valueOld = this.state.value
-            
+
         } else alert("Поле заполнено не верно")
         this.recordUpdate()
     }
@@ -218,11 +222,11 @@ export default class Display extends Component {
                             <button className="btnForChangeName" onClick={this.button1Click}>СМЕНИТЬ ИМЯ</button>
                             <span id='score'>ОЧКИ</span>
                             <span id='loop'>КРУГИ</span>
-                            <input id="forUser" type="text" className="userName"  placeholder={this.state.user} maxLength={20} onChange={this.changeName}></input>
+                            <input id="forUser" type="text" className="userName" placeholder={this.state.user} maxLength={20} onChange={this.changeName}></input>
                             <div id="forUser" className="userScore">{this.state.record}</div>
                             <div id="forUser" className="userLoop">{this.state.fullStage}</div>
-                            <div className="iconSave" onClick={()=> this.createNewScore()}/>
-                            <div className="iconDelete" onClick={()=>{
+                            <div className="iconSave" onClick={() => this.createNewScore()} />
+                            <div className="iconDelete" onClick={() => {
                                 localStorage.clear()
                                 this.recordUpdate()
                             }} />
@@ -230,7 +234,7 @@ export default class Display extends Component {
 
                     </div>
                     <div className="wrapperForAllRecords">
-                    <p>ВСЕ РЕКОРДЫ</p>
+                        <p>ВСЕ РЕКОРДЫ</p>
                         {this.allRecords()}
                     </div>
                 </div>
@@ -238,12 +242,12 @@ export default class Display extends Component {
         )
     }
 
-    render() {  
+    render() {
         return (
             <>
                 <div className={this.state.modalhelp}>
                     {this.textInModalHelp()}
-                    
+
                 </div>
                 <div className="bg"></div>
                 <div className="bg bg2"></div>
@@ -276,7 +280,7 @@ export default class Display extends Component {
                     <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight>
                 </div>
                 <div className={this.state.classNameForRecordsTable}>
-                    
+
                     {this.renderRecords()}
                 </div>
                 <Swing><div id="help" className={this.state.ikonModalHelp} onClick={this.toggleClasses} /></Swing>
