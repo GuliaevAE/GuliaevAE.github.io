@@ -306,3 +306,14 @@
 .theGameBStarted::before{
     content: "игра Б";
 }
+
+
+.rabbit{
+    background: url(../img/rabit.png) no-repeat;
+    background-size: contain;
+    height: 85px;
+    width: 85px;
+    position: absolute;
+    top:40px;
+    left:135px;
+}

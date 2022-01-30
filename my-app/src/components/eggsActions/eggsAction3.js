@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import EggsNone from "../eggs";
-import "./eggsActions.css";
+import "../eggsActions/eggsActions.css";
 import actEggSound from "../sounds/bit-pong-sound.mp3";
 import hitEgg from "../sounds/bit-punch.mp3";
 import { Howl, Howler } from "howler";
@@ -40,12 +40,13 @@ export default class EggsActions extends Component {
             mistakes: 0,
             loss: 0,
             acceleration: 0,
+            
 
             theGameStarted: "",
             theGameStartedClass: "none",
-            arrayWithNumbers: [],
+            arrayWithNumbers: []
 
-            classnameForRabbit: 'rabbit none'
+
         };
         this.generateEgg = this.generateEgg.bind(this);
         this.beginA = this.beginA.bind(this);
@@ -58,7 +59,21 @@ export default class EggsActions extends Component {
         this.eggCaught = this.eggCaught.bind(this);
         this.newRecord = this.newRecord.bind(this);
 
+        this.createNewScore();
+
     }
+
+    // Пример запроса на axios
+    async createNewScore() {
+        const scoreObj = {
+            username: "NAME FROM REACT",
+            score: 500,
+            loop: 0
+        }
+        const response = await axios.post('http://localhost:5000/api/score/', scoreObj);
+        console.log(response.data)
+    }
+
 
     soundPlay = (src) => {
         const sound = new Howl({
@@ -105,9 +120,10 @@ export default class EggsActions extends Component {
 
     }
 
-    start() {
+
+    start(f) {
         this.#activeInterval = setInterval(() => {
-            this.renderRandomEgg();
+            this.renderRandomEgg(f);
 
             if (this.state.theGameStarted === "time") {
                 let date = new Date(),
@@ -124,38 +140,48 @@ export default class EggsActions extends Component {
         }, this.state.respaunEgg);
     }
 
+
     newRecord() {
         if (this.state.score > localStorage.getItem('Рекорд')) {
             alert(this.state.score)
             localStorage.setItem('Рекорд', this.state.score);
             localStorage.setItem('Полный этап', this.state.fullStage)
+
             this.props.recordUpdate()
         }
 
 
     }
 
+
+
+
+
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
-    beginA = () => {
+    beginA=()=> {
         this.reset();
         this.setState({ theGameStarted: "gameA" });
-        this.setState({ theGameStartedClass: "theGameAStarted" })
+        this.setState({theGameStartedClass: "theGameAStarted"})
         this.state.speedEgg = 300;
         this.state.respaunEgg = 400;
+
+
         this.start();
     }
 
     beginB = () => {
         this.reset();
         this.setState({ theGameStarted: "gameB" });
-        this.setState({ theGameStartedClass: "theGameBStarted" })
+        this.setState({theGameStartedClass: "theGameBStarted"})
         this.state.speedEgg = 300;
         this.state.respaunEgg = 400;
         this.start();
     }
 
     time() {
+
+        // localStorage.clear()
         this.reset();
         this.state.speedEgg = 400;
         this.state.respaunEgg = 400;
@@ -171,7 +197,7 @@ export default class EggsActions extends Component {
             fullStage: 0,
             loss: 0,
             theGameStarted: '',
-            theGameStartedClass: 'none',
+            theGameStartedClass:'none',
             abilityToRenderLeftUpEgg: true,
             abilityToRenderLeftDownEgg: true,
             abilityToRenderRightUpEgg: true,
@@ -180,7 +206,7 @@ export default class EggsActions extends Component {
             abilityToRenderLeftDownEggSecond: true,
             abilityToRenderRightUpEggSecond: true,
             abilityToRenderRightDownEggSecond: true,
-
+            
             isGameSwitched: true,
             classnameForLU: 'egg LU1 noneEgg ',
             classnameForLD: 'egg LD1 noneEgg',
@@ -201,11 +227,13 @@ export default class EggsActions extends Component {
         }
     }
 
+
+
     ///////////////////////////////////////////
     //Функция генерации рандомного числа
     randomInteger() {
 
-        if (this.state.theGameStarted === "gameA") {
+        if (this.state.theGameStarted === "gameA" ) {
 
             this.state.arrayWithNumbers = [1, 3, 4];
 
@@ -221,16 +249,28 @@ export default class EggsActions extends Component {
                 this.state.arrayWithNumbers = [4, 2, 1]
             }
 
-        } else this.state.arrayWithNumbers = [1, 2, 3, 4]
+        }else this.state.arrayWithNumbers = [1,2,3,4]
+
+
+
+        console.log(this.state.arrayWithNumbers)
+        
         const randomElement = this.state.arrayWithNumbers[Math.floor(Math.random() * this.state.arrayWithNumbers.length)];
+
+
+        // получить случайное число 
+        
         return randomElement;
     }
+
+    // let numPool = [1, 3, 5, 7, 9, 10],
+    //         rand = numPool[Math.floor(Math.random() * numPool.length)];
 
     /////////////////////////////////////////////////
     //Функция рендера случайного яйца
     renderRandomEgg() {
         let num = this.randomInteger();
-        
+        console.log(num)
         switch (num) {
             case 1:
                 this.generatePossibleEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
@@ -252,10 +292,10 @@ export default class EggsActions extends Component {
     generateEgg(eggLocation, classnameForEgg, abilityToRender) {
         if (this.state.mistakes !== 3) {
             if (this.state[abilityToRender] === false && this.state[abilityToRender + "Second"] === true) {
-
+                
                 classnameForEgg += "Second";
                 abilityToRender += "Second";
-
+                
             }
 
             this.moveEgg(classnameForEgg, abilityToRender, eggLocation);
@@ -325,9 +365,8 @@ export default class EggsActions extends Component {
 
         this.nextAcceleration()
 
-        if (this.state.score === 999) {
+        if (this.state.score === 10) {
             this.setState({ fullStage: this.state.fullStage += 1 })
-            this.setState({ score: 0 })
         }
     }
 
@@ -356,19 +395,13 @@ export default class EggsActions extends Component {
                             }
 
                             this.loser()
-                            if (this.state.theGameStarted === "gameA" && this.state.classnameForRabbit === "rabbit") {
+                            if (this.state.theGameStarted === "gameA") {
                                 this.setState({ mistakes: this.state.mistakes + 0.5 })
                             } else { this.setState({ mistakes: this.state.mistakes + 1 }) }
 
                         }
         }
-
-        if (this.state.score % 15 === 0 && this.state.theGameStarted === "gameA") {
-            setTimeout(() => this.setState({ classnameForRabbit: "rabbit" }), 500)
-            setTimeout(() => this.setState({ classnameForRabbit: "rabbit none" }), 2000)
-        }
-
-    }
+    } 
 
     checkScoreOrMistakeInAutoPlay(classnameForEgg, eggLocation) {
         if (this.state[classnameForEgg] === `egg ${eggLocation}5 activeEgg`) {
@@ -393,9 +426,9 @@ export default class EggsActions extends Component {
     }
 
     nextAcceleration() {
-        if (this.state.score !== 0 && this.state.score % 15 === 0) {
-            this.setState({ speedEgg: this.state.speedEgg - 10 });
-            this.setState({ respaunEgg: this.state.respaunEgg - 25 });
+        if (this.state.score !== 0 && this.state.score % 10 === 0) {
+            this.setState({ speedEgg: this.state.speedEgg - 15 });
+            this.setState({ respaunEgg: this.state.respaunEgg - 50 });
         }
     }
 
@@ -409,7 +442,7 @@ export default class EggsActions extends Component {
 
     loss(x) {
         let config = {
-            width: x * 40,
+            width: x*40,
         }
 
         return (
@@ -520,17 +553,25 @@ export default class EggsActions extends Component {
                     <div className={this.state.classnameForLDSecond} />
                     <div className={this.state.classnameForRUSecond} />
                     <div className={this.state.classnameForRDSecond} />
+
                     <div className="score">
+
                         {this.state.score}
                     </div>
+
+
                     <div className={this.state.theGameStartedClass}></div>
+                    
+
+
                     <div className={this.state.brokenEggLeft} />
                     <div className={this.state.brokenEggRight} />
+
                     {this.loss(this.state.mistakes)}
                     <EggsNone />
-                    <div className={this.state.classnameForRabbit} />
                     <div className={this.state.wolfPosition} />
                     <div className={this.state.wolfBascetPosition} />
+
                     <button id="1" onClick={this.renderWolf} className="btn btn-left-up" />
                     <button id="2" onClick={this.renderWolf} className="btn btn-left-down" />
                     <button id="3" onClick={this.renderWolf} className="btn btn-right-up" />

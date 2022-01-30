@@ -1,5 +1,5 @@
 .bg {
-    animation: slide 3s ease-in-out infinite alternate;
+    animation: slide 10s ease-in-out infinite alternate;
     background-image: linear-gradient(-60deg, rgb(167, 167, 167) 50%, rgb(160, 72, 72) 50%);
     bottom: 0;
     left: -50%;
@@ -12,11 +12,11 @@
 
 .bg2 {
     animation-direction: alternate-reverse;
-    animation-duration: 4s;
+    animation-duration: 11s;
 }
 
 .bg3 {
-    animation-duration: 5s;
+    animation-duration: 12s;
 }
 
 @keyframes slide {
@@ -35,27 +35,28 @@
         transform: translateX(-100%);
     }
 
-   
+
 }
 
 
 @keyframes slideLeft {
     0% {
-        transform: translateX(110%);
+        transform: translateX(100%);
     }
 
-    
+
 }
 
 
-.classForSlideRight{
+.classForSlideRight {
     animation: slideRight 1s ease-in-out alternate;
 }
 
-.classForSlideLeft{
-    
+.classForSlideLeft {
+
     animation: slideLeft 1s ease-in-out alternate;
-    margin-left: -30%;
+    padding-left: -40%;
+    margin-left: -40%;
 }
 
 
@@ -375,52 +376,114 @@
 }
 
 .highScoreTable {
+    position: relative;
     padding: 20px;
-    position: absolute;
+    position: fixed;
+    overflow: scroll;
     z-index: 2;
     left: 0;
-    height: inherit;
-    width: 25%;
-    background: rgb(138, 42, 42);
+    height: 100%;
+    min-width: 36%;
+    background: rgba(77, 77, 77, 0.89);
+    padding-bottom: 5%;
+    box-shadow: 5px 0 15px 0 black;
+
+}
+
+.highScoreTable::-webkit-scrollbar {
+    width: 0;
+}
+
+.iconSave {
+    position: absolute;
+    top: 15px;
+    right: -40px;
+    background: url(../img/save.png) no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+}
+
+
+.iconSave:hover {
+    filter: invert(100%);
+}
+
+.iconDelete {
+    position: absolute;
+    bottom: 15px;
+    right: -40px;
+    background: url(../img/delete.png) no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+    
+}
+
+
+.iconDelete:hover {
+    filter: invert(100%);
+}
+
+.wrapperForPlayerRecord {
+
+    margin-top: 50px;
+}
+
+.wrapperForPlayerRecord p{
+    position: relative;
+    font-family: "soviet";
+    left:35%;
+}
+
+.wrapperForAllRecords p{
+    position: relative;
+    font-family: "soviet";
+    left:35%;
+}
+
+.columnNames {
+    display: flex;
+    justify-content: space-around;
 
 }
 
 .avatar {
     display: flex;
-    justify-content:space-between;
-    align-items:center;
+    justify-content: space-between;
+    align-items: center;
     background: rgb(168, 168, 168);
     position: relative;
     width: 100%;
     height: 50px;
     margin-bottom: 10px;
-    border-radius:20px;
+    border-radius: 20px;
     box-shadow: inset 0 0 5px 3px black;
 }
 
 
-.avatar input{
+.avatar input {
     height: 43px;
     background-color: rgba(255, 255, 255, 0.377);
-    border-radius:20px;
+    border-radius: 20px;
 }
 
-.avatar button{
-   
+.avatar button {
+
     height: 50px;
     background-color: rgba(255, 255, 255, 0.377);
-    border-radius:20px;
+    border-radius: 20px;
 }
 
 
 
 
 .avatar p {
-    
+
     font-family: "TacticRound-Bld";
     font-size: 20px;
-    border-radius:20px;
-    
+    border-radius: 20px;
+
 }
 
 .none {
@@ -506,6 +569,7 @@
 
 }
 
+
 .modalhelp h2 {
     font-family: "TacticRound-Bld";
     margin: 15px;
@@ -516,4 +580,138 @@
     background: url(../img/wasd1.png) no-repeat;
     height: 125px;
     background-size: contain;
+}
+
+
+
+.newUserRecord {
+    display: flex;
+    position: relative;
+    width: 490px;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    background: #C4C4C4;
+    box-shadow: inset 0px 0px 0px 2px #FF0101;
+    border-radius: 40px;
+    margin: 10px;
+}
+
+
+@keyframes scroll {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0)
+    }
+}
+
+.userName {
+
+    font-family: "digital-7";
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    /* Запрещаем перенос строк */
+    overflow: hidden;
+    /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    margin-right: 5px;
+    width: 250px;
+    height: 60px;
+    color: rgb(255, 255, 255);
+    background: #000000;
+    border-radius: 35px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+/* .userName span{
+    display: inline-block;
+    padding-left: 210%; 
+    animation: scroll 5s infinite linear;
+} */
+
+.userScore {
+    font-family: "digital-7";
+    font-size: 35px;
+    font-family: "digital-7";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 60px;
+    color: rgb(255, 255, 255);
+    background: #000000;
+    border-radius: 35px;
+}
+
+.userLoop {
+    font-family: "digital-7";
+    font-size: 35px;
+    font-family: "digital-7";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 80px;
+    height: 60px;
+    color: rgb(255, 255, 255);
+    background: #060000;
+    border-radius: 35px;
+}
+
+
+.newPlaerRecord {
+    display: flex;
+    position: relative;
+    width: 490px;
+    height: 100px;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    background: #C4C4C4;
+    box-shadow: inset 0px 0px 0px 2px #FF0101;
+    border-radius: 40px;
+    margin: 10px;
+}
+
+
+.newPlaerRecord #name {
+    position: absolute;
+    top: 6%;
+    left: 70px;
+    font-family: "soviet";
+}
+
+.btnForChangeName{
+    position: absolute;
+    top: 5px;
+    left: 120px;
+    font-family: "soviet";
+    background-color:rgb(192, 59, 59);
+    height: 25px;
+    width: 135px;
+    border-radius:10px;
+    border: 1 solid black;
+}
+
+.newPlaerRecord #score {
+    position: absolute;
+    top: 6%;
+    right: 120px;
+    font-family: "soviet";
+}
+
+.newPlaerRecord #loop {
+    position: absolute;
+    top: 6%;
+    right: 20px;
+    font-family: "soviet";
 }

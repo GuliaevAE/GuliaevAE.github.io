@@ -7,6 +7,7 @@ import github from "../img/github.png";
 import vk from "../img/vk.png";
 import styled, { keyframes } from 'styled-components';
 import { rotateInDownRight, rotateInUpRight, flash } from 'react-animations';
+import axios from "axios";
 
 export default class Display extends Component {
     constructor() {
@@ -20,6 +21,7 @@ export default class Display extends Component {
             back: "back",
             ikonModalHelp: "help",
             classNameForRecordsTable: "highScoreTable none",
+            classNameForWrapper: "wrapper",
             display: "display",
             module: "module",
 
@@ -28,56 +30,76 @@ export default class Display extends Component {
             fullStage: localStorage.getItem('Полный этап'),
             value: '',
             valueOld: '',
-
+            persons: []
 
         };
         this.toggleClasses = this.toggleClasses.bind(this);
         this.modalhelp = this.modalhelp.bind(this);
         this.renderRecords = this.renderRecords.bind(this);
+        this.allRecords = this.allRecords.bind(this);
+        this.createNewScore = this.createNewScore.bind(this);
+        this.updateLeaderboard = this.updateLeaderboard.bind(this);
 
     }
 
+    componentDidMount() {
+        this.updateLeaderboard()
+    }
 
+    updateLeaderboard(){
+        axios.get(`http://localhost:5000/api/score/`)
+            .then(res => {
+                const resdata = res.data;
+                this.setState({ persons: resdata });
+            })
+    }
 
-    componentDidUpdate() {
-
-
-
-
-
-
-        // if (this.state.record !== prevState.record) {
-        //     return(
-        //     this.setState({
-        //         user: localStorage.getItem('Пользователь'),
-        //         record: localStorage.getItem('Рекорд'),
-        //         fullStage: localStorage.getItem('Полный этап')
-        //     }))
-        // }else return
-       
-        // this.state.user = localStorage.getItem('Пользователь')
-        // this.state.record = localStorage.getItem('Рекорд')
-        // this.state.fullStage = localStorage.getItem('Полный этап')
+    async createNewScore() {
+        const scoreObj = {
+            username: localStorage.getItem('Пользователь'),
+            score: localStorage.getItem('Рекорд'),
+            loop: localStorage.getItem('Полный этап')
+        }
+    
+        const response = await axios.post('http://localhost:5000/api/score/', scoreObj);
+        console.log(response.data)
+        this.updateLeaderboard()
     }
 
 
-    recordUpdate=()=>{
+    allRecords() {
+        // let prss = this.state.persons
+        // console.log(prss)
+        let allRecords = this.state.persons.map((item) =>
+            <div className="newUserRecord">
+                <div className="userName"><span>{item.username}</span></div>
+                <div className="userScore">{item.score}</div>
+                <div className="userLoop">{item.loop}</div>
+            </div>
+        )
+        return (
+            <ul>{allRecords}</ul>
+        )
+    }
+
+    recordUpdate = () => {
         this.setState({
             user: localStorage.getItem('Пользователь'),
             record: localStorage.getItem('Рекорд'),
             fullStage: localStorage.getItem('Полный этап')
         })
+        console.log('dasna')
+        this.updateLeaderboard()
     }
-
 
     modalhelp() {
         if (this.state.modalhelp === "modalhelp none") {
             this.setState({ modalhelp: "modalhelp " })
             this.setState({ ikonModalHelp: "offModalHelp " })
-            this.setState({ back: "back none" })
+            this.setState({ classNameForWrapper: "none" })
         } else {
             this.setState({ modalhelp: "modalhelp none" })
-            this.setState({ back: "back " })
+            this.setState({ classNameForWrapper: "wrapper" })
             this.setState({ ikonModalHelp: "help " })
         }
     }
@@ -103,6 +125,9 @@ export default class Display extends Component {
                             <div className="wasd" />
                         </td>
                     </tr>
+                    <tr>
+
+                    </tr>
                 </table>
             </h2>
         )
@@ -117,7 +142,6 @@ export default class Display extends Component {
             case 'rightArrow':
                 this.presRightArrow()
                 break;
-
 
             case 'downArrow':
                 this.presDownArrow()
@@ -143,7 +167,7 @@ export default class Display extends Component {
     }
 
     presLeftArrow() {
-        
+
         if (this.state.classNameForLeftArrow === "arrow left_arrow ") {
             this.setState({ classNameForLeftArrow: "arrow left_arrow rotatedLeft" })
             this.setState({ classNameForRecordsTable: "highScoreTable classForSlideRight" })
@@ -167,13 +191,12 @@ export default class Display extends Component {
         }
     }
 
-
     button1Click = () => {
         if (this.state.value !== '' && this.state.valueOld !== this.state.value) {
             localStorage.setItem('Пользователь', this.state.value)
             alert(`Имя пользователя было изменено на ${this.state.value}, старое имя ${this.state.valueOld} `);
             this.state.valueOld = this.state.value
-
+            
         } else alert("Поле заполнено не верно")
         this.recordUpdate()
     }
@@ -182,95 +205,78 @@ export default class Display extends Component {
         let user = this.state
         user.value = e.target.value;
         this.recordUpdate()
-
     }
 
-
-
-
     renderRecords() {
-
         return (
             <>
                 <div>
-                    <table border="1" >
-                        <tr>
-                            <th>Пользователь</th>
-                            <th>Рекорд</th>
-                            <th>Полных кругов</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>{this.state.user}</p>
-                            </td>
-                            <td>
-                                <p>{this.state.record}</p>
-                            </td>
-                            <td>
-                                <p>{this.state.fullStage}</p>
-                            </td>
+                    <div className="wrapperForPlayerRecord">
+                        <p>ТВОЙ РЕКОРД</p>
+                        <div className="newPlaerRecord">
+                            <span id='name'>ИМЯ</span>
+                            <button className="btnForChangeName" onClick={this.button1Click}>СМЕНИТЬ ИМЯ</button>
+                            <span id='score'>ОЧКИ</span>
+                            <span id='loop'>КРУГИ</span>
+                            <input id="forUser" type="text" className="userName"  placeholder={this.state.user} maxLength={20} onChange={this.changeName}></input>
+                            <div id="forUser" className="userScore">{this.state.record}</div>
+                            <div id="forUser" className="userLoop">{this.state.fullStage}</div>
+                            <div className="iconSave" onClick={()=> this.createNewScore()}/>
+                            <div className="iconDelete" onClick={()=>{
+                                localStorage.clear()
+                                this.recordUpdate()
+                            }} />
+                        </div>
 
-
-
-
-                        </tr>
-                    </table>
+                    </div>
+                    <div className="wrapperForAllRecords">
+                    <p>ВСЕ РЕКОРДЫ</p>
+                        {this.allRecords()}
+                    </div>
                 </div>
-
             </>
         )
     }
 
-
-
-
-
-    render() {
+    render() {  
         return (
             <>
                 <div className={this.state.modalhelp}>
                     {this.textInModalHelp()}
+                    
                 </div>
                 <div className="bg"></div>
                 <div className="bg bg2"></div>
                 <div className="bg bg3"></div>
 
-                <div className={this.state.back}>
-                    <div className={this.state.module}>
-                        <div className="frame" />
-                        <div className="title">НУ, ПОГОДИ!</div>
-                        <div className="displayGlass">
+                <div className={this.state.classNameForWrapper}>
+                    <div className={this.state.back}>
+                        <div className={this.state.module}>
+                            <div className="frame" />
+                            <div className="title">НУ, ПОГОДИ!</div>
+                            <div className="displayGlass">
 
+                            </div>
+                            <div className={this.state.display}>
+                                <Volk />
+                                <Eggs recordUpdate={this.recordUpdate} />
+
+                            </div>
+                            <div className="title2">ЭЛЕКТРОНИКА</div>
+                            <div className="LOGO" />
+                            <div className="bell" />
+                            <div className="clockFace" />
                         </div>
-                        <div className={this.state.display}>
-                            <Volk />
-                            <Eggs recordUpdate={this.recordUpdate}/>
-                        </div>
-                        <div className="title2">ЭЛЕКТРОНИКА</div>
-                        <div className="LOGO" />
-                        <div className="bell" />
-                        <div className="clockFace" />
+
                     </div>
-
                 </div>
 
-                {/* <div className="divForArrow" onClick={this.toggleClasses}>
-                </div> */}
                 <div className={this.state.classNameForFooter}>
                     <RotateInDownRight><a href="https://github.com/GuliaevAE"><img src={github} alt="github" /></a></RotateInDownRight>
                     <RotateInUpRight><a href="https://vk.com/id114500556"><img src={vk} alt="github" /></a></RotateInUpRight>
                 </div>
-
-
-
-
-
                 <div className={this.state.classNameForRecordsTable}>
-                    <div className="avatar" >
-                        <input type="text" maxlength={20} onChange={this.changeName}></input>
-                        <p>{this.state.user}</p>
-                        <button onClick={this.button1Click}>Button</button>
-                    </div>
+                    
                     {this.renderRecords()}
                 </div>
                 <Swing><div id="help" className={this.state.ikonModalHelp} onClick={this.toggleClasses} /></Swing>
