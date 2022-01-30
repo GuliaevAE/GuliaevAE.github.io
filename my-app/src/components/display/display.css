@@ -417,7 +417,7 @@
     background-size: contain;
     height: 30px;
     width: 30px;
-    
+
 }
 
 
@@ -430,16 +430,16 @@
     margin-top: 50px;
 }
 
-.wrapperForPlayerRecord p{
+.wrapperForPlayerRecord p {
     position: relative;
     font-family: "soviet";
-    left:35%;
+    left: 35%;
 }
 
-.wrapperForAllRecords p{
+.wrapperForAllRecords p {
     position: relative;
     font-family: "soviet";
-    left:35%;
+    left: 35%;
 }
 
 .columnNames {
@@ -566,9 +566,12 @@
     justify-content: space-between;
     align-items: center;
     background: #C4C4C4;
-    box-shadow: inset 0px 0px 0px 2px #FF0101;
+    box-shadow:  0px 0px 4px 4px #FF0101,
+    0px 0px 0px 5px #000000,
+    inset 0px 0px 1px 1px #a30c0c,
+    inset 0px 0px 2px 1px #000000;
     border-radius: 40px;
-    margin: 10px;
+    margin-bottom: 25px;
 }
 
 
@@ -599,12 +602,14 @@
     width: 250px;
     height: 60px;
     color: rgb(255, 255, 255);
-    background: #000000;
+    background: #2e2e2e;
     border-radius: 35px;
     padding-right: 30px;
     padding-left: 30px;
-    box-shadow: inset rgba(255,255,255,0.2) 8px  8px 18px 5px,
-	            inset rgba(0,0,0,0.5)      -8px -8px 18px 5px;
+    box-shadow: inset rgba(255, 255, 255, 0.2) 8px 8px 18px 5px,
+        inset rgba(0, 0, 0, 0.5) -8px -8px 18px 5px,
+        rgb(2, 2, 2) 0px 0px 1px 1px;
+
 }
 
 .userScore {
@@ -617,10 +622,11 @@
     width: 140px;
     height: 60px;
     color: rgb(255, 255, 255);
-    background: #000000;
+    background: #2e2e2e;
     border-radius: 35px;
-    box-shadow: inset rgba(255,255,255,0.2) 8px  8px 18px 5px,
-	            inset rgba(0,0,0,0.5)      -8px -8px 18px 5px;
+    box-shadow: inset rgba(255, 255, 255, 0.2) 8px 8px 18px 5px,
+        inset rgba(0, 0, 0, 0.5) -8px -8px 18px 5px,
+        rgb(2, 2, 2) 0px 0px 1px 1px;
 }
 
 .userLoop {
@@ -635,10 +641,11 @@
     width: 80px;
     height: 60px;
     color: rgb(255, 255, 255);
-    background: #060000;
+    background: #2e2e2e;
     border-radius: 35px;
-    box-shadow: inset rgba(255,255,255,0.2) 8px  8px 18px 5px,
-	            inset rgba(0,0,0,0.5)      -8px -8px 18px 5px;
+    box-shadow: inset rgba(255, 255, 255, 0.2) 8px 8px 18px 5px,
+        inset rgba(0, 0, 0, 0.5) -8px -8px 18px 5px,
+        rgb(2, 2, 2) 0px 0px 1px 1px;
 }
 
 
@@ -651,7 +658,10 @@
     align-items: flex-end;
     padding-bottom: 10px;
     background: #C4C4C4;
-    box-shadow: inset 0px 0px 0px 2px #FF0101;
+    box-shadow:  0px 0px 4px 4px #FF0101,
+    0px 0px 0px 5px #000000,
+    inset 0px 0px 1px 1px #a30c0c,
+    inset 0px 0px 2px 1px #000000;
     border-radius: 40px;
     margin: 10px;
 }
@@ -660,19 +670,19 @@
 .newPlaerRecord #name {
     position: absolute;
     top: 6%;
-    left: 70px;
+    left: 60px;
     font-family: "soviet";
 }
 
-.btnForChangeName{
+.btnForChangeName {
     position: absolute;
     top: 5px;
     left: 120px;
     font-family: "soviet";
-    background-color:rgb(192, 59, 59);
+    background-color: rgb(192, 59, 59);
     height: 25px;
     width: 135px;
-    border-radius:10px;
+    border-radius: 10px;
     border: 1 solid black;
 }
 
