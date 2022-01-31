@@ -31,7 +31,7 @@ export default class Display extends Component {
 
             user: localStorage.getItem('Пользователь'),
             record: localStorage.getItem('Рекорд'),
-            fullStage: localStorage.getItem('Полный этап'),
+            loop: localStorage.getItem('Полный этап'),
             value: '',
             valueOld: '',
             persons: []
@@ -90,7 +90,7 @@ export default class Display extends Component {
         this.setState({
             user: localStorage.getItem('Пользователь'),
             record: localStorage.getItem('Рекорд'),
-            fullStage: localStorage.getItem('Полный этап')
+            loop: localStorage.getItem('Полный этап')
         })
         console.log('dasna')
         this.updateLeaderboard()
@@ -228,7 +228,7 @@ export default class Display extends Component {
                             <span id='loop'>КРУГИ</span>
                             <input id="forUser" type="text" className="userName" placeholder={this.state.user} maxLength={20} onChange={this.changeName}></input>
                             <div id="forUser" className="userScore">{this.state.record}</div>
-                            <div id="forUser" className="userLoop">{this.state.fullStage}</div>
+                            <div id="forUser" className="userLoop">{this.state.loop}</div>
                             <div className="iconSave" onClick={() => this.createNewScore()} />
                             <div className="iconDelete" onClick={() => {
                                 localStorage.clear()

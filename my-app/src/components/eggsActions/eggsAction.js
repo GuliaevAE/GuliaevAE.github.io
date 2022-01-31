@@ -41,7 +41,7 @@ export default class EggsActions extends Component {
             mistakes: 0,
             loss: 0,
             acceleration: 0,
-
+            loop: 0,
             theGameStarted: "",
             theGameStartedClass: "none",
             arrayWithNumbers: [],
@@ -113,12 +113,12 @@ export default class EggsActions extends Component {
             if (this.state.theGameStarted === "time") {
                 let date = new Date(),
                     hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
-                    minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
-                    seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
+                    minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+                    
                 this.setState({ score: [hours, ":", minutes] })
             }
 
-            if (this.state.loss === 120) {
+            if (this.state.loss >= 120) {
                 this.newRecord()
                 clearInterval(this.#activeInterval);
             }
@@ -129,7 +129,7 @@ export default class EggsActions extends Component {
         if (this.state.score > localStorage.getItem('Рекорд')) {
             alert(this.state.score)
             localStorage.setItem('Рекорд', this.state.score);
-            localStorage.setItem('Полный этап', this.state.fullStage)
+            localStorage.setItem('Полный этап', this.state.loop)
             this.props.recordUpdate()
         }
     }
@@ -140,8 +140,8 @@ export default class EggsActions extends Component {
         this.reset();
         this.setState({ theGameStarted: "gameA" });
         this.setState({ theGameStartedClass: "theGameAStarted" })
-        this.state.speedEgg = 600;
-        this.state.respaunEgg = 900;
+        this.state.speedEgg = 350;
+        this.state.respaunEgg = 500;
         this.start();
     }
 
@@ -167,7 +167,7 @@ export default class EggsActions extends Component {
         this.setState({
             score: 0,
             mistakes: 0,
-            fullStage: 0,
+            loop: 0,
             loss: 0,
             theGameStarted: '',
             theGameStartedClass: 'none',
@@ -249,7 +249,7 @@ export default class EggsActions extends Component {
     }
 
     generateEgg(eggLocation, classnameForEgg, abilityToRender) {
-        if (this.state.mistakes !== 3) {
+        if (this.state.mistakes < 3) {
             if (this.state[abilityToRender] === false && this.state[abilityToRender + "Second"] === true) {
 
                 classnameForEgg += "Second";
@@ -274,7 +274,7 @@ export default class EggsActions extends Component {
             });
         }
 
-        if (this.state.mistakes !== 3 && !this.state.isGameSwitched) {
+        if (this.state.mistakes < 3 && !this.state.isGameSwitched) {
             let timer = setTimeout(function makeEggStep(positionNumber = 1) {
                 let currentPositionNumber = positionNumber;
 
@@ -282,7 +282,7 @@ export default class EggsActions extends Component {
                     clearTimeout(timer);
                     return
                 }
-                if (self.state.mistakes === 3 || currentPositionNumber === 6) {
+                if (self.state.mistakes >= 3 || currentPositionNumber === 6) {
                     self.setState({ [classnameForEgg]: `egg ${eggLocation}1 noneEgg` });
                     self.setState({ [abilityToRender]: true });
                     clearTimeout(timer);
@@ -325,7 +325,7 @@ export default class EggsActions extends Component {
         this.nextAcceleration()
 
         if (this.state.score === 999) {
-            this.setState({ fullStage: this.state.fullStage += 1 })
+            this.setState({ loop: this.state.loop += 1 })
             this.setState({ score: 0 })
         }
     }
@@ -404,7 +404,7 @@ export default class EggsActions extends Component {
     }
 
     loser() {
-        if (this.state.loss !== 120) {
+        if (this.state.loss < 120) {
             this.soundPlay(crash)
             if (this.state.theGameStarted === "gameA") {
                 this.setState({ loss: this.state.loss + 20 })
