@@ -269,7 +269,7 @@
     right: 170px;
     height: 34px;
     max-width: 120;
-    background: url(../img/loss1.png);
+    background: url(../img/loss1.png) no-repeat;
     background-size: cover;
 }
 

@@ -5,7 +5,7 @@ import actEggSound from "../sounds/bit-pong-sound.mp3";
 import hitEgg from "../sounds/bit-punch.mp3";
 import crash from "../sounds/crash.mp3";
 import { Howl, Howler } from "howler";
-import axios from "axios";
+
 
 export default class EggsActions extends Component {
     #activeInterval;
@@ -74,7 +74,7 @@ export default class EggsActions extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.loss === 120) {
+        if (this.state.loss >= 120) {
             setTimeout(() => this.setState({ loss: 0 }), 4000);
         }
     }
@@ -114,11 +114,11 @@ export default class EggsActions extends Component {
                 let date = new Date(),
                     hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
                     minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
-                    
+
                 this.setState({ score: [hours, ":", minutes] })
             }
 
-            if (this.state.loss >= 120) {
+            if (this.state.loss >= 120 || this.state.mistakes >= 3) {
                 this.newRecord()
                 clearInterval(this.#activeInterval);
             }
@@ -127,7 +127,7 @@ export default class EggsActions extends Component {
 
     newRecord() {
         if (this.state.score > localStorage.getItem('Рекорд')) {
-            alert(this.state.score)
+            // alert(this.state.score)
             localStorage.setItem('Рекорд', this.state.score);
             localStorage.setItem('Полный этап', this.state.loop)
             this.props.recordUpdate()
@@ -136,7 +136,7 @@ export default class EggsActions extends Component {
 
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
-    beginA = () => {
+    beginA() {
         this.reset();
         this.setState({ theGameStarted: "gameA" });
         this.setState({ theGameStartedClass: "theGameAStarted" })
@@ -145,7 +145,7 @@ export default class EggsActions extends Component {
         this.start();
     }
 
-    beginB = () => {
+    beginB() {
         this.reset();
         this.setState({ theGameStarted: "gameB" });
         this.setState({ theGameStartedClass: "theGameBStarted" })
@@ -229,7 +229,7 @@ export default class EggsActions extends Component {
     //Функция рендера случайного яйца
     renderRandomEgg() {
         let num = this.randomInteger();
-        
+
         switch (num) {
             case 1:
                 this.generatePossibleEgg("LU", "classnameForLU", "abilityToRenderLeftUpEgg")
@@ -393,11 +393,11 @@ export default class EggsActions extends Component {
 
     nextAcceleration() {
         if (this.state.score !== 0 && this.state.score % 15 === 0) {
-            this.setState({ speedEgg: this.state.speedEgg - 10 });
-            this.setState({ respaunEgg: this.state.respaunEgg - 25 });
+            this.setState({ speedEgg: this.state.speedEgg - 20 });
+            this.setState({ respaunEgg: this.state.respaunEgg - 35 });
         }
 
-        if(this.state.score === 200 || this.state.score === 500){
+        if (this.state.score === 200 || this.state.score === 500) {
             this.setState({ mistakes: 0 });
             this.setState({ loss: 0 });
         }
@@ -415,6 +415,7 @@ export default class EggsActions extends Component {
     loss(x) {
         let config = {
             width: x * 40,
+
         }
 
         return (
