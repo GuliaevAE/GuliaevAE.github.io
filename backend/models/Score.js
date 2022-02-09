@@ -17,3 +17,4 @@ const scoreSchema = new Schema({
 });
 
 module.exports = mongoose.model("score", scoreSchema);
+

@@ -44,6 +44,9 @@ export default class Display extends Component {
         this.createNewScore = this.createNewScore.bind(this);
         this.updateLeaderboard = this.updateLeaderboard.bind(this);
 
+        this.textInput = React.createRef();
+        
+
     }
 
     componentDidMount() {
@@ -200,20 +203,19 @@ export default class Display extends Component {
     }
 
     button1Click = () => {
-        if (this.state.value !== '' && this.state.valueOld !== this.state.value) {
-            localStorage.setItem('Пользователь', this.state.value)
-            alert(`Имя пользователя было изменено на ${this.state.value}, старое имя ${this.state.valueOld} `);
-            this.state.valueOld = this.state.value
+       
+        alert(this.textInput.current.value)
+        if (this.textInput.current.value !== '' && this.state.valueOld !== this.textInput.current.value) {
+            localStorage.setItem('Пользователь', this.textInput.current.value)
+            alert(`Имя пользователя было изменено на ${this.textInput.current.value}, старое имя ${this.state.valueOld} `);
+            this.state.valueOld = this.textInput.current.value
+            this.textInput.current.value = ''
 
         } else alert("Поле заполнено не верно")
         this.recordUpdate()
     }
 
-    changeName = (e) => {
-        let user = this.state
-        user.value = e.target.value;
-        this.recordUpdate()
-    }
+    
 
     renderRecords() {
         return (
@@ -226,7 +228,7 @@ export default class Display extends Component {
                             <button className="btnForChangeName" onClick={this.button1Click}>СМЕНИТЬ ИМЯ</button>
                             <span id='score'>ОЧКИ</span>
                             <span id='loop'>КРУГИ</span>
-                            <input id="forUser" type="text" className="userName" placeholder={this.state.user} maxLength={20} onChange={this.changeName}></input>
+                            <input id="forUser" ref={this.textInput} type="text" className="userName" placeholder={this.state.user} maxLength={20} onChange={this.recordUpdate}></input>
                             <div id="forUser" className="userScore">{this.state.record}</div>
                             <div id="forUser" className="userLoop">{this.state.loop}</div>
                             <div className="iconSave" onClick={() => this.createNewScore()} />
@@ -251,7 +253,7 @@ export default class Display extends Component {
             <>
                 <div className={this.state.modalhelp}>
                     {this.textInModalHelp()}
-
+            
                 </div>
                 <div className="bg"></div>
                 <div className="bg bg2"></div>
