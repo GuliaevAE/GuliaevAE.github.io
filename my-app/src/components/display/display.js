@@ -77,7 +77,7 @@ export default class Display extends Component {
     allRecords() {
         // let prss = this.state.persons
         // console.log(prss)
-        let allRecords = this.state.persons.map((item) =>
+        let allRecords = this.state.persons.map(item =>
             <div className="newUserRecord">
                 <div className="userName"><span>{item.username}</span></div>
                 <div className="userScore">{item.score}</div>
