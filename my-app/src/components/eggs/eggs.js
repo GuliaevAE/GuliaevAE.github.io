@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function EggsNone(props) {
-    let eggStatus
+
+    let [eggStatus, setEggStatus] = useState('activeEgg')
     let timer
     if (props.toggleLid) {
-        eggStatus = 'activeEgg'
-        timer = ()=>{setTimeout(() =>  eggStatus = 'none' , 1000)}
-        
-    }else{
-        clearTimeout(timer)
-    }
+        timer = setTimeout(() => setEggStatus(eggStatus = 'none'), 2000)
+    }else clearTimeout(timer)
 
-    timer()
+
+
+
 
     return (
         <>

@@ -256,7 +256,7 @@ export default class Display extends Component {
 
     toggleLid() {
         // this.setState({isDisplayOn: !this.state.isDisplayOn})
-        this.setState({isDisplayOn: !this.isDisplayOn})
+        this.setState({isDisplayOn: !this.state.isDisplayOn})
         console.log(this.state.isDisplayOn)
         console.log(this)
         // setTimeout(()=>this.setState({isDisplayOn: false}),3000)
@@ -288,7 +288,7 @@ export default class Display extends Component {
                             <div className="displayGlass">
                             </div>
                             <div className={this.state.display} >
-                                {this.state.isDisplayOn&&<Volk />}
+                                {this.state.isDisplayOn&&<Volk toggleLid={this.state.isDisplayOn}/>}
                                 <Eggs recordUpdate={this.recordUpdate} toggleLid={this.state.isDisplayOn}/>
                             </div>
                             <div className="title2">ЭЛЕКТРОНИКА</div>

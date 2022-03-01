@@ -79,7 +79,17 @@ export default class EggsActions extends Component {
 
     componentDidUpdate() {
         if (this.props.toggleLid && !this.state.canPlay) {
+            this.setState({
+                wolfPosition: "volk1 active",
+                wolfBascetPosition: "volk-hand2 active",
+            })
+
             this.setState({ canPlay: true })
+        }
+        if (!this.props.toggleLid && this.state.canPlay) {
+            console.log(this.props.toggleLid, this.state.canPlay)
+            this.fullreset()
+            this.setState({ canPlay: false })
         }
 
         if (this.state.loss >= 120) {
@@ -145,7 +155,7 @@ export default class EggsActions extends Component {
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
     beginA() {
-        if (this.state.canPlay) {
+        if (this.props.toggleLid) {
             this.reset();
             this.setState({ theGameStarted: "gameA" });
             this.setState({ theGameStartedClass: "theGameAStarted" })
@@ -156,7 +166,7 @@ export default class EggsActions extends Component {
     }
 
     beginB() {
-        if (this.state.canPlay) {
+        if (this.props.toggleLid) {
             this.reset();
             this.setState({ theGameStarted: "gameB" });
             this.setState({ theGameStartedClass: "theGameBStarted" })
@@ -167,16 +177,23 @@ export default class EggsActions extends Component {
     }
 
     time() {
-        if(this.state.canPlay){
-        this.reset();
-        this.state.speedEgg = 400;
-        this.state.respaunEgg = 400;
-        this.setState({ theGameStarted: "time" });
-        this.start();}
+        if (this.props.toggleLid) {
+            this.reset();
+            this.state.speedEgg = 400;
+            this.state.respaunEgg = 400;
+            this.setState({ theGameStarted: "time" });
+            this.start();
+        }
     }
 
 
-
+    fullreset() {
+        this.setState({
+            wolfPosition: "volk1 active none",
+            wolfBascetPosition: "volk-hand2 active none",
+        })
+        this.reset()
+    }
     reset() {
         clearInterval(this.#activeInterval);
         this.setState({
@@ -441,7 +458,7 @@ export default class EggsActions extends Component {
     ///////////////////////////// 
     //Использование клавиатуры (кнопки w,a,s,d на numpad)
     checkKey = (event) => {
-        if (this.state.canPlay === true) {
+        if (this.props.toggleLid) {
             switch (event.keyCode) {
                 case 65:
                     this.setState({ wolfPosition: "volk1 active" });
@@ -506,7 +523,7 @@ export default class EggsActions extends Component {
     ///////////////////////////
     //Функция рендера волка при клике на кнопки интерфейса
     renderWolf(buttonNumber) {
-        if (this.state.canPlay) {
+        if (this.props.toggleLid) {
             switch (buttonNumber.target.id) {
                 case "1":
                     this.setState({ wolfPosition: "volk1 active" });
@@ -550,13 +567,13 @@ export default class EggsActions extends Component {
                     <div className={this.state.classnameForRUSecond} />
                     <div className={this.state.classnameForRDSecond} />
                     <div className="score">
-                        {this.state.canPlay&& this.state.score}
+                        {this.props.toggleLid && this.state.score}
                     </div>
                     <div className={this.state.theGameStartedClass}></div>
                     <div className={this.state.brokenEggLeft} />
                     <div className={this.state.brokenEggRight} />
                     {this.loss(this.state.mistakes)}
-                    {this.props.toggleLid && <EggsNone toggleLid={this.props.toggleLid}/>}
+                    {this.props.toggleLid && <EggsNone toggleLid={this.props.toggleLid} />}
                     <div className={this.state.classnameForRabbit} />
                     <div className={this.state.wolfPosition} />
                     <div className={this.state.wolfBascetPosition} />
