@@ -8,6 +8,7 @@ import vk from "../img/vk.png";
 import styled, { keyframes } from 'styled-components';
 import { rotateInDownRight, rotateInUpRight, flash } from 'react-animations';
 import axios from "axios";
+import BackgrounSide from "./backgroundSide/backgroundSide";
 
 
 
@@ -28,13 +29,15 @@ export default class Display extends Component {
             classNameForWrapper: "wrapper",
             display: "display",
             module: "module",
-
+            isDisplay: true,
             user: localStorage.getItem('Пользователь'),
             record: localStorage.getItem('Рекорд'),
             loop: localStorage.getItem('Полный этап'),
             value: '',
             valueOld: '',
-            persons: []
+            persons: [],
+            isDisplayOn:false
+
 
         };
         this.toggleClasses = this.toggleClasses.bind(this);
@@ -43,9 +46,10 @@ export default class Display extends Component {
         this.allRecords = this.allRecords.bind(this);
         this.createNewScore = this.createNewScore.bind(this);
         this.updateLeaderboard = this.updateLeaderboard.bind(this);
-
-        this.textInput = React.createRef();
+        this.toggleLid = this.toggleLid.bind(this);
         
+        this.textInput = React.createRef();
+
 
     }
 
@@ -128,17 +132,17 @@ export default class Display extends Component {
                     Игра А означает, что яйца начинают катиться только по трём лоткам одновременно, в Игре Б — по всем четырём с увеличенной скоростью. Неиспользуемый лоток в Игре А зависит от количества штрафных очков: при 0 очков не используется нижний левый лоток, при 0,5 и 1 штрафном очке — нижний правый лоток, при 1,5 и 2 штрафных очках — верхний левый лоток, а при 2,5 штрафных очках — верхний правый лоток.
                     При аннулировании штрафных очков незадействованный лоток меняется на нижний левый, как при 0 штрафных очков, как только по нему скатываются все яйца. Под двумя кнопками запуска игры находится кнопка «Время» для переключения из игрового режима в режим показаний времени.</p>
                 <h1><p>Управление</p></h1>
-                <p>Используйте кнопки на приставке или клавиатурные клавищи wasd для перемещения волка. </p> 
-                
+                <p>Используйте кнопки на приставке или клавиатурные клавищи wasd для перемещения волка. </p>
+
                 {/* <div className="wasd" /> */}
                 <h1><p>Интерактив</p></h1>
                 <p>При нажатии на левую стрелку вызывается таблица рекордов. Таблица поделена на две части: рекорд игрока и все сохраненные рекорды.
-                     При наборе играком большего числа очков, чем в прошлый раз, значение в части с рекордом игрока меняется. 
-                      После записи имени игрока появляется возможность сохранить рекорд (при сохранении рекорд переносится в список всех рекордов, заменить или удалить уже выложенный рекорд нельзя.) нажав на иконку сохранения.
-                       Также присутствует возможность удаления ещё не выложенной информации о игроке (его рекорда). 
+                    При наборе играком большего числа очков, чем в прошлый раз, значение в части с рекордом игрока меняется.
+                    После записи имени игрока появляется возможность сохранить рекорд (при сохранении рекорд переносится в список всех рекордов, заменить или удалить уже выложенный рекорд нельзя.) нажав на иконку сохранения.
+                    Также присутствует возможность удаления ещё не выложенной информации о игроке (его рекорда).
                 </p>
-                <p>При нажатии на нижнюю стрелку приставка переворачивается обратной стороной. </p> 
-                <p>При нажатии на правую стрелку появляются ссылки на автора проекта. </p> 
+                <p>При нажатии на нижнюю стрелку приставка переворачивается обратной стороной. </p>
+                <p>При нажатии на правую стрелку появляются ссылки на автора проекта. </p>
 
             </h2>
         )
@@ -193,17 +197,19 @@ export default class Display extends Component {
             this.setState({ classNameForDownArrow: "arrow down_arrow rotatedDown" })
             this.setState({ display: "display none" })
             this.setState({ module: "module none" })
-            this.setState({ back: "backSide " })
+            this.setState({ back: "none " })
+            this.setState({ isDisplay: false })
         } else {
             this.setState({ classNameForDownArrow: "arrow down_arrow " })
             this.setState({ display: "display " })
             this.setState({ module: "module " })
             this.setState({ back: "back " })
+            this.setState({ isDisplay: true })
         }
     }
 
     button1Click = () => {
-       
+
         alert(this.textInput.current.value)
         if (this.textInput.current.value !== '' && this.state.valueOld !== this.textInput.current.value) {
             localStorage.setItem('Пользователь', this.textInput.current.value)
@@ -215,7 +221,7 @@ export default class Display extends Component {
         this.recordUpdate()
     }
 
-    
+
 
     renderRecords() {
         return (
@@ -248,38 +254,54 @@ export default class Display extends Component {
         )
     }
 
+    toggleLid() {
+        // this.setState({isDisplayOn: !this.state.isDisplayOn})
+        this.setState({isDisplayOn: !this.isDisplayOn})
+        console.log(this.state.isDisplayOn)
+        console.log(this)
+        // setTimeout(()=>this.setState({isDisplayOn: false}),3000)
+        return(this.state.isDisplayOn)
+
+    }
+
+
+
     render() {
         return (
             <>
                 <div className={this.state.modalhelp}>
                     {this.textInModalHelp()}
-            
+
                 </div>
                 <div className="bg"></div>
                 <div className="bg bg2"></div>
                 <div className="bg bg3"></div>
 
+
+                {/* {this.state.isDisplay && <div className={this.state.classNameForWrapper}> */}
                 <div className={this.state.classNameForWrapper}>
+                <BackgrounSide prop={this.state.isDisplay?"none":" "} onClick={this.toggleLid}/>
                     <div className={this.state.back}>
                         <div className={this.state.module}>
                             <div className="frame" />
                             <div className="title">НУ, ПОГОДИ!</div>
                             <div className="displayGlass">
-
                             </div>
-                            <div className={this.state.display}>
-                                <Volk />
-                                <Eggs recordUpdate={this.recordUpdate} />
-
+                            <div className={this.state.display} >
+                                {this.state.isDisplayOn&&<Volk />}
+                                <Eggs recordUpdate={this.recordUpdate} toggleLid={this.state.isDisplayOn}/>
                             </div>
                             <div className="title2">ЭЛЕКТРОНИКА</div>
                             <div className="LOGO" />
                             <div className="bell" />
                             <div className="clockFace" />
                         </div>
-
                     </div>
                 </div>
+
+                {/* {!this.state.isDisplay && <div className={this.state.classNameForWrapper}>
+                    <BackgrounSide prop={this.state.isDisplay?" ":"none"} onClick={this.toggleLid}/>
+                </div>} */}
 
                 <div className={this.state.classNameForFooter}>
                     <RotateInDownRight><a href="https://github.com/GuliaevAE"><img src={github} alt="github" /></a></RotateInDownRight>

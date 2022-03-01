@@ -31,8 +31,8 @@ export default class EggsActions extends Component {
             classnameForRDSecond: 'egg RD1 noneEgg ',
             speedEgg: 5000,
             respawnEgg: 5000,
-            wolfPosition: "volk1 active",
-            wolfBascetPosition: "volk-hand2 active",
+            wolfPosition: "volk1 active none",
+            wolfBascetPosition: "volk-hand2 active none",
             brokenEggLeft: "brokenEggLeft noneEgg",
             brokenEggRight: "brokenEggRight noneEgg",
             isGameStarted: false,
@@ -45,7 +45,7 @@ export default class EggsActions extends Component {
             theGameStarted: "",
             theGameStartedClass: "none",
             arrayWithNumbers: [],
-
+            canPlay: false,
             classnameForRabbit: 'rabbit none'
         };
         this.generateEgg = this.generateEgg.bind(this);
@@ -59,6 +59,8 @@ export default class EggsActions extends Component {
         this.eggCaught = this.eggCaught.bind(this);
         this.newRecord = this.newRecord.bind(this);
 
+
+
     }
 
     soundPlay = (src) => {
@@ -70,10 +72,16 @@ export default class EggsActions extends Component {
 
     /////////////////////////////////////////////
     componentDidMount() {
+
         document.addEventListener("keydown", this.checkKey);
+
     }
 
     componentDidUpdate() {
+        if (this.props.toggleLid && !this.state.canPlay) {
+            this.setState({ canPlay: true })
+        }
+
         if (this.state.loss >= 120) {
             setTimeout(() => this.setState({ loss: 0 }), 4000);
         }
@@ -137,30 +145,37 @@ export default class EggsActions extends Component {
     /////////////////////////////////////////////
     ///Функция генерации яиц с определенным интервалом
     beginA() {
-        this.reset();
-        this.setState({ theGameStarted: "gameA" });
-        this.setState({ theGameStartedClass: "theGameAStarted" })
-        this.state.speedEgg = 350;
-        this.state.respaunEgg = 500;
-        this.start();
+        if (this.state.canPlay) {
+            this.reset();
+            this.setState({ theGameStarted: "gameA" });
+            this.setState({ theGameStartedClass: "theGameAStarted" })
+            this.state.speedEgg = 350;
+            this.state.respaunEgg = 500;
+            this.start();
+        }
     }
 
     beginB() {
-        this.reset();
-        this.setState({ theGameStarted: "gameB" });
-        this.setState({ theGameStartedClass: "theGameBStarted" })
-        this.state.speedEgg = 350;
-        this.state.respaunEgg = 500;
-        this.start();
+        if (this.state.canPlay) {
+            this.reset();
+            this.setState({ theGameStarted: "gameB" });
+            this.setState({ theGameStartedClass: "theGameBStarted" })
+            this.state.speedEgg = 350;
+            this.state.respaunEgg = 500;
+            this.start();
+        }
     }
 
     time() {
+        if(this.state.canPlay){
         this.reset();
         this.state.speedEgg = 400;
         this.state.respaunEgg = 400;
         this.setState({ theGameStarted: "time" });
-        this.start();
+        this.start();}
     }
+
+
 
     reset() {
         clearInterval(this.#activeInterval);
@@ -415,7 +430,7 @@ export default class EggsActions extends Component {
     loss(x) {
         let config = {
             width: x * 40,
-
+            "max-width": 120,
         }
 
         return (
@@ -426,33 +441,39 @@ export default class EggsActions extends Component {
     ///////////////////////////// 
     //Использование клавиатуры (кнопки w,a,s,d на numpad)
     checkKey = (event) => {
-        switch (event.keyCode) {
-            case 65:
-                this.setState({ wolfPosition: "volk1 active" });
-                this.left()
-                break;
-            case 68:
-                this.setState({ wolfPosition: "volk2 active" });
-                this.right()
-                break;
-            case 87:
-                this.up()
-                break;
-            case 83:
-                this.down()
-                break;
-            default:
-                break;
+        if (this.state.canPlay === true) {
+            switch (event.keyCode) {
+                case 65:
+                    this.setState({ wolfPosition: "volk1 active" });
+                    this.left()
+                    break;
+                case 68:
+                    this.setState({ wolfPosition: "volk2 active" });
+                    this.right()
+                    break;
+                case 87:
+                    this.up()
+                    break;
+                case 83:
+                    this.down()
+                    break;
+                default:
+                    break;
+            }
         }
+
+
     }
 
     left() {
+
         if (this.state.wolfBascetPosition === "volk-hand4 active") {
             this.setState({ wolfBascetPosition: "volk-hand2 active" });
         }
         if (this.state.wolfBascetPosition === "volk-hand3 active") {
             this.setState({ wolfBascetPosition: "volk-hand1 active" });
         }
+
     }
 
     right() {
@@ -485,25 +506,27 @@ export default class EggsActions extends Component {
     ///////////////////////////
     //Функция рендера волка при клике на кнопки интерфейса
     renderWolf(buttonNumber) {
-        switch (buttonNumber.target.id) {
-            case "1":
-                this.setState({ wolfPosition: "volk1 active" });
-                this.setState({ wolfBascetPosition: "volk-hand2 active" });
-                break;
-            case "2":
-                this.setState({ wolfPosition: "volk1 active" });
-                this.setState({ wolfBascetPosition: "volk-hand1 active" });
-                break;
-            case "3":
-                this.setState({ wolfPosition: "volk2 active" });
-                this.setState({ wolfBascetPosition: "volk-hand4 active" });
-                break;
-            case "4":
-                this.setState({ wolfPosition: "volk2 active" });
-                this.setState({ wolfBascetPosition: "volk-hand3 active" });
-                break;
-            default:
-                break;
+        if (this.state.canPlay) {
+            switch (buttonNumber.target.id) {
+                case "1":
+                    this.setState({ wolfPosition: "volk1 active" });
+                    this.setState({ wolfBascetPosition: "volk-hand2 active" });
+                    break;
+                case "2":
+                    this.setState({ wolfPosition: "volk1 active" });
+                    this.setState({ wolfBascetPosition: "volk-hand1 active" });
+                    break;
+                case "3":
+                    this.setState({ wolfPosition: "volk2 active" });
+                    this.setState({ wolfBascetPosition: "volk-hand4 active" });
+                    break;
+                case "4":
+                    this.setState({ wolfPosition: "volk2 active" });
+                    this.setState({ wolfBascetPosition: "volk-hand3 active" });
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -527,13 +550,13 @@ export default class EggsActions extends Component {
                     <div className={this.state.classnameForRUSecond} />
                     <div className={this.state.classnameForRDSecond} />
                     <div className="score">
-                        {this.state.score}
+                        {this.state.canPlay&& this.state.score}
                     </div>
                     <div className={this.state.theGameStartedClass}></div>
                     <div className={this.state.brokenEggLeft} />
                     <div className={this.state.brokenEggRight} />
                     {this.loss(this.state.mistakes)}
-                    <EggsNone />
+                    {this.props.toggleLid && <EggsNone toggleLid={this.props.toggleLid}/>}
                     <div className={this.state.classnameForRabbit} />
                     <div className={this.state.wolfPosition} />
                     <div className={this.state.wolfBascetPosition} />
