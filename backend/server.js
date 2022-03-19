@@ -30,7 +30,3 @@ app.listen(port, () => {
     console.log(`[Server] server has been started on port: ${port}`);
 });
 
-
-
-
-

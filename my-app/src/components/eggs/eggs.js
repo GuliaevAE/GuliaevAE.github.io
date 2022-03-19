@@ -9,7 +9,7 @@ export default function EggsNone(props) {
     }else clearTimeout(timer)
 
 
-
+    console.log('sdfds')
 
 
     return (
