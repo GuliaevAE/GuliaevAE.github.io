@@ -8,10 +8,6 @@ export default function EggsNone(props) {
         timer = setTimeout(() => setEggStatus(eggStatus = 'none'), 2000)
     }else clearTimeout(timer)
 
-
-    console.log('sdfds')
-
-
     return (
         <>
             <div className={`egg LU1 ${eggStatus}`}></div>
