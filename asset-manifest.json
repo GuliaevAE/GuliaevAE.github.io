@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6aed65c7.chunk.css",
+    "main.js": "/static/js/main.ea4c8cec.chunk.js",
+    "main.js.map": "/static/js/main.ea4c8cec.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7a1bfce0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7a1bfce0.js.map",
+    "static/js/2.cbc054f3.chunk.js": "/static/js/2.cbc054f3.chunk.js",
+    "static/js/2.cbc054f3.chunk.js.map": "/static/js/2.cbc054f3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.6aed65c7.chunk.css.map": "/static/css/main.6aed65c7.chunk.css.map",
+    "static/js/2.cbc054f3.chunk.js.LICENSE.txt": "/static/js/2.cbc054f3.chunk.js.LICENSE.txt",
+    "static/media/display.css": "/static/media/wasd1.8c93e7b5.png",
+    "static/media/bit-pong-sound.156a0719.mp3": "/static/media/bit-pong-sound.156a0719.mp3",
+    "static/media/bit-punch.4f4e5f52.mp3": "/static/media/bit-punch.4f4e5f52.mp3",
+    "static/media/crash.4d1ccb21.mp3": "/static/media/crash.4d1ccb21.mp3",
+    "static/media/eggsActions.css": "/static/media/digital_7italic.3580728b.ttf",
+    "static/media/github.987334e9.png": "/static/media/github.987334e9.png",
+    "static/media/placeWithBattery1.4377c464.png": "/static/media/placeWithBattery1.4377c464.png",
+    "static/media/volk.css": "/static/media/wolf-p-1.dbd39731.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a1bfce0.js",
+    "static/js/2.cbc054f3.chunk.js",
+    "static/css/main.6aed65c7.chunk.css",
+    "static/js/main.ea4c8cec.chunk.js"
+  ]
+}
